@@ -7,12 +7,9 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <Layout className="layout">
-      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-        <h1 style={{ color: 'white' }}>
-          Hi {userInfo.name} Welcome to Labs Basic SPA
-        </h1>
+      <Header>
         <Menu theme="dark" mode="horizontal">
-          <Menu.Item key={1}>
+          <Menu.Item>
             <Link to="/new-topic">
               <Button type="dashed">Add New Topic</Button>
             </Link>
