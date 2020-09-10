@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RenderContextRadio from './ContextPages/RenderContextRadio';
 import RenderDeliveryTopicSettings from './ContextPages/RenderDeliveryTopicSettings';
+import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
 import { Button } from 'antd';
 
 function RenderNewTopicModal(props) {
@@ -20,6 +21,7 @@ function RenderNewTopicModal(props) {
     <>
       {page === 1 ? <RenderContextRadio /> : null}
       {page === 2 ? <RenderDeliveryTopicSettings /> : null}
+      {page === 3 ? <RenderDeliveryTopicSetup /> : null}
 
       {/* next & prev buttons */}
       <div>
