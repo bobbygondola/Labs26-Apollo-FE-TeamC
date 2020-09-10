@@ -15,10 +15,9 @@ import { ExampleListPage } from './components/pages/ExampleList';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { HomePage } from './components/pages/Home';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import NewTopicModalContainer from './components/pages/Modal/NewTopicModalContainer';
+import NewTopicModalContainer from './components/pages/NewTopicModal/NewTopicModalContainer';
 
 ReactDOM.render(
   <Router>
@@ -53,7 +52,6 @@ function App() {
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/datavis" component={ExampleDataViz} />
         <SecureRoute path="/new-topic" component={NewTopicModalContainer} />
         <Route component={NotFoundPage} />
       </Switch>

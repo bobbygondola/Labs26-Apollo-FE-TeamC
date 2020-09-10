@@ -19,9 +19,6 @@ function RenderHomePage(props) {
           <Link to="/example-list">Example List of Items</Link>
         </p>
         <p>
-          <Link to="/datavis">Data Visualizations Example</Link>
-        </p>
-        <p>
           <Link to="/new-topic">
             <Button type="dashed">Add New Topic</Button>
           </Link>
