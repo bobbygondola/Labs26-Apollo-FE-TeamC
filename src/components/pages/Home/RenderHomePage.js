@@ -1,13 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, Layout, Menu } from 'antd';
+const { Header, Content } = Layout;
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
-    <div>
+    <Layout className="layout">
       <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <div>
+      <Header>
+        <Menu theme="dark" mode="horizontal">
+          <Menu.Item>
+            <Link to="/new-topic">
+              <Button type="dashed">Add New Topic</Button>
+            </Link>
+          </Menu.Item>
+        </Menu>
+      </Header>
+      <Content>
         <p>
           This is an example of a common example of how we'd like for you to
           approach components.
@@ -18,21 +28,18 @@ function RenderHomePage(props) {
         <p>
           <Link to="/example-list">Example List of Items</Link>
         </p>
-        <p>
-          <Link to="/datavis">Data Visualizations Example</Link>
-        </p>
-        <p>
+        {/* <p>
           <Link to="/new-topic">
             <Button type="dashed">Add New Topic</Button>
           </Link>
-        </p>
+        </p> */}
         <p>
           <Button type="primary" onClick={() => authService.logout()}>
             Logout
           </Button>
         </p>
-      </div>
-    </div>
+      </Content>
+    </Layout>
   );
 }
 export default RenderHomePage;
