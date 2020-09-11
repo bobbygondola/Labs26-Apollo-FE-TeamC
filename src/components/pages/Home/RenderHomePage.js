@@ -7,7 +7,7 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <Layout className="layout">
-      <h1>Hi {userInfo.name} welcome to labs basic spa</h1>
+      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
       <Header>
         <Menu theme="dark" mode="horizontal">
           <Menu.Item>
