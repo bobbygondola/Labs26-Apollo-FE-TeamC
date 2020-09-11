@@ -16,8 +16,6 @@ function RenderContextRadio(props) {
 
   return (
     <>
-      <h1>New Topic</h1>
-      <h4>What type of context do you provide to the team?</h4>
       <Radio.Group onChange={radioCheck} value={radioVal}>
         <Radio style={radioStyle} value={1}>
           Product Leadership
