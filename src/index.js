@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import * as reducer from './state/reducers';
 import {
   BrowserRouter as Router,
   Route,
@@ -19,10 +24,16 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import NewTopicModalContainer from './components/pages/NewTopicModal/NewTopicModalContainer';
 
+const { newTopicReducer } = reducer;
+
+const store = createStore(newTopicReducer, applyMiddleware(thunk, logger));
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')

@@ -1,8 +1,28 @@
 import React, { useState } from 'react';
 import { Radio } from 'antd';
 
+const radioButtons = [
+  {
+    value: 0,
+    description: 'Product Leadership',
+  },
+  {
+    value: 1,
+    description: 'Delivery Management',
+  },
+  {
+    value: 2,
+    description: 'Design Leadership',
+  },
+  { value: 3, description: 'Project Management' },
+  {
+    value: 4,
+    description: 'Engineering Leadership',
+  },
+];
+
 function RenderContextRadio(props) {
-  const [radioVal, setRadioVal] = useState(1);
+  const [radioVal, setRadioVal] = useState(0);
 
   const radioCheck = e => {
     setRadioVal(e.target.value);
@@ -17,20 +37,40 @@ function RenderContextRadio(props) {
   return (
     <>
       <Radio.Group onChange={radioCheck} value={radioVal}>
-        <Radio style={radioStyle} value={1}>
-          Product Leadership
+        <Radio
+          style={radioStyle}
+          value={radioButtons[0].value}
+          description={radioButtons[0].description}
+        >
+          {radioButtons[0].description}
         </Radio>
-        <Radio style={radioStyle} value={2}>
-          Delivery Management
+        <Radio
+          style={radioStyle}
+          value={radioButtons[1].value}
+          description={radioButtons[1].description}
+        >
+          {radioButtons[1].description}
         </Radio>
-        <Radio style={radioStyle} value={3}>
-          Design Leadership
+        <Radio
+          style={radioStyle}
+          value={radioButtons[2].value}
+          description={radioButtons[2].description}
+        >
+          {radioButtons[2].description}
         </Radio>
-        <Radio style={radioStyle} value={4}>
-          Project Management
+        <Radio
+          style={radioStyle}
+          value={radioButtons[3].value}
+          description={radioButtons[3].description}
+        >
+          {radioButtons[3].description}
         </Radio>
-        <Radio style={radioStyle} value={5}>
-          Engineering Leadership
+        <Radio
+          style={radioStyle}
+          value={radioButtons[4].value}
+          description={radioButtons[4].description}
+        >
+          {radioButtons[4].description}
         </Radio>
       </Radio.Group>
     </>
