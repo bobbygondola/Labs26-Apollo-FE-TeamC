@@ -23,6 +23,7 @@ import { HomePage } from './components/pages/Home';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import NewTopicModalContainer from './components/pages/NewTopicModal/NewTopicModalContainer';
+import { TopicsListContainer } from './components/TopicsList';
 
 const { newTopicReducer } = reducer;
 
@@ -64,6 +65,7 @@ function App() {
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/new-topic" component={NewTopicModalContainer} />
+        <SecureRoute path="/topics-list" component={TopicsListContainer} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
