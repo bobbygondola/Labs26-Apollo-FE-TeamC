@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Tooltip } from 'antd';
-import {
-  UserOutlined,
-  AntDesignOutlined,
-  BellOutlined,
-} from '@ant-design/icons';
+import Avatars from '../common/Avatars';
+import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
+import { Space, Card } from 'antd';
 
 const topicsPlaceholder = [
   {
@@ -32,42 +29,27 @@ const topicsPlaceholder = [
 ];
 
 const RenderTopicsList = props => (
-  <div>
+  <Space align="start" direction="vertical" size="small">
     {/* // {props.data.map(topic => ( */}
     {topicsPlaceholder.map(topic => (
-      <div key={topic.id}>
-        <div>
-          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-          <Avatar
-            style={{
-              backgroundColor: '#f56a00',
-            }}
-          >
-            K
-          </Avatar>
-          <Tooltip title="Ant User" placement="top">
-            <Avatar
-              style={{
-                backgroundColor: '#87d068',
-              }}
-              icon={<UserOutlined />}
-            />
-          </Tooltip>
-          <Avatar
-            style={{
-              backgroundColor: '#1890ff',
-            }}
-            icon={<AntDesignOutlined />}
-          />
-        </div>
-        <h3>{topic.frequency}</h3>
+      <Card
+        key={topic.id}
+        bordered={true}
+        hoverable={true}
+        style={{ border: '1px solid #00617e', borderRadius: '5px' }}
+      >
+        <Avatars />
+        <h3>
+          <CalendarTwoTone />
+          {topic.frequency}
+        </h3>
         <h3>
           <BellOutlined />
           {topic.notifications}
         </h3>
-      </div>
+      </Card>
     ))}
-  </div>
+  </Space>
 );
 
 export default RenderTopicsList;
