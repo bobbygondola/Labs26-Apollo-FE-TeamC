@@ -8,6 +8,16 @@ function RenderNewTopicModal(props) {
   const [page, setPage] = useState(0);
   const [displayModal, setDisplayModal] = useState(false);
 
+  const [topic, setTopic] = useState({
+    contextRadioVal: 0,
+    frequencyRadioVal: 'Daily',
+    topicQuestions: [
+      'What is todays priority?',
+      'Do you have any key learnings to share with the team from stakeholders or customer?',
+      'What upcoming demos or events should the team be aware of?',
+    ],
+  });
+
   const { Step } = Steps;
   const steps = [
     {
@@ -51,9 +61,15 @@ function RenderNewTopicModal(props) {
           ))}
         </Steps>
         <div>{steps[page].content}</div>
-        {page === 0 ? <RenderContextRadio /> : null}
-        {page === 1 ? <RenderDeliveryTopicSettings /> : null}
-        {page === 2 ? <RenderDeliveryTopicSetup /> : null}
+        {page === 0 ? (
+          <RenderContextRadio topic={topic} setTopic={setTopic} />
+        ) : null}
+        {page === 1 ? (
+          <RenderDeliveryTopicSettings topic={topic} setTopic={setTopic} />
+        ) : null}
+        {page === 2 ? (
+          <RenderDeliveryTopicSetup topic={topic} setTopic={setTopic} />
+        ) : null}
 
         {/* next & prev buttons */}
         <div>

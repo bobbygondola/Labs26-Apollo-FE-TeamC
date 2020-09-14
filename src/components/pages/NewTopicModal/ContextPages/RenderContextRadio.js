@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Radio } from 'antd';
 
 const radioButtons = [
@@ -21,11 +21,9 @@ const radioButtons = [
   },
 ];
 
-function RenderContextRadio(props) {
-  const [radioVal, setRadioVal] = useState(0);
-
+function RenderContextRadio({ topic, setTopic }) {
   const radioCheck = e => {
-    setRadioVal(e.target.value);
+    setTopic({ ...topic, contextRadioVal: e.target.value });
   };
 
   const radioStyle = {
@@ -36,7 +34,7 @@ function RenderContextRadio(props) {
 
   return (
     <>
-      <Radio.Group onChange={radioCheck} value={radioVal}>
+      <Radio.Group onChange={radioCheck} value={topic.contextRadioVal}>
         <Radio
           style={radioStyle}
           value={radioButtons[0].value}
