@@ -7,16 +7,45 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <Layout className="layout">
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <Header>
+      {/* <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1> */}
+
+      {/* <Header>
+
         <Menu theme="dark" mode="horizontal">
           <Menu.Item>
+            <Link to="/">
+              Apollo
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
+
+            <Link to="/owner">
+              Owner
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item >
+
+            <Link to="/member">
+              Member
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item>
+
+            <Link to="/join-survey">
+              <Button>Join Survey</Button>
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item>
+
             <Link to="/new-topic">
               <Button type="dashed">Add New Topic</Button>
             </Link>
           </Menu.Item>
         </Menu>
-      </Header>
+      </Header> */}
       <Content>
         <p>
           This is an example of a common example of how we'd like for you to
