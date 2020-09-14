@@ -38,6 +38,7 @@ const RenderTopicsList = props => (
         hoverable={true}
         style={{ border: '1px solid #00617e', borderRadius: '5px' }}
       >
+        <h2>{topic.title}</h2>
         <Avatars />
         <h3>
           <CalendarTwoTone />
