@@ -2,15 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const StyledButton = styled.button`
+  color: white;
+  background-color: ROYALBLUE;
+  border: none;
+  padding: 1;
+  border-radius: 4px;
+`;
 const NavContainer = styled.div`
-  background-color: blue;
   display: flex;
+  color: red;
 `;
 
 const FirstContainer = styled.div`
   display: flex;
   width: 25%;
-
   justify-content: flex-end;
 `;
 
@@ -19,6 +25,15 @@ const SecondContainer = styled.div`
   width: 100%;
   margin-left: 30%;
   justify-content: flex-end;
+`;
+
+const StyledText = styled.h2`
+border-bottom: solid grey 3px;
+color:grey;
+&:hover{
+    color:ROYALBLUE;
+    border-bottom: solid ROYALBLUE; 3px;
+}
 `;
 
 const ChildContainer = styled.div`
@@ -35,13 +50,13 @@ const Navigation = () => {
       <FirstContainer>
         <ChildContainer>
           <Link to="/owner">
-            <h2>Owner</h2>
+            <StyledText>Owner</StyledText>
           </Link>
         </ChildContainer>
 
         <ChildContainer>
           <Link to="/member">
-            <h2>Member</h2>
+            <StyledText>Member</StyledText>
           </Link>
         </ChildContainer>
       </FirstContainer>
@@ -49,13 +64,13 @@ const Navigation = () => {
       <SecondContainer>
         <ChildContainer>
           <Link to="/join-survey">
-            <button>Join Survey</button>
+            <StyledButton>Join Survey</StyledButton>
           </Link>
         </ChildContainer>
 
         <ChildContainer>
           <Link to="/new-topic">
-            <button type="dashed">Add New Topic</button>
+            <StyledButton>Add New Topic</StyledButton>
           </Link>
         </ChildContainer>
 
