@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FormInput from '../../../common/FormInput';
 import { Radio } from 'antd';
 
-const RenderDeliveryTopicSettings = () => {
-  const [radioVal, setRadioVal] = useState('Daily');
-
+const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
   const radioCheck = e => {
-    setRadioVal(e.target.value);
+    setTopic({ ...topic, frequencyRadioVal: e.target.value });
   };
 
   return (
@@ -14,7 +12,7 @@ const RenderDeliveryTopicSettings = () => {
       <h1>Delivery Topic</h1>
       <FormInput labelId="Name" name="Name" placeholder="Delivery Topic" />
       <h3>How Frequently do you want to be notified?</h3>
-      <Radio.Group value={radioVal} size="large">
+      <Radio.Group value={topic.frequencyRadioVal} size="large">
         <Radio.Button value={'Daily'} onChange={radioCheck}>
           Daily
         </Radio.Button>

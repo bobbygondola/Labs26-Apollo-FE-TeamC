@@ -1,7 +1,18 @@
 import React from 'react';
 import FormInput from '../../../common/FormInput';
+import { Button } from 'antd';
 
-const RenderDeliveryTopicSetup = () => {
+const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
+  const handleQuestionsChange = (e, index) => {
+    setTopic({
+      ...topic,
+      topicQuestions: topic.topicQuestions.map((q, i) => {
+        if (index === i) return e.target.value;
+        return q;
+      }),
+    });
+  };
+
   return (
     <>
       <h1>Delivery Topic</h1>
@@ -10,15 +21,38 @@ const RenderDeliveryTopicSetup = () => {
         request
       </p>
       <h2>Context Questions</h2>
-      <FormInput labelId="What is the current priority?" name="Question 1" />
-      <FormInput
-        labelId="Do you have any key learnings to share with the team from stakeholders or customer?"
-        name="Question 2"
-      />
-      <FormInput
-        labelId="What upcoming demos or events should the team be aware of?"
-        name="Question 3"
-      />
+
+      {topic.topicQuestions.map((question, index) => {
+        return (
+          <>
+            <FormInput
+              value={question}
+              labelId={`Question ${index + 1}`}
+              onChange={e => handleQuestionsChange(e, index)}
+            />
+            <Button
+              onClick={() =>
+                setTopic({
+                  ...topic,
+                  topicQuestions: topic.topicQuestions.filter((q, i) => {
+                    return i !== index ? q : null;
+                  }),
+                })
+              }
+            >
+              Delete
+            </Button>
+          </>
+        );
+      })}
+
+      <Button
+        onClick={() =>
+          setTopic({ ...topic, topicQuestions: [...topic.topicQuestions, ''] })
+        }
+      >
+        Add New Question
+      </Button>
     </>
   );
 };
