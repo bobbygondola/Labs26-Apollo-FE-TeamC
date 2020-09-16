@@ -6,7 +6,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
-      topicQuestions: topic.topicQuestions.map((q, i) => {
+      default_questions: topic.default_questions.map((q, i) => {
         if (index === i) return e.target.value;
         return q;
       }),
@@ -23,11 +23,11 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h2>Context Questions</h2>
 
-        {topic.topicQuestions.map((question, index) => {
+        {topic.default_questions.map((question, index) => {
           return (
             <>
               <FormInput
-                value={question}
+                value={question.content}
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
@@ -35,9 +35,11 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                 onClick={() =>
                   setTopic({
                     ...topic,
-                    topicQuestions: topic.topicQuestions.filter((q, i) => {
-                      return i !== index ? q : null;
-                    }),
+                    default_questions: topic.default_questions.filter(
+                      (q, i) => {
+                        return i !== index ? q : null;
+                      }
+                    ),
                   })
                 }
               >
@@ -49,7 +51,10 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
       </div>
       <Button
         onClick={() =>
-          setTopic({ ...topic, topicQuestions: [...topic.topicQuestions, ''] })
+          setTopic({
+            ...topic,
+            default_questions: [...topic.default_questions, ''],
+          })
         }
       >
         Add New Question
