@@ -5,15 +5,14 @@ const RenderTopicContextSlideout = props => {
   const { data } = props;
   const { Option } = Select;
   const [currentIteration, setCurrentIteration] = useState(
-    data[data.length - 1]
+    data.topic_iteration_requests[data.topic_iteration_requests.length - 1]
   );
 
   function onChange(value) {
-    console.log(`selected ${value}`);
-    let tempInstance = data.filter(iteration => {
-      return iteration.date === value;
+    const [tempInstance] = data.topic_iteration_requests.filter(iteration => {
+      return iteration.posted_at === value;
     });
-    setCurrentIteration(tempInstance[0]);
+    setCurrentIteration(tempInstance);
   }
 
   function onBlur() {
@@ -30,11 +29,11 @@ const RenderTopicContextSlideout = props => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '25%' }}>
-      <h1>{currentIteration.name}</h1>
+      <h1>{data.title}</h1>
       <Select
         showSearch
         style={{ width: '98%' }}
-        placeholder={currentIteration.date}
+        placeholder={currentIteration.posted_at}
         optionFilterProp="children"
         onChange={onChange}
         onFocus={onFocus}
@@ -44,10 +43,10 @@ const RenderTopicContextSlideout = props => {
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        {data.map(iteration => {
+        {data.topic_iteration_requests.map(iteration => {
           return (
-            <Option key={iteration.instance_id} value={iteration.date}>
-              {iteration.date}
+            <Option key={iteration.id} value={iteration.posted_at}>
+              {iteration.posted_at}
             </Option>
           );
         })}
@@ -55,17 +54,18 @@ const RenderTopicContextSlideout = props => {
       <div>
         <h2>Members</h2>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          {currentIteration.members.map(member => (
-            <span>{`${member.name},  `}</span>
+          {data.members.map(member => (
+            <span key={member.id}>{`${member.name},  `}</span>
           ))}
         </div>
       </div>
       <div>
-        {currentIteration.questions_with_context.map(q => {
+        <h2>Context</h2>
+        {data.context_questions.map(q => {
           return (
             <div>
-              <h3>{q.question}</h3>
-              <p>{q.context}</p>
+              <h3>{q.content}</h3>
+              <p>{q.response_type}</p>
             </div>
           );
         })}
