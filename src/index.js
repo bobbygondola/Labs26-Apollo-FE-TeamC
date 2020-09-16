@@ -24,6 +24,7 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import NewTopicModalContainer from './components/pages/NewTopicModal/NewTopicModalContainer';
 import { TopicsListContainer } from './components/TopicsList';
+import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
 
 const { newTopicReducer } = reducer;
 
@@ -66,6 +67,11 @@ function App() {
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/new-topic" component={NewTopicModalContainer} />
         <SecureRoute path="/topics-list" component={TopicsListContainer} />
+        <SecureRoute
+          path="/topic-context"
+          component={TopicContextSlideoutContainer}
+        />
+
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

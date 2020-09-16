@@ -32,6 +32,9 @@ function RenderHomePage(props) {
           <Link to="/topics-list">Topics List</Link>
         </p>
         <p>
+          <Link to="/topic-context">Topic Context</Link>
+        </p>
+        <p>
           <Button type="primary" onClick={() => authService.logout()}>
             Logout
           </Button>
