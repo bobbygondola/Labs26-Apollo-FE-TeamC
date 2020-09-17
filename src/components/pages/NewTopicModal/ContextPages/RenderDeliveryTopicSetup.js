@@ -6,7 +6,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
-      topicQuestions: topic.topicQuestions.map((q, i) => {
+      default_questions: topic.default_questions.map((q, i) => {
         if (index === i) return e.target.value;
         return q;
       }),
@@ -20,35 +20,41 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
         Let's set up the questions you will answer for the team as part of your
         request
       </p>
-      <h2>Context Questions</h2>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <h2>Context Questions</h2>
 
-      {topic.topicQuestions.map((question, index) => {
-        return (
-          <>
-            <FormInput
-              value={question}
-              labelId={`Question ${index + 1}`}
-              onChange={e => handleQuestionsChange(e, index)}
-            />
-            <Button
-              onClick={() =>
-                setTopic({
-                  ...topic,
-                  topicQuestions: topic.topicQuestions.filter((q, i) => {
-                    return i !== index ? q : null;
-                  }),
-                })
-              }
-            >
-              Delete
-            </Button>
-          </>
-        );
-      })}
-
+        {topic.default_questions.map((question, index) => {
+          return (
+            <>
+              <FormInput
+                value={question.content}
+                labelId={`Question ${index + 1}`}
+                onChange={e => handleQuestionsChange(e, index)}
+              />
+              <Button
+                onClick={() =>
+                  setTopic({
+                    ...topic,
+                    default_questions: topic.default_questions.filter(
+                      (q, i) => {
+                        return i !== index ? q : null;
+                      }
+                    ),
+                  })
+                }
+              >
+                Delete
+              </Button>
+            </>
+          );
+        })}
+      </div>
       <Button
         onClick={() =>
-          setTopic({ ...topic, topicQuestions: [...topic.topicQuestions, ''] })
+          setTopic({
+            ...topic,
+            default_questions: [...topic.default_questions, ''],
+          })
         }
       >
         Add New Question

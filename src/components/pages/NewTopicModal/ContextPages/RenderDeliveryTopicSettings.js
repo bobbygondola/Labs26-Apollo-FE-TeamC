@@ -12,7 +12,11 @@ const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
       <h1>Delivery Topic</h1>
       <FormInput labelId="Name" name="Name" placeholder="Delivery Topic" />
       <h3>How Frequently do you want to be notified?</h3>
-      <Radio.Group value={topic.frequencyRadioVal} size="large">
+      <Radio.Group
+        value={topic.frequencyRadioVal}
+        size="large"
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
         <Radio.Button value={'Daily'} onChange={radioCheck}>
           Daily
         </Radio.Button>

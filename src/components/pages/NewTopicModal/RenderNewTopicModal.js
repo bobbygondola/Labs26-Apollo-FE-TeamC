@@ -9,12 +9,24 @@ function RenderNewTopicModal(props) {
   const [displayModal, setDisplayModal] = useState(false);
 
   const [topic, setTopic] = useState({
-    contextRadioVal: 0,
-    frequencyRadioVal: 'Daily',
-    topicQuestions: [
-      'What is todays priority?',
-      'Do you have any key learnings to share with the team from stakeholders or customer?',
+    created_by: '00ulthapbErVUwVJy4x6',
+    title: 'Development Team',
+    frequency: 'Daily',
+    context_questions: [
+      'What is the current priority?',
+      'Do you have any key learnings to share with the team from stakeholders or customers?',
       'What upcoming demos or events should the team be aware of?',
+    ],
+    default_questions: [
+      {
+        content: 'What did you accomplish yesterday?',
+        response_type: 'String',
+      },
+      { content: 'What are you working on today?', response_type: 'String' },
+      {
+        content: 'Are there any monsters in your path?',
+        response_type: 'String',
+      },
     ],
   });
 
@@ -71,14 +83,12 @@ function RenderNewTopicModal(props) {
           <RenderDeliveryTopicSetup topic={topic} setTopic={setTopic} />
         ) : null}
 
-        {/* next & prev buttons */}
         <div>
           {page !== 0 ? <Button onClick={prevPage}>Prev</Button> : null}
           {page < steps.length - 1 ? (
             <Button onClick={nextPage}>Next</Button>
           ) : null}
         </div>
-        {/* end next & prev buttons */}
       </Modal>
       <Button onClick={showModal} type="primary">
         New Topic
