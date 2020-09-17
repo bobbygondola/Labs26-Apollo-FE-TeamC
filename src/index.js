@@ -26,6 +26,8 @@ import NewTopicModalContainer from './components/pages/NewTopicModal/NewTopicMod
 import MemberPage from './components/pages/Member/MemberPage';
 import OwnerPage from './components/pages/Owner/OwnerPage';
 import Navigation from './components/Navigation';
+import { TopicsListContainer } from './components/TopicsList';
+
 
 const { newTopicReducer } = reducer;
 
@@ -70,6 +72,7 @@ function App() {
         <SecureRoute path="/new-topic" component={NewTopicModalContainer} />
         <SecureRoute path="/member" component={MemberPage} />
         <SecureRoute path="/owner" component={OwnerPage} />
+        <SecureRoute path="/topics-list" component={TopicsListContainer} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

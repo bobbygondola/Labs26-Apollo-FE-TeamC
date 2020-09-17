@@ -57,11 +57,9 @@ function RenderHomePage(props) {
         <p>
           <Link to="/example-list">Example List of Items</Link>
         </p>
-        {/* <p>
-          <Link to="/new-topic">
-            <Button type="dashed">Add New Topic</Button>
-          </Link>
-        </p> */}
+        <p>
+          <Link to="/topics-list">Topics List</Link>
+        </p>
         <p>
           <Button type="primary" onClick={() => authService.logout()}>
             Logout
