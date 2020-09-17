@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import NewTopicModal from './pages/NewTopicModal/NewTopicModalContainer';
 
 const StyledButton = styled.button`
   color: white;
@@ -69,9 +70,7 @@ const Navigation = () => {
         </ChildContainer>
 
         <ChildContainer>
-          <Link to="/new-topic">
-            <StyledButton>Add New Topic</StyledButton>
-          </Link>
+          <NewTopicModal />
         </ChildContainer>
 
         <ChildContainer>

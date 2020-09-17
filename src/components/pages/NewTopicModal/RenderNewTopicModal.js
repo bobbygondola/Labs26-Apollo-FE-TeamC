@@ -3,6 +3,14 @@ import RenderContextRadio from './ContextPages/RenderContextRadio';
 import RenderDeliveryTopicSettings from './ContextPages/RenderDeliveryTopicSettings';
 import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
 import { Button, Modal, Steps } from 'antd';
+import styled from 'styled-components';
+const StyledButton = styled.button`
+  color: white;
+  background-color: ROYALBLUE;
+  border: none;
+  padding: 1;
+  border-radius: 4px;
+`;
 
 function RenderNewTopicModal(props) {
   const [page, setPage] = useState(0);
@@ -90,9 +98,9 @@ function RenderNewTopicModal(props) {
           ) : null}
         </div>
       </Modal>
-      <Button onClick={showModal} type="primary">
+      <StyledButton onClick={showModal} type="primary">
         New Topic
-      </Button>
+      </StyledButton>
     </>
   );
 }
