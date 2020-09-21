@@ -7,10 +7,23 @@ const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
     setTopic({ ...topic, frequency: e.target.value });
   };
 
+  const handleNameChange = e => {
+    setTopic({
+      ...topic,
+      title: e.target.value,
+    });
+  };
+
   return (
     <>
       <h1>Delivery Topic</h1>
-      <FormInput labelId="Name" name="Name" placeholder="Delivery Topic" />
+      <FormInput
+        labelId="Name"
+        name="Name"
+        placeholder="Delivery Topic"
+        value={topic.title}
+        onChange={handleNameChange}
+      />
       <h3>How Frequently do you want to be notified?</h3>
       <Radio.Group
         value={topic.frequencyRadioVal}
