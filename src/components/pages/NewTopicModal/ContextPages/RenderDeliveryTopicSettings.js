@@ -4,7 +4,7 @@ import { Radio } from 'antd';
 
 const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
   const radioCheck = e => {
-    setTopic({ ...topic, frequencyRadioVal: e.target.value });
+    setTopic({ ...topic, frequency: e.target.value });
   };
 
   return (

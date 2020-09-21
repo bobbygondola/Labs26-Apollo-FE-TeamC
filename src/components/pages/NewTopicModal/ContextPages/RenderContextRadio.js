@@ -26,7 +26,7 @@ function RenderContextRadio({ topic, setTopic }) {
     setTopic({
       ...topic,
       contextRadioVal: e.target.value,
-      contextRadioDescription: e.target.description,
+      title: e.target.description,
     });
   };
 
