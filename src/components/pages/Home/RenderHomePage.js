@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Layout, Menu } from 'antd';
+
 const { Header, Content } = Layout;
 
 function RenderHomePage(props) {
@@ -13,6 +14,7 @@ function RenderHomePage(props) {
           This is an example of a common example of how we'd like for you to
           approach components.
         </p>
+
         <p>
           <Link to="/profile-list">Profiles Example</Link>
         </p>
