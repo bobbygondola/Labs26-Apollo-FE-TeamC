@@ -3,10 +3,16 @@ import RenderContextRadio from './ContextPages/RenderContextRadio';
 import RenderDeliveryTopicSettings from './ContextPages/RenderDeliveryTopicSettings';
 import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
 import { Button, Modal, Steps } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import * as axios from 'axios';
 
-function RenderNewTopicModal(props) {
+import { toggleDisplayModal } from '../../../state/actions/displayModalAction';
+
+function RenderNewTopicModal() {
+  const displayModal = useSelector(state => state.displayModal);
+  const dispatch = useDispatch();
+
   const [page, setPage] = useState(0);
-  const [displayModal, setDisplayModal] = useState(false);
 
   const [topic, setTopic] = useState({
     created_by: '00ulthapbErVUwVJy4x6',
@@ -46,12 +52,13 @@ function RenderNewTopicModal(props) {
     },
   ];
 
-  const showModal = () => {
-    setDisplayModal(true);
-  };
+  // const showModal = () => {
+  //   setDisplayModal(true);
+  // };
 
   const closeModal = e => {
-    setDisplayModal(false);
+    e.preventDefault();
+    dispatch(toggleDisplayModal());
   };
 
   const nextPage = e => {
@@ -64,9 +71,21 @@ function RenderNewTopicModal(props) {
     setPage(page - 1);
   };
 
+  const submit = e => {
+    e.preventDefault();
+    axios.post('https://reqres.in/api/users', topic).then(res => {
+      console.log(res);
+    });
+  };
+
   return (
     <>
-      <Modal title="New Topic" visible={displayModal} onCancel={closeModal}>
+      <Modal
+        title="New Topic"
+        visible={displayModal}
+        onCancel={closeModal}
+        onOk={submit}
+      >
         <Steps current={page}>
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
@@ -90,9 +109,9 @@ function RenderNewTopicModal(props) {
           ) : null}
         </div>
       </Modal>
-      <Button onClick={showModal} type="primary">
+      {/* <Button onClick={showModal} type="primary">
         New Topic
-      </Button>
+      </Button> */}
     </>
   );
 }

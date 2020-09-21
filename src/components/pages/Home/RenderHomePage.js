@@ -8,44 +8,6 @@ function RenderHomePage(props) {
   return (
     <Layout className="layout">
       <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-
-      {/* <Header>
-
-        <Menu theme="dark" mode="horizontal">
-          <Menu.Item>
-            <Link to="/">
-              Apollo
-            </Link>
-          </Menu.Item>
-          <Menu.Item>
-
-            <Link to="/owner">
-              Owner
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item >
-
-            <Link to="/member">
-              Member
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item>
-
-            <Link to="/join-survey">
-              <Button>Join Survey</Button>
-            </Link>
-          </Menu.Item>
-
-          <Menu.Item>
-
-            <Link to="/new-topic">
-              <Button type="dashed">Add New Topic</Button>
-            </Link>
-          </Menu.Item>
-        </Menu>
-      </Header> */}
       <Content>
         <p>
           This is an example of a common example of how we'd like for you to
@@ -59,9 +21,6 @@ function RenderHomePage(props) {
         </p>
         <p>
           <Link to="/topics-list">Topics List</Link>
-        </p>
-        <p>
-          <Link to="/topic-context">Topic Context</Link>
         </p>
         <p>
           <Button type="primary" onClick={() => authService.logout()}>

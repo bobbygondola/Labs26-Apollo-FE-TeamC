@@ -7,7 +7,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
     setTopic({
       ...topic,
       default_questions: topic.default_questions.map((q, i) => {
-        if (index === i) return e.target.value;
+        if (index === i) return { content: e.target.value };
         return q;
       }),
     });
@@ -16,10 +16,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
   return (
     <>
       <h1>Delivery Topic</h1>
-      <p>
-        Let's set up the questions you will answer for the team as part of your
-        request
-      </p>
+
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h2>Context Questions</h2>
 
