@@ -1,4 +1,5 @@
-import RenderContextRadio from './../components/pages/NewTopicModal/ContextPages/RenderContextRadio';
+import RenderDeliveryTopicSetup from '../components/pages/NewTopicModal/ContextPages/RenderDeliveryTopicSetup';
+
 import React from 'react';
 import { render } from '@testing-library/react';
 
@@ -24,13 +25,15 @@ const topic = {
   ],
 };
 
-describe('<RenderContextRadio /> test suite', () => {
-  test('there should be as many buttons rendered as there are in the radioButtons list', () => {
+describe('<RenderDeliveryTopicSetup /> test suite', () => {
+  test('button text is determined by props', () => {
     // for this first assertion, we'll simply ensure that the button's text is determined by the props passed to it
     // we'll also ensure that the className defaults to primary where none is passed as props
-    const { getByText, rerender } = render(
-      <RenderContextRadio topic={topic} />
+    const { getByDisplayValue, rerender } = render(
+      <RenderDeliveryTopicSetup topic={topic} />
     );
-    expect(topic.title).toBe('Development Team');
+    const form = getByDisplayValue(/What is the current priority/i);
+    expect(form.value).toBe('What is the current priority?');
+    // expect(form.labelId).toBe('Question 1');
   });
 });

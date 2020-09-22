@@ -24,7 +24,10 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
           return (
             <>
               <FormInput
+                key={index}
+                name={question}
                 value={question}
+                placeholder={question}
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
