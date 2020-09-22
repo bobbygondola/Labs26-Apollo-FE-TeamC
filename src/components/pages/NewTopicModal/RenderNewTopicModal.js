@@ -73,9 +73,14 @@ function RenderNewTopicModal() {
 
   const submit = e => {
     e.preventDefault();
-    axios.post('https://reqres.in/api/users', topic).then(res => {
-      console.log(res);
-    });
+    axios
+      .post('https://apollo-c-api.herokuapp.com/topics', topic)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
