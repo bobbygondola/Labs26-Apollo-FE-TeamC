@@ -6,7 +6,11 @@ import { Button, Modal, Steps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import * as axios from 'axios';
 
-import { toggleDisplayModal } from '../../../state/actions/displayModalAction';
+import {
+  toggleDisplayModal,
+  toggleJoinCodeModal,
+  captureJoinCode,
+} from '../../../state/actions/displayModalAction';
 
 function RenderNewTopicModal() {
   const displayModal = useSelector(state => state.displayModal);
@@ -74,12 +78,15 @@ function RenderNewTopicModal() {
   const submit = e => {
     e.preventDefault();
     axios
-      .post('https://apollo-c-api.herokuapp.com/topics', topic)
+      .post('https://reqres.in/api/users', topic)
       .then(res => {
         console.log(res);
+        dispatch(captureJoinCode(res.data.id));
+        dispatch(toggleDisplayModal());
+        dispatch(toggleJoinCodeModal());
       })
       .catch(err => {
-        console.log(err);
+        alert(err, 'Error while submitting new topic');
       });
   };
 

@@ -28,6 +28,7 @@ import OwnerPage from './components/pages/Owner/OwnerPage';
 import Navigation from './components/Navigation/Navigation';
 import { TopicsListContainer } from './components/TopicsList';
 import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
+import { JoinCodeModalContainer } from './components/JoinCodeModal';
 
 // const { newTopicReducer } = reducer;
 
@@ -79,7 +80,8 @@ function App() {
 
         <Route component={NotFoundPage} />
       </Switch>
-      <NewTopicModalContainer />s
+      <NewTopicModalContainer />
+      <JoinCodeModalContainer />
     </Security>
   );
 }
