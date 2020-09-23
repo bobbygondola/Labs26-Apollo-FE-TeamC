@@ -23,9 +23,9 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
 
   const menu = (
     <Menu onClick={onClick}>
-      <Menu.Item key="1">1st menu item</Menu.Item>
-      <Menu.Item key="2">2nd menu item</Menu.Item>
-      <Menu.Item key="3">3rd menu item</Menu.Item>
+      <Menu.Item key="1">Default Questions 1</Menu.Item>
+      <Menu.Item key="2">Default Questions 2</Menu.Item>
+      <Menu.Item key="3">Default Questions 3</Menu.Item>
     </Menu>
   );
 
@@ -34,7 +34,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
       <h1>Delivery Topic</h1>
       <Dropdown overlay={menu}>
         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-          Hover me, Click menu item <DownOutlined />
+          Choose default questions <DownOutlined />
         </a>
       </Dropdown>
 
@@ -54,7 +54,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                     onClick={() =>
                       setTopic({
                         ...topic,
-                        default_questions: topic.default_questions2.filter(
+                        default_questions: topic.default_questions.filter(
                           (q, i) => {
                             return i !== index ? q : null;
                           }
