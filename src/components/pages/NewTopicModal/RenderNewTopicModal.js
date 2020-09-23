@@ -6,7 +6,10 @@ import { Button, Modal, Steps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import * as axios from 'axios';
 
-import { toggleDisplayModal } from '../../../state/actions/displayModalAction';
+import {
+  toggleDisplayModal,
+  toggleJoinCodeModal,
+} from '../../../state/actions/displayModalAction';
 
 function RenderNewTopicModal() {
   const displayModal = useSelector(state => state.displayModal);
@@ -75,6 +78,8 @@ function RenderNewTopicModal() {
     e.preventDefault();
     axios.post('https://reqres.in/api/users', topic).then(res => {
       console.log(res);
+      dispatch(toggleDisplayModal());
+      dispatch(toggleJoinCodeModal());
     });
   };
 
