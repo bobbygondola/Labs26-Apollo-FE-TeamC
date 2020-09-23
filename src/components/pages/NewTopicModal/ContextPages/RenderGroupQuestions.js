@@ -54,7 +54,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                     onClick={() =>
                       setTopic({
                         ...topic,
-                        default_questions2: topic.default_questions2.filter(
+                        default_questions: topic.default_questions2.filter(
                           (q, i) => {
                             return i !== index ? q : null;
                           }
@@ -110,7 +110,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                     onClick={() =>
                       setTopic({
                         ...topic,
-                        default_questions2: topic.default_questions2.filter(
+                        default_questions3: topic.default_questions3.filter(
                           (q, i) => {
                             return i !== index ? q : null;
                           }
@@ -125,16 +125,42 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
             })
           : null}
       </div>
-      <Button
-        onClick={() =>
-          setTopic({
-            ...topic,
-            default_questions2: [...topic.default_questions, ''],
-          })
-        }
-      >
-        Add New Question
-      </Button>
+      {count === '1' ? (
+        <Button
+          onClick={() =>
+            setTopic({
+              ...topic,
+              default_questions: [...topic.default_questions, ''],
+            })
+          }
+        >
+          Add New Question
+        </Button>
+      ) : null}
+      {count === '2' ? (
+        <Button
+          onClick={() =>
+            setTopic({
+              ...topic,
+              default_questions2: [...topic.default_questions2, ''],
+            })
+          }
+        >
+          Add New Question
+        </Button>
+      ) : null}
+      {count === '3' ? (
+        <Button
+          onClick={() =>
+            setTopic({
+              ...topic,
+              default_questions3: [...topic.default_questions3, ''],
+            })
+          }
+        >
+          Add New Question
+        </Button>
+      ) : null}
     </>
   );
 };
