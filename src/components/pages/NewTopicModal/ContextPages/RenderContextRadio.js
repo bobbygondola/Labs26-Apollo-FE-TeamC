@@ -1,7 +1,7 @@
 import React from 'react';
 import { Radio } from 'antd';
 
-const radioButtons = [
+export const radioButtons = [
   {
     value: 0,
     description: 'Product Leadership',
@@ -39,41 +39,15 @@ function RenderContextRadio({ topic, setTopic }) {
   return (
     <>
       <Radio.Group onChange={radioCheck} value={topic.contextRadioVal}>
-        <Radio
-          style={radioStyle}
-          value={radioButtons[0].value}
-          description={radioButtons[0].description}
-        >
-          {radioButtons[0].description}
-        </Radio>
-        <Radio
-          style={radioStyle}
-          value={radioButtons[1].value}
-          description={radioButtons[1].description}
-        >
-          {radioButtons[1].description}
-        </Radio>
-        <Radio
-          style={radioStyle}
-          value={radioButtons[2].value}
-          description={radioButtons[2].description}
-        >
-          {radioButtons[2].description}
-        </Radio>
-        <Radio
-          style={radioStyle}
-          value={radioButtons[3].value}
-          description={radioButtons[3].description}
-        >
-          {radioButtons[3].description}
-        </Radio>
-        <Radio
-          style={radioStyle}
-          value={radioButtons[4].value}
-          description={radioButtons[4].description}
-        >
-          {radioButtons[4].description}
-        </Radio>
+        {radioButtons.map(button => (
+          <Radio
+            style={radioStyle}
+            value={button.value}
+            description={button.description}
+          >
+            {button.description}
+          </Radio>
+        ))}
       </Radio.Group>
     </>
   );
