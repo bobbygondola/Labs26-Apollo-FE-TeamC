@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RenderContextRadio from './ContextPages/RenderContextRadio';
 import RenderDeliveryTopicSettings from './ContextPages/RenderDeliveryTopicSettings';
 import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
+import RenderGroupQuestions from './ContextPages/RenderGroupQuestions';
 import { Button, Modal, Steps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import * as axios from 'axios';
@@ -34,6 +35,29 @@ function RenderNewTopicModal() {
         response_type: 'String',
       },
     ],
+    default_questions2: [
+      {
+        content: 'What did you code today?',
+        response_type: 'String',
+      },
+      { content: 'Do you want to punch a baby?', response_type: 'String' },
+      {
+        content: 'Did this feature take way longer than it should of?',
+        response_type: 'String',
+      },
+    ],
+
+    default_questions3: [
+      {
+        content: 'Did you peer program today?',
+        response_type: 'String',
+      },
+      { content: 'Did you reach your goal today?', response_type: 'String' },
+      {
+        content: 'What could of went better?',
+        response_type: 'String',
+      },
+    ],
   });
 
   const { Step } = Steps;
@@ -49,6 +73,10 @@ function RenderNewTopicModal() {
     {
       title: 'Context Questions',
       content: `Let's set up the questions you will answer for the team as part of your request`,
+    },
+    {
+      title: 'Group Questions',
+      content: `Let's set up the questions your team will answer`,
     },
   ];
 
@@ -100,6 +128,9 @@ function RenderNewTopicModal() {
         ) : null}
         {page === 2 ? (
           <RenderDeliveryTopicSetup topic={topic} setTopic={setTopic} />
+        ) : null}
+        {page === 3 ? (
+          <RenderGroupQuestions topic={topic} setTopic={setTopic} />
         ) : null}
 
         <div>
