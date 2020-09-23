@@ -6,8 +6,8 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
-      default_questions: topic.default_questions.map((q, i) => {
-        if (index === i) return { content: e.target.value };
+      context_questions: topic.context_questions.map((q, i) => {
+        if (index === i) return e.target.value;
         return q;
       }),
     });
@@ -20,11 +20,14 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h2>Context Questions</h2>
 
-        {topic.default_questions.map((question, index) => {
+        {topic.context_questions.map((question, index) => {
           return (
             <>
               <FormInput
-                value={question.content}
+                key={index}
+                name={question}
+                value={question}
+                placeholder={question}
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
@@ -32,7 +35,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                 onClick={() =>
                   setTopic({
                     ...topic,
-                    default_questions: topic.default_questions.filter(
+                    context_questions: topic.context_questions.filter(
                       (q, i) => {
                         return i !== index ? q : null;
                       }
@@ -50,7 +53,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
         onClick={() =>
           setTopic({
             ...topic,
-            default_questions: [...topic.default_questions, ''],
+            context_questions: [...topic.context_questions, ''],
           })
         }
       >
