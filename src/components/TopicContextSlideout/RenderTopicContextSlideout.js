@@ -28,7 +28,16 @@ const RenderTopicContextSlideout = props => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '25%' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '30%',
+        background: '#FFB7A9',
+        borderRadius: '15px',
+        padding: '3%',
+      }}
+    >
       <h1>{data.title}</h1>
       <Select
         showSearch
