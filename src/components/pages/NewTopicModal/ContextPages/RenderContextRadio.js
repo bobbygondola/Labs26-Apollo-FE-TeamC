@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Radio } from 'antd';
+import { questions } from '../ContextPages/RenderGroupQuestions';
 
 export const radioButtons = [
   {
@@ -22,11 +23,12 @@ export const radioButtons = [
 ];
 
 function RenderContextRadio({ topic, setTopic }) {
+  const [radioVal, setRadioVal] = useState(0);
   const radioCheck = e => {
+    setRadioVal(e.target.value);
     setTopic({
       ...topic,
-      contextRadioVal: e.target.value,
-      contextRadioDescription: e.target.description,
+      default_questions: questions[e.target.value],
     });
   };
 
@@ -38,7 +40,7 @@ function RenderContextRadio({ topic, setTopic }) {
 
   return (
     <>
-      <Radio.Group onChange={radioCheck} value={topic.contextRadioVal}>
+      <Radio.Group onChange={radioCheck} value={radioVal}>
         {radioButtons.map(button => (
           <Radio
             style={radioStyle}
