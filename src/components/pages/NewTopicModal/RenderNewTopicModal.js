@@ -62,6 +62,7 @@ function RenderNewTopicModal() {
         response_type: 'String',
       },
     ],
+    contextRadioVal: 0,
   });
 
   const { Step } = Steps;
