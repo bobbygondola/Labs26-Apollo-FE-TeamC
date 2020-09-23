@@ -9,6 +9,7 @@ import * as axios from 'axios';
 import {
   toggleDisplayModal,
   toggleJoinCodeModal,
+  captureJoinCode,
 } from '../../../state/actions/displayModalAction';
 
 function RenderNewTopicModal() {
@@ -76,11 +77,17 @@ function RenderNewTopicModal() {
 
   const submit = e => {
     e.preventDefault();
-    axios.post('https://reqres.in/api/users', topic).then(res => {
-      console.log(res);
-      dispatch(toggleDisplayModal());
-      dispatch(toggleJoinCodeModal());
-    });
+    axios
+      .post('https://reqres.in/api/users', topic)
+      .then(res => {
+        console.log(res);
+        dispatch(captureJoinCode(res.data.id));
+        dispatch(toggleDisplayModal());
+        dispatch(toggleJoinCodeModal());
+      })
+      .catch(err => {
+        alert(err, 'Error while submitting new topic');
+      });
   };
 
   return (

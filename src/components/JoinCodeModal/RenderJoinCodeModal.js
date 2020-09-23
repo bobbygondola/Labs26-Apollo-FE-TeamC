@@ -1,10 +1,11 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleJoinCodeModal } from '../../state/actions/displayModalAction';
 
 const RenderJoinCodeModal = () => {
   const displayJoinCodeModal = useSelector(state => state.displayJoinCodeModal);
+  const joinCode = useSelector(state => state.joinCode);
   const dispatch = useDispatch();
 
   const closeModal = e => {
@@ -21,7 +22,7 @@ const RenderJoinCodeModal = () => {
         onOk={closeModal}
       >
         <h1>Topic Created</h1>
-        <h2>Your Join Code: {'SAMPLE JOIN CODE ##@##'}</h2>
+        <h2>Your Join Code: {joinCode}</h2>
       </Modal>
     </>
   );
