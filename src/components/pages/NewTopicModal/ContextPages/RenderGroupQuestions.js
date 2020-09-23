@@ -80,7 +80,7 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
       ...topic,
       default_questions: currentContext,
     });
-  }, topic.contextRadioVal);
+  }, [topic.contextRadioVal]);
 
   const handleQuestionsChange = (e, index) => {
     setTopic({
@@ -103,7 +103,6 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
         <h2>Context Questions</h2>
 
         {currentContext.map((question, index) => {
-          console.log(question);
           return (
             <>
               <FormInput
