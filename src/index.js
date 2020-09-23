@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import * as reducer from './state/reducers';
+import newTopicReducer from './state/reducers/newTopicReducer';
 import {
   BrowserRouter as Router,
   Route,
@@ -23,9 +23,14 @@ import { HomePage } from './components/pages/Home';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import NewTopicModalContainer from './components/pages/NewTopicModal/NewTopicModalContainer';
+import MemberPage from './components/pages/Member/MemberPage';
+import OwnerPage from './components/pages/Owner/OwnerPage';
+import Navigation from './components/Navigation/Navigation';
 import { TopicsListContainer } from './components/TopicsList';
+import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
+import { JoinCodeModalContainer } from './components/JoinCodeModal';
 
-const { newTopicReducer } = reducer;
+// const { newTopicReducer } = reducer;
 
 const store = createStore(newTopicReducer, applyMiddleware(thunk, logger));
 
@@ -33,6 +38,7 @@ ReactDOM.render(
   <Router>
     <React.StrictMode>
       <Provider store={store}>
+        <Navigation />
         <App />
       </Provider>
     </React.StrictMode>
@@ -64,10 +70,18 @@ function App() {
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute path="/new-topic" component={NewTopicModalContainer} />
+        <SecureRoute path="/member" component={MemberPage} />
+        <SecureRoute path="/owner" component={OwnerPage} />
         <SecureRoute path="/topics-list" component={TopicsListContainer} />
+        <SecureRoute
+          path="/topic-context"
+          component={TopicContextSlideoutContainer}
+        />
+
         <Route component={NotFoundPage} />
       </Switch>
+      <NewTopicModalContainer />
+      <JoinCodeModalContainer />
     </Security>
   );
 }

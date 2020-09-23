@@ -2,19 +2,65 @@ import React, { useState } from 'react';
 import RenderContextRadio from './ContextPages/RenderContextRadio';
 import RenderDeliveryTopicSettings from './ContextPages/RenderDeliveryTopicSettings';
 import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
+import RenderGroupQuestions from './ContextPages/RenderGroupQuestions';
 import { Button, Modal, Steps } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import * as axios from 'axios';
 
-function RenderNewTopicModal(props) {
+import {
+  toggleDisplayModal,
+  toggleJoinCodeModal,
+  captureJoinCode,
+} from '../../../state/actions/displayModalAction';
+
+function RenderNewTopicModal() {
+  const displayModal = useSelector(state => state.displayModal);
+  const dispatch = useDispatch();
+
   const [page, setPage] = useState(0);
-  const [displayModal, setDisplayModal] = useState(false);
 
   const [topic, setTopic] = useState({
-    contextRadioVal: 0,
-    frequencyRadioVal: 'Daily',
-    topicQuestions: [
-      'What is todays priority?',
-      'Do you have any key learnings to share with the team from stakeholders or customer?',
+    created_by: '00ulthapbErVUwVJy4x6',
+    title: 'Development Team',
+    frequency: 'Daily',
+    context_questions: [
+      'What is the current priority?',
+      'Do you have any key learnings to share with the team from stakeholders or customers?',
       'What upcoming demos or events should the team be aware of?',
+    ],
+    default_questions: [
+      {
+        content: 'What did you accomplish yesterday?',
+        response_type: 'String',
+      },
+      { content: 'What are you working on today?', response_type: 'String' },
+      {
+        content: 'Are there any monsters in your path?',
+        response_type: 'String',
+      },
+    ],
+    default_questions2: [
+      {
+        content: 'What did you code today?',
+        response_type: 'String',
+      },
+      { content: 'Do you want to punch a baby?', response_type: 'String' },
+      {
+        content: 'Did this feature take way longer than it should of?',
+        response_type: 'String',
+      },
+    ],
+
+    default_questions3: [
+      {
+        content: 'Did you peer program today?',
+        response_type: 'String',
+      },
+      { content: 'Did you reach your goal today?', response_type: 'String' },
+      {
+        content: 'What could of went better?',
+        response_type: 'String',
+      },
     ],
   });
 
@@ -32,14 +78,19 @@ function RenderNewTopicModal(props) {
       title: 'Context Questions',
       content: `Let's set up the questions you will answer for the team as part of your request`,
     },
+    {
+      title: 'Group Questions',
+      content: `Let's set up the questions your team will answer`,
+    },
   ];
 
-  const showModal = () => {
-    setDisplayModal(true);
-  };
+  // const showModal = () => {
+  //   setDisplayModal(true);
+  // };
 
   const closeModal = e => {
-    setDisplayModal(false);
+    e.preventDefault();
+    dispatch(toggleDisplayModal());
   };
 
   const nextPage = e => {
@@ -52,9 +103,29 @@ function RenderNewTopicModal(props) {
     setPage(page - 1);
   };
 
+  const submit = e => {
+    e.preventDefault();
+    axios
+      .post('https://reqres.in/api/users', topic)
+      .then(res => {
+        console.log(res);
+        dispatch(captureJoinCode(res.data.id));
+        dispatch(toggleDisplayModal());
+        dispatch(toggleJoinCodeModal());
+      })
+      .catch(err => {
+        alert(err, 'Error while submitting new topic');
+      });
+  };
+
   return (
     <>
-      <Modal title="New Topic" visible={displayModal} onCancel={closeModal}>
+      <Modal
+        title="New Topic"
+        visible={displayModal}
+        onCancel={closeModal}
+        onOk={submit}
+      >
         <Steps current={page}>
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
@@ -70,19 +141,20 @@ function RenderNewTopicModal(props) {
         {page === 2 ? (
           <RenderDeliveryTopicSetup topic={topic} setTopic={setTopic} />
         ) : null}
+        {page === 3 ? (
+          <RenderGroupQuestions topic={topic} setTopic={setTopic} />
+        ) : null}
 
-        {/* next & prev buttons */}
         <div>
           {page !== 0 ? <Button onClick={prevPage}>Prev</Button> : null}
           {page < steps.length - 1 ? (
             <Button onClick={nextPage}>Next</Button>
           ) : null}
         </div>
-        {/* end next & prev buttons */}
       </Modal>
-      <Button onClick={showModal} type="primary">
+      {/* <Button onClick={showModal} type="primary">
         New Topic
-      </Button>
+      </Button> */}
     </>
   );
 }

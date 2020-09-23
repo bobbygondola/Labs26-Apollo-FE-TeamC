@@ -23,7 +23,11 @@ const radioButtons = [
 
 function RenderContextRadio({ topic, setTopic }) {
   const radioCheck = e => {
-    setTopic({ ...topic, contextRadioVal: e.target.value });
+    setTopic({
+      ...topic,
+      contextRadioVal: e.target.value,
+      contextRadioDescription: e.target.description,
+    });
   };
 
   const radioStyle = {
