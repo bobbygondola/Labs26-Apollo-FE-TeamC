@@ -3,7 +3,7 @@ import FormInput from '../../../common/FormInput';
 import { Button, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const questions = [
+export const questions = [
   [
     {
       content: 'What did you accomplish yesterday?',
@@ -71,14 +71,18 @@ const questions = [
 ];
 
 const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
-  const [currentContext] = questions.filter((question, index) => {
-    return topic.contextRadioVal === index;
-  });
+  // const [currentContext] = questions.filter((question, index) => {
+  //   return topic.contextRadioVal === index;
+  // });
 
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
-      default_questions: currentContext,
+      default_questions: topic.default_questions.map((question, idx) => {
+        return idx === index
+          ? { ...question, [e.target.name]: e.target.value }
+          : question;
+      }),
     });
   };
 
@@ -88,22 +92,23 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
     setCount(key);
     console.log(count);
   };
-  console.log(currentContext);
+  console.log(topic);
   return (
     <>
       <h1>Delivery Topic</h1>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h2>Context Questions</h2>
 
-        {currentContext.map((question, index) => {
-          console.log(question);
+        {topic.default_questions.map((question, index) => {
           return (
             <>
               <FormInput
+                name="content"
                 value={question.content}
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
+              <Dropdown />
               <Button
                 onClick={() =>
                   setTopic({
@@ -126,7 +131,10 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
         onClick={() =>
           setTopic({
             ...topic,
-            default_questions: [...currentContext, ''],
+            default_questions: [
+              ...topic.default_questions,
+              { content: '', response_type: 'String' },
+            ],
           })
         }
       >
