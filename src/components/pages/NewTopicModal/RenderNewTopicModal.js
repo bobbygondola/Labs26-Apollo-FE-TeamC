@@ -39,30 +39,6 @@ function RenderNewTopicModal() {
         response_type: 'String',
       },
     ],
-    default_questions2: [
-      {
-        content: 'What did you code today?',
-        response_type: 'String',
-      },
-      { content: 'Do you want to punch a baby?', response_type: 'String' },
-      {
-        content: 'Did this feature take way longer than it should of?',
-        response_type: 'String',
-      },
-    ],
-
-    default_questions3: [
-      {
-        content: 'Did you peer program today?',
-        response_type: 'String',
-      },
-      { content: 'Did you reach your goal today?', response_type: 'String' },
-      {
-        content: 'What could of went better?',
-        response_type: 'String',
-      },
-    ],
-    contextRadioVal: 0,
   });
 
   const { Step } = Steps;
