@@ -39,10 +39,15 @@ const RenderTopicsList = props => {
   const myCreatedTopicsURL = `https://apollo-c-api.herokuapp.com/profile/${id}/my-created-topics`;
 
   const getTopics = () => {
-    axios.get(myCreatedTopicsURL).then(res => {
-      console.log(res);
-      setTopicsList(res.data.topics);
-    });
+    axios
+      .get(myCreatedTopicsURL)
+      .then(res => {
+        console.log(res);
+        setTopicsList(res.data.topics);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const showDetails = id => {
