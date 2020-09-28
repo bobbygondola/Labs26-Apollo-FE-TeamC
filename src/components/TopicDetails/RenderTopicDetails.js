@@ -15,10 +15,15 @@ function RenderTopicDetails(props) {
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
 
   useEffect(() => {
-    axios.get(url).then(res => {
-      console.log(res);
-      setTopicDetailsInfo(res.data);
-    });
+    axios
+      .get(url)
+      .then(res => {
+        console.log(res);
+        setTopicDetailsInfo(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, [currentTopicId]);
 
   const menu = (
