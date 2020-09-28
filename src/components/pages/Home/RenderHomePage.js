@@ -1,17 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Layout, Menu } from 'antd';
+import { useSelector } from 'react-redux';
 
 import '../../../styles/Home.css';
 import TopicContextSlideoutContainer from '../../TopicContextSlideout/TopicContextSlideoutContainer';
-//
+import RenderTopicDetails from '../../TopicDetails/RenderTopicDetails';
+
 const { Header, Content } = Layout;
 
 function RenderHomePage(props) {
+  const displayOwnedTopic = useSelector(state => state.displayOwnedTopic);
+
   const { authService } = props;
   return (
     <Layout className="layout">
       <TopicContextSlideoutContainer />
+      <RenderTopicDetails />
       <Content>
         <p>
           <Link to="/profile-list">Profiles Example</Link>

@@ -4,10 +4,13 @@ import Avatars from '../common/Avatars';
 import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
 import { Space, Card } from 'antd';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const id = '00ulthapbErVUwVJy4x6';
 
 const RenderTopicsList = props => {
+  const displayOwnedTopic = useSelector(state => state.displayOwnedTopic);
+  const dispatch = useDispatch();
   const [topicsPlaceholder, setTopicsPlaceholder] = useState([
     {
       id: 1,
@@ -46,7 +49,6 @@ const RenderTopicsList = props => {
   }, []);
   return (
     <Space align="start" direction="vertical" size="small">
-      {/* // {props.data.map(topic => ( */}
       {topicsPlaceholder.map(topic => (
         <Card
           key={topic.id}
@@ -62,7 +64,6 @@ const RenderTopicsList = props => {
           </h3>
           <h3>
             <BellOutlined />
-            {/* {topic.notifications} */}
           </h3>
         </Card>
       ))}
