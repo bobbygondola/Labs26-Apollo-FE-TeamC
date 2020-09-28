@@ -4,14 +4,15 @@ import Avatars from '../common/Avatars';
 import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
 import { Space, Card } from 'antd';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { toggleDisplayOwnedTopic } from '../../state/actions/displayModalAction';
 
 const id = '00ulthapbErVUwVJy4x6';
 
 const RenderTopicsList = props => {
-  const displayOwnedTopic = useSelector(state => state.displayOwnedTopic);
   const dispatch = useDispatch();
-  const [topicsPlaceholder, setTopicsPlaceholder] = useState([
+  const [topicsList, setTopicsList] = useState([
     {
       id: 1,
       title: 'Labs 26 Team C',
@@ -40,8 +41,12 @@ const RenderTopicsList = props => {
   const getTopics = () => {
     axios.get(myCreatedTopicsURL).then(res => {
       console.log(res);
-      setTopicsPlaceholder(res.data.topics);
+      setTopicsList(res.data.topics);
     });
+  };
+
+  const showDetails = id => {
+    dispatch(toggleDisplayOwnedTopic(id));
   };
 
   useEffect(() => {
@@ -49,8 +54,9 @@ const RenderTopicsList = props => {
   }, []);
   return (
     <Space align="start" direction="vertical" size="small">
-      {topicsPlaceholder.map(topic => (
+      {topicsList.map(topic => (
         <Card
+          onClick={() => showDetails(topic.id)}
           key={topic.id}
           bordered={true}
           hoverable={true}

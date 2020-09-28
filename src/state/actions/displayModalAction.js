@@ -21,8 +21,8 @@ export const captureJoinCode = joinCode => {
   };
 };
 
-export const toggleDisplayOwnedTopic = () => {
+export const toggleDisplayOwnedTopic = id => {
   return dispatch => {
-    dispatch({ type: DISPLAY_OWNED_TOPIC });
+    dispatch({ type: DISPLAY_OWNED_TOPIC, payload: id });
   };
 };

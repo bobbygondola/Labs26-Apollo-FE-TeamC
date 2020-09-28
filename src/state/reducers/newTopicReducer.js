@@ -9,7 +9,7 @@ const initialState = {
   displayModal: false,
   displayJoinCodeModal: false,
   joinCode: null,
-  displayOwnedTopic: false,
+  currentTopicId: null,
 };
 
 const newTopicReducer = (state = initialState, action) => {
@@ -32,7 +32,7 @@ const newTopicReducer = (state = initialState, action) => {
     case DISPLAY_OWNED_TOPIC:
       return {
         ...state,
-        displayOwnedTopic: !state.displayOwnedTopic,
+        currentTopicId: action.payload,
       };
     default:
       return state;

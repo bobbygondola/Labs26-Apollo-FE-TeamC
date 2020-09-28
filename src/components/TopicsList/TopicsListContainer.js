@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from '../common';
 import { getExampleData } from '../../api';
+import { useSelector } from 'react-redux';
 
 //files
 import RenderTopicsList from './RenderTopicsList';
@@ -8,6 +9,7 @@ import RenderTopicDetails from '../TopicDetails/RenderTopicDetails';
 import '../../styles/TopicsList.css';
 
 const TopicsListContainer = () => {
+  const currentTopicId = useSelector(state => state.currentTopicId);
   return (
     <div className="topicsList__container">
       <List
@@ -16,7 +18,7 @@ const TopicsListContainer = () => {
         LoadingComponent={() => <div>Loading Topics...</div>}
         RenderItems={RenderTopicsList}
       />
-      <RenderTopicDetails />
+      {currentTopicId && <RenderTopicDetails id={currentTopicId} />}
     </div>
   );
 };
