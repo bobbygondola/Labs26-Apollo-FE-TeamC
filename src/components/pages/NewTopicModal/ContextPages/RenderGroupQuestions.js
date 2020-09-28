@@ -71,10 +71,6 @@ export const questions = [
 ];
 
 const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
-  // const [currentContext] = questions.filter((question, index) => {
-  //   return topic.contextRadioVal === index;
-  // });
-
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
@@ -86,13 +82,6 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
     });
   };
 
-  const [count, setCount] = useState('1');
-
-  const onClick = ({ key }) => {
-    setCount(key);
-    console.log(count);
-  };
-  console.log(topic);
   return (
     <>
       <h1>Delivery Topic</h1>
@@ -108,7 +97,6 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
-              <Dropdown />
               <Button
                 onClick={() =>
                   setTopic({

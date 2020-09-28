@@ -2,19 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Layout, Menu } from 'antd';
 
+import '../../../styles/Home.css';
+import TopicContextSlideoutContainer from '../../TopicContextSlideout/TopicContextSlideoutContainer';
+//
 const { Header, Content } = Layout;
 
 function RenderHomePage(props) {
-  const { userInfo, authService } = props;
+  const { authService } = props;
   return (
     <Layout className="layout">
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
+      <TopicContextSlideoutContainer />
       <Content>
-        <p>
-          This is an example of a common example of how we'd like for you to
-          approach components.
-        </p>
-
         <p>
           <Link to="/profile-list">Profiles Example</Link>
         </p>
