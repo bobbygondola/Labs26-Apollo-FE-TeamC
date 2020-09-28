@@ -8,9 +8,9 @@ import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicDetails.css';
 
 function RenderTopicDetails(props) {
-  const { id } = props;
+  const { currentTopicId } = props;
   //
-  const url = `https://apollo-c-api.herokuapp.com/topics/${id}`;
+  const url = `https://apollo-c-api.herokuapp.com/topics/${currentTopicId}`;
 
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
 
@@ -19,7 +19,7 @@ function RenderTopicDetails(props) {
       console.log(res);
       setTopicDetailsInfo(res.data);
     });
-  }, [id]);
+  }, [currentTopicId]);
 
   const menu = (
     <Menu>
