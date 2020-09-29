@@ -71,10 +71,6 @@ export const questions = [
 ];
 
 const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
-  // const [currentContext] = questions.filter((question, index) => {
-  //   return topic.contextRadioVal === index;
-  // });
-
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
