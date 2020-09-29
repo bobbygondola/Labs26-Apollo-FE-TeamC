@@ -3,6 +3,7 @@ import {
   TOGGLE_JOIN_CODE_MODAL,
   CAPTURE_JOIN_CODE,
   DISPLAY_OWNED_TOPIC,
+  SET_TOPICS_LIST,
 } from '../actions/displayModalAction';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   displayJoinCodeModal: false,
   joinCode: null,
   currentTopicId: null,
+  topicsList: [],
 };
 
 const newTopicReducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const newTopicReducer = (state = initialState, action) => {
       return {
         ...state,
         currentTopicId: action.payload,
+      };
+    case SET_TOPICS_LIST:
+      return {
+        ...state,
+        topicsList: action.payload,
       };
     default:
       return state;

@@ -11,10 +11,12 @@ import {
   toggleDisplayModal,
   toggleJoinCodeModal,
   captureJoinCode,
+  setTopicsList,
 } from '../../../state/actions/displayModalAction';
 
 function RenderNewTopicModal() {
   const displayModal = useSelector(state => state.displayModal);
+  const topicsList = useSelector(state => state.topicsList);
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(0);
@@ -61,7 +63,10 @@ function RenderNewTopicModal() {
     },
   ];
 
-  const newTopicPostUrl = `https://apollo-c-api.herokuapp.com/topics`;
+  const newTopicPostUrl = `${process.env.REACT_APP_API_URI}/topics`;
+  const getTopicsListByOwnerURL = `${
+    process.env.REACT_APP_API_URI
+  }/profile/${'00ulthapbErVUwVJy4x6'}/my-created-topics`;
 
   const closeModal = e => {
     e.preventDefault();
@@ -87,6 +92,14 @@ function RenderNewTopicModal() {
         dispatch(captureJoinCode(res.data.id));
         dispatch(toggleDisplayModal());
         dispatch(toggleJoinCodeModal());
+        axios
+          .get(getTopicsListByOwnerURL)
+          .then(res => {
+            dispatch(setTopicsList(res.data.topics));
+          })
+          .catch(err => {
+            alert('nah');
+          });
       })
       .catch(err => {
         alert(err, 'Error while submitting new topic');
