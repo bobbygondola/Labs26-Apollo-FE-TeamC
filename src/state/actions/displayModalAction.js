@@ -3,6 +3,7 @@ export const TOGGLE_JOIN_CODE_MODAL = `TOGGLE_JOIN_CODE_MODAL`;
 export const CAPTURE_JOIN_CODE = `CAPTURE_JOIN_CODE`;
 export const DISPLAY_OWNED_TOPIC = `DISPLAY_OWNED_TOPIC`;
 export const SET_TOPICS_LIST = `SET_TOPICS_LIST`;
+export const CAPTURE_CURRENT_USER = `CAPTURE_CURRENT_USER`;
 
 export const toggleDisplayModal = () => {
   return dispatch => {
@@ -31,5 +32,11 @@ export const toggleDisplayOwnedTopic = id => {
 export const setTopicsList = newList => {
   return dispatch => {
     dispatch({ type: SET_TOPICS_LIST, payload: newList });
+  };
+};
+
+export const getCurrentUser = user => {
+  return dispatch => {
+    dispatch({ type: CAPTURE_CURRENT_USER, payload: user });
   };
 };

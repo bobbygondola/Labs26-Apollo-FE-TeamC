@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import newTopicReducer from './state/reducers/newTopicReducer';
@@ -11,12 +11,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-import {
-  Security,
-  LoginCallback,
-  SecureRoute,
-  useOktaAuth,
-} from '@okta/okta-react';
+import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 import 'antd/dist/antd.less';
 
@@ -43,7 +38,6 @@ ReactDOM.render(
   <Router>
     <React.StrictMode>
       <Provider store={store}>
-        <Navigation />
         <App />
       </Provider>
     </React.StrictMode>
@@ -64,6 +58,7 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      <Navigation />
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />

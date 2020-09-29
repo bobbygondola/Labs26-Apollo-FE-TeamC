@@ -5,16 +5,19 @@ import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
 import { Space, Card } from 'antd';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { useOktaAuth } from '@okta/okta-react';
 
 import {
   toggleDisplayOwnedTopic,
   setTopicsList,
+  getCurrentUser,
 } from '../../state/actions/displayModalAction';
 
 const id = '00ulthapbErVUwVJy4x6';
 
 const RenderTopicsList = props => {
   const topicsList = useSelector(state => state.topicsList);
+  const currentUser = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
   // const [topicsList, setTopicsList] = useState([
   //   {
@@ -40,7 +43,23 @@ const RenderTopicsList = props => {
   //   },
   // ]);
 
-  const myCreatedTopicsURL = `${process.env.REACT_APP_API_URI}/profile/${id}/my-created-topics`;
+  const oktaAuth = useOktaAuth();
+  const getUser = async () => {
+    const user = await oktaAuth.authService.getUser();
+    return user;
+  };
+
+  if (!currentUser) {
+    getUser()
+      .then(res => {
+        dispatch(getCurrentUser(res));
+      })
+      .catch(err => console.log(err));
+  }
+
+  const myCreatedTopicsURL = currentUser
+    ? `${process.env.REACT_APP_API_URI}/profile/${currentUser.sub}/my-created-topics`
+    : null;
 
   const getTopics = () => {
     axios
@@ -59,8 +78,11 @@ const RenderTopicsList = props => {
   };
 
   useEffect(() => {
-    getTopics();
-  }, []);
+    if (currentUser) {
+      getTopics();
+    }
+  }, [currentUser]);
+
   return (
     <Space align="start" direction="vertical" size="small">
       {topicsList.map(topic => (

@@ -4,6 +4,7 @@ import {
   CAPTURE_JOIN_CODE,
   DISPLAY_OWNED_TOPIC,
   SET_TOPICS_LIST,
+  CAPTURE_CURRENT_USER,
 } from '../actions/displayModalAction';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   joinCode: null,
   currentTopicId: null,
   topicsList: [],
+  currentUser: null,
 };
 
 const newTopicReducer = (state = initialState, action) => {
@@ -40,6 +42,11 @@ const newTopicReducer = (state = initialState, action) => {
       return {
         ...state,
         topicsList: action.payload,
+      };
+    case CAPTURE_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
       };
     default:
       return state;
