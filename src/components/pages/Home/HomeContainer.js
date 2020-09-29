@@ -12,21 +12,6 @@ function HomeContainer({ LoadingComponent }) {
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
-  const oktaAuth = useOktaAuth();
-  const getUser = async () => {
-    const user = await oktaAuth.authService.getUser();
-    return user;
-  };
-
-  // useEffect(() => {
-  //   getUser()
-  //     .then(res => {
-  //       dispatch(getCurrentUser(res));
-  //       console.log(currentUser);
-  //     })
-  //     .catch(err => console.log(err));
-  // }, []);
-
   useEffect(() => {
     let isSubscribed = true;
 
