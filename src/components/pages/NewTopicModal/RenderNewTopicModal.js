@@ -61,9 +61,7 @@ function RenderNewTopicModal() {
     },
   ];
 
-  // const showModal = () => {
-  //   setDisplayModal(true);
-  // };
+  const newTopicPostUrl = `https://apollo-c-api.herokuapp.com/topics`;
 
   const closeModal = e => {
     e.preventDefault();
@@ -83,7 +81,7 @@ function RenderNewTopicModal() {
   const submit = e => {
     e.preventDefault();
     axios
-      .post('https://reqres.in/api/users', topic)
+      .post(newTopicPostUrl, topic)
       .then(res => {
         console.log(res);
         dispatch(captureJoinCode(res.data.id));

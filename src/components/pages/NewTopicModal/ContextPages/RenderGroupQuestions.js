@@ -100,8 +100,9 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
           const menu = (
             <Menu onClick={onClick}>
               <Menu.Item key="String">String</Menu.Item>
-              <Menu.Item key="Number">Rating 1-5</Menu.Item>
+              <Menu.Item key="Rating">Rating 1-5</Menu.Item>
               <Menu.Item key="Boolean">True or False</Menu.Item>
+              <Menu.Item key="Url">Url</Menu.Item>
             </Menu>
           );
           return (
