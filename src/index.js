@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import newTopicReducer from './state/reducers/newTopicReducer';
@@ -30,8 +30,6 @@ import { TopicsListContainer } from './components/TopicsList';
 import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
 import { JoinCodeModalContainer } from './components/JoinCodeModal';
 import { JoinSurveyModalContainer } from './components/JoinSurveyModal/JoinSurveyModalContainer';
-
-// const { newTopicReducer } = reducer;
 
 const store = createStore(newTopicReducer, applyMiddleware(thunk, logger));
 
