@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toggleDisplayModal } from '../../state/actions/displayModalAction';
+import 'antd/dist/antd.css';
+
+import { Layout, Menu, Breadcrumb } from 'antd';
+
+const { Header, Content, Footer } = Layout;
 
 const StyledButton = styled.button`
   color: white;
@@ -48,44 +53,60 @@ const Navigation = props => {
     toggleDisplayModal();
   };
   return (
-    <NavContainer>
-      <div>
-        <Link to="/">
-          <h1>Apollo</h1>
-        </Link>
-      </div>
-      <FirstContainer>
-        <ChildContainer>
-          <Link to="/owner">
-            <StyledText>Owner</StyledText>
-          </Link>
-        </ChildContainer>
+    <Layout>
+      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+        <div className="logo" />
 
-        <ChildContainer>
-          <Link to="/member">
-            <StyledText>Member</StyledText>
-          </Link>
-        </ChildContainer>
-      </FirstContainer>
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+          <Menu.Item key="1">nav 1</Menu.Item>
+          <Menu.Item key="2">nav 2</Menu.Item>
+          <Menu.Item key="3">nav 3</Menu.Item>
+        </Menu>
+      </Header>
+      <Content
+        className="site-layout"
+        style={{ padding: '0 50px', marginTop: 64 }}
+      ></Content>
+      <Footer style={{ textAlign: 'center' }}></Footer>
+    </Layout>
+    // <NavContainer>
+    //   <div>
+    //     <Link to="/">
+    //       <h1>Apollo</h1>
+    //     </Link>
+    //   </div>
+    //   <FirstContainer>
+    //     <ChildContainer>
+    //       <Link to="/owner">
+    //         <StyledText>Owner</StyledText>
+    //       </Link>
+    //     </ChildContainer>
 
-      <SecondContainer>
-        <ChildContainer>
-          <Link to="/join-survey">
-            <StyledButton>Join Survey</StyledButton>
-          </Link>
-        </ChildContainer>
+    //     <ChildContainer>
+    //       <Link to="/member">
+    //         <StyledText>Member</StyledText>
+    //       </Link>
+    //     </ChildContainer>
+    //   </FirstContainer>
 
-        <ChildContainer>
-          {/* <Link to="/new-topic"> */}
-          <StyledButton onClick={toggle}>Add New Topic</StyledButton>
-          {/* </Link> */}
-        </ChildContainer>
+    //   <SecondContainer>
+    //     <ChildContainer>
+    //       <Link to="/join-survey">
+    //         <StyledButton>Join Survey</StyledButton>
+    //       </Link>
+    //     </ChildContainer>
 
-        <ChildContainer>
-          <h2>User</h2>
-        </ChildContainer>
-      </SecondContainer>
-    </NavContainer>
+    //     <ChildContainer>
+    //       {/* <Link to="/new-topic"> */}
+    //       <StyledButton onClick={toggle}>Add New Topic</StyledButton>
+    //       {/* </Link> */}
+    //     </ChildContainer>
+
+    //     <ChildContainer>
+    //       <h2>User</h2>
+    //     </ChildContainer>
+    //   </SecondContainer>
+    // </NavContainer>
   );
 };
 
