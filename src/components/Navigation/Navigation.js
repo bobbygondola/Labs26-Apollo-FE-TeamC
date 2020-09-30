@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { toggleDisplayModal } from '../../state/actions/displayModalAction';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  toggleDisplayModal,
+  toggleJoinSurveyModal,
+} from '../../state/actions/displayModalAction';
 
 const StyledButton = styled.button`
   color: white;
@@ -42,11 +45,17 @@ const ChildContainer = styled.div`
   margin: 0.5rem 0.5rem;
 `;
 const Navigation = props => {
-  const { toggleDisplayModal } = props;
+  const dispatch = useDispatch();
   const toggle = e => {
     e.preventDefault();
-    toggleDisplayModal();
+    dispatch(toggleDisplayModal());
   };
+
+  const openJoinSurveyModal = e => {
+    e.preventDefault();
+    dispatch(toggleJoinSurveyModal());
+  };
+
   return (
     <NavContainer>
       <div>
@@ -70,9 +79,7 @@ const Navigation = props => {
 
       <SecondContainer>
         <ChildContainer>
-          <Link to="/join-survey">
-            <StyledButton>Join Survey</StyledButton>
-          </Link>
+          <StyledButton onClick={openJoinSurveyModal}>Join Survey</StyledButton>
         </ChildContainer>
 
         <ChildContainer>
@@ -89,10 +96,4 @@ const Navigation = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    displayModal: state.displayModal,
-  };
-};
-
-export default connect(mapStateToProps, { toggleDisplayModal })(Navigation);
+export default Navigation;

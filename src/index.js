@@ -29,6 +29,7 @@ import Navigation from './components/Navigation/Navigation';
 import { TopicsListContainer } from './components/TopicsList';
 import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
 import { JoinCodeModalContainer } from './components/JoinCodeModal';
+import { JoinSurveyModalContainer } from './components/JoinSurveyModal/JoinSurveyModalContainer';
 
 // const { newTopicReducer } = reducer;
 
@@ -82,6 +83,7 @@ function App() {
       </Switch>
       <NewTopicModalContainer />
       <JoinCodeModalContainer />
+      <JoinSurveyModalContainer />
     </Security>
   );
 }

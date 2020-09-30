@@ -94,6 +94,9 @@ const RenderTopicsList = props => {
           style={{ border: '1px solid #00617e', borderRadius: '5px' }}
         >
           <h2>{topic.title}</h2>
+          <h3>
+            Owner: {`${currentUser.given_name} ${currentUser.family_name}`}
+          </h3>
           <Avatars />
           <h3>
             <CalendarTwoTone />
