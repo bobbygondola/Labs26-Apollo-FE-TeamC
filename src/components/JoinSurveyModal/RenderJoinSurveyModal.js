@@ -6,7 +6,6 @@ import axios from 'axios';
 
 //from files
 import { toggleJoinSurveyModal } from '../../state/actions/displayModalAction';
-import FormInput from '../common/FormInput';
 
 function RenderJoinSurveyModal() {
   const displayJoinSurveyModal = useSelector(
@@ -16,6 +15,8 @@ function RenderJoinSurveyModal() {
   const dispatch = useDispatch();
 
   const [joinCode, setJoinCode] = useState('');
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [failureMessage, setFailureMessage] = useState(null);
   const joinTopicUrl = `${process.env.REACT_APP_API_URI}/topics/${joinCode}/join`;
 
   const closeModal = e => {
@@ -34,10 +35,25 @@ function RenderJoinSurveyModal() {
     axios
       .post(joinTopicUrl, { profile_id: currentUser.sub })
       .then(res => {
+        setSuccessMessage('Successfully joined topic');
+        setFailureMessage(null);
         console.log(res);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setFailureMessage(err.message);
+      });
   };
+
+  function checkOkCondition(e) {
+    if (successMessage === 'Successfully joined topic') {
+      closeModal(e);
+    } else if (joinCode.length) {
+      join(e);
+    } else {
+      return null;
+    }
+  }
 
   return (
     <div>
@@ -45,7 +61,7 @@ function RenderJoinSurveyModal() {
         title="Join Topic"
         visible={displayJoinSurveyModal}
         onCancel={closeModal}
-        onOk={joinCode.length ? join : null}
+        onOk={checkOkCondition}
       >
         <form onSubmit={join}>
           <input
@@ -55,6 +71,10 @@ function RenderJoinSurveyModal() {
             value={joinCode}
           />
         </form>
+        <div>
+          {successMessage ? <h3>{successMessage}</h3> : null}
+          {failureMessage ? <h3>{failureMessage}</h3> : null}
+        </div>
       </Modal>
     </div>
   );
