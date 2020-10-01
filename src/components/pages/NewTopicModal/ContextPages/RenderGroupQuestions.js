@@ -71,10 +71,6 @@ export const questions = [
 ];
 
 const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
-  // const [currentContext] = questions.filter((question, index) => {
-  //   return topic.contextRadioVal === index;
-  // });
-
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
@@ -86,12 +82,8 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
     });
   };
 
-  const [count, setCount] = useState('1');
+  const [count, setCount] = useState('String');
 
-  const onClick = ({ key }) => {
-    setCount(key);
-    console.log(count);
-  };
   console.log(topic);
   return (
     <>
@@ -100,6 +92,19 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
         <h2>Context Questions</h2>
 
         {topic.default_questions.map((question, index) => {
+          const onClick = ({ key }) => {
+            question.response_type = key;
+            setCount(key);
+          };
+
+          const menu = (
+            <Menu onClick={onClick}>
+              <Menu.Item key="String">String</Menu.Item>
+              <Menu.Item key="Rating">Rating 1-5</Menu.Item>
+              <Menu.Item key="Boolean">True or False</Menu.Item>
+              <Menu.Item key="Url">Url</Menu.Item>
+            </Menu>
+          );
           return (
             <>
               <FormInput
@@ -108,7 +113,16 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
-              <Dropdown />
+              <p>Current response type: {question.response_type}</p>
+              <Dropdown overlay={menu}>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={e => e.preventDefault()}
+                >
+                  Hover me <DownOutlined />
+                </a>
+              </Dropdown>
+
               <Button
                 onClick={() =>
                   setTopic({

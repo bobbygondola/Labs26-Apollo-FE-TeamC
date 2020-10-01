@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-
+import { getCurrentUser } from '../../../state/actions/displayModalAction';
 import RenderHomePage from './RenderHomePage';
 
 function HomeContainer({ LoadingComponent }) {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.currentUser);
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
   // eslint-disable-next-line
@@ -19,14 +22,18 @@ function HomeContainer({ LoadingComponent }) {
         // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
         if (isSubscribed) {
           setUserInfo(info);
+          dispatch(getCurrentUser(info));
         }
       })
       .catch(err => {
         isSubscribed = false;
         return setUserInfo(null);
       });
+
     return () => (isSubscribed = false);
   }, [memoAuthService]);
+
+  console.log(currentUser);
 
   return (
     <>
