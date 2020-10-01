@@ -29,8 +29,7 @@ import Navigation from './components/Navigation/Navigation';
 import { TopicsListContainer } from './components/TopicsList';
 import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
 import { JoinCodeModalContainer } from './components/JoinCodeModal';
-
-// const { newTopicReducer } = reducer;
+import { JoinSurveyModalContainer } from './components/JoinSurveyModal/JoinSurveyModalContainer';
 
 const store = createStore(newTopicReducer, applyMiddleware(thunk, logger));
 
@@ -38,7 +37,6 @@ ReactDOM.render(
   <Router>
     <React.StrictMode>
       <Provider store={store}>
-        <Navigation />
         <App />
       </Provider>
     </React.StrictMode>
@@ -59,6 +57,7 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      <Navigation />
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
@@ -82,6 +81,7 @@ function App() {
       </Switch>
       <NewTopicModalContainer />
       <JoinCodeModalContainer />
+      <JoinSurveyModalContainer />
     </Security>
   );
 }

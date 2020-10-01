@@ -1,19 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { toggleDisplayModal } from '../../state/actions/displayModalAction';
+import { useDispatch } from 'react-redux';
+import {
+  toggleDisplayModal,
+  toggleJoinSurveyModal,
+} from '../../state/actions/displayModalAction';
 import 'antd/dist/antd.css';
 
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 
 const { Header, Content, Footer } = Layout;
 
 const Navigation = props => {
-  const { toggleDisplayModal } = props;
+  const dispatch = useDispatch();
   const toggle = e => {
     e.preventDefault();
-    toggleDisplayModal();
+    dispatch(toggleDisplayModal());
   };
+
+  const openJoinSurveyModal = e => {
+    e.preventDefault();
+    dispatch(toggleJoinSurveyModal());
+  };
+
   return (
     <Layout>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
@@ -24,7 +33,7 @@ const Navigation = props => {
             <Link to="/">Apollo</Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/join-survey">Join Survey</Link>
+            <div onClick={openJoinSurveyModal}>Join Survey</div>
           </Menu.Item>
           <Menu.Item key="3">
             {' '}
@@ -42,10 +51,4 @@ const Navigation = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    displayModal: state.displayModal,
-  };
-};
-
-export default connect(mapStateToProps, { toggleDisplayModal })(Navigation);
+export default Navigation;
