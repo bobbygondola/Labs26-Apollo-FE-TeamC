@@ -47,7 +47,7 @@ const RenderTopicContextSlideout = props => {
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        onSearch={onChange}
+        onSearch={onSearch}
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }

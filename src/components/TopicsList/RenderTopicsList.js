@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Avatars from '../common/Avatars';
 import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
@@ -13,38 +13,11 @@ import {
   getCurrentUser,
 } from '../../state/actions/displayModalAction';
 
-// const id = '00ulthapbErVUwVJy4x6';
-
 const RenderTopicsList = props => {
   const topicsList = useSelector(state => state.topicsList);
   const currentUser = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
-  // const [topicsList, setTopicsList] = useState([
-  //   {
-  //     id: 1,
-  //     title: 'Labs 26 Team C',
-  //     frequency: 'Daily', //should be daily, weekly, monthly, etc,
-  //     members: ['member1', 'member2', 'member3', 'etc'],
-  //     notifications: 5,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Weekly Status',
-  //     frequency: 'Weekly', //should be daily, weekly, monthly, etc,
-  //     members: ['member1', 'member2', 'member3', 'etc'],
-  //     notifications: 2,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: 'Project Feedback',
-  //     frequency: 'Quarterly', //should be daily, weekly, monthly, etc,
-  //     members: ['member1', 'member2', 'member3', 'etc'],
-  //     notifications: 20,
-  //   },
-  // ]);
-
   const oktaAuth = useOktaAuth();
-
   const { authState } = oktaAuth;
 
   const getUser = async () => {
