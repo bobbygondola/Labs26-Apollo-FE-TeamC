@@ -11,8 +11,6 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 function RenderTopicDetails(props) {
   const { currentTopicId } = props;
   const { authState } = useOktaAuth();
-  // const url = `https://apollo-c-api.herokuapp.com/topics/${currentTopicId}`;
-
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
 
   useEffect(() => {

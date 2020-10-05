@@ -5,7 +5,6 @@ import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
 import RenderGroupQuestions from './ContextPages/RenderGroupQuestions';
 import { Button, Modal, Steps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import * as axios from 'axios';
 import { useOktaAuth } from '@okta/okta-react';
 
 import {
@@ -15,59 +14,17 @@ import {
   setTopicsList,
 } from '../../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
+import { topicInitialState, topicModalSteps } from './data';
 
 function RenderNewTopicModal() {
   const displayModal = useSelector(state => state.displayModal);
-  // const currentUser = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
-
   const [page, setPage] = useState(0);
-
-  const [topic, setTopic] = useState({
-    title: 'Development Team',
-    frequency: 'Daily',
-    context_questions: [
-      'What is the current priority?',
-      'Do you have any key learnings to share with the team from stakeholders or customers?',
-      'What upcoming demos or events should the team be aware of?',
-    ],
-    default_questions: [
-      {
-        content: 'What did you accomplish yesterday?',
-        response_type: 'String',
-      },
-      { content: 'What are you working on today?', response_type: 'String' },
-      {
-        content: 'Are there any monsters in your path?',
-        response_type: 'String',
-      },
-    ],
-  });
-
+  const [topic, setTopic] = useState(topicInitialState);
   const { Step } = Steps;
-  const steps = [
-    {
-      title: 'Context',
-      content: 'What type of context do you provide to the team?',
-    },
-    {
-      title: 'Frequency',
-      content: 'How frequently do you want to be notified?',
-    },
-    {
-      title: 'Context Questions',
-      content: `Let's set up the questions you will answer for the team as part of your request`,
-    },
-    {
-      title: 'Group Questions',
-      content: `Let's set up the questions your team will answer`,
-    },
-  ];
 
   const newTopicPostUrl = `topics`;
-  // const getTopicsListByOwnerURL = `profile/${
-  // }/my-created-topics`;
 
   const closeModal = e => {
     e.preventDefault();
@@ -85,26 +42,28 @@ function RenderNewTopicModal() {
   };
 
   const submit = e => {
-    e.preventDefault();
-    axiosWithAuth(authState)
-      .post(newTopicPostUrl, topic)
-      .then(res => {
-        console.log(res);
-        dispatch(captureJoinCode(res.data.id));
-        dispatch(toggleDisplayModal());
-        dispatch(toggleJoinCodeModal());
-        axiosWithAuth(authState)
-          .get(`profile/${res.data.created_by}/my-created-topics`)
-          .then(res => {
-            dispatch(setTopicsList(res.data.topics));
-          })
-          .catch(err => {
-            alert('nah');
-          });
-      })
-      .catch(err => {
-        alert(err, 'Error while submitting new topic');
-      });
+    if (page === topicModalSteps.length - 1) {
+      e.preventDefault();
+      axiosWithAuth(authState)
+        .post(newTopicPostUrl, topic)
+        .then(res => {
+          console.log(res);
+          dispatch(captureJoinCode(res.data.id));
+          dispatch(toggleDisplayModal());
+          dispatch(toggleJoinCodeModal());
+          axiosWithAuth(authState)
+            .get(`profile/${res.data.created_by}/my-created-topics`)
+            .then(res => {
+              dispatch(setTopicsList(res.data.topics));
+            })
+            .catch(err => {
+              alert('nah');
+            });
+        })
+        .catch(err => {
+          alert(err, 'Error while submitting new topic');
+        });
+    }
   };
 
   return (
@@ -114,13 +73,15 @@ function RenderNewTopicModal() {
         visible={displayModal}
         onCancel={closeModal}
         onOk={submit}
+        width={800}
+        okText={'Submit'}
       >
         <Steps current={page}>
-          {steps.map(item => (
+          {topicModalSteps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div>{steps[page].content}</div>
+        <div>{topicModalSteps[page].content}</div>
         {page === 0 ? (
           <RenderContextRadio topic={topic} setTopic={setTopic} />
         ) : null}
@@ -136,14 +97,11 @@ function RenderNewTopicModal() {
 
         <div>
           {page !== 0 ? <Button onClick={prevPage}>Prev</Button> : null}
-          {page < steps.length - 1 ? (
+          {page < topicModalSteps.length - 1 ? (
             <Button onClick={nextPage}>Next</Button>
           ) : null}
         </div>
       </Modal>
-      {/* <Button onClick={showModal} type="primary">
-        New Topic
-      </Button> */}
     </>
   );
 }

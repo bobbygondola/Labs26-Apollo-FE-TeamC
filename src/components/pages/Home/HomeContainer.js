@@ -33,8 +33,6 @@ function HomeContainer({ LoadingComponent }) {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
-  console.log(currentUser);
-
   return (
     <>
       {authState.isAuthenticated && !userInfo && (

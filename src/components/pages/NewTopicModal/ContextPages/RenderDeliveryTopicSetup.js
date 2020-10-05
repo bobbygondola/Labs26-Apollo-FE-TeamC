@@ -3,7 +3,7 @@ import FormInput from '../../../common/FormInput';
 import { Button } from 'antd';
 
 const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
-  const handleQuestionsChange = (e, index) => {
+  const handleContextQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
       context_questions: topic.context_questions.map((q, i) => {
@@ -13,10 +13,24 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
     });
   };
 
+  const deleteContextQuestion = index => {
+    setTopic({
+      ...topic,
+      context_questions: topic.context_questions.filter((q, i) => {
+        return i !== index ? q : null;
+      }),
+    });
+  };
+
+  const addContextQuestion = () => {
+    setTopic({
+      ...topic,
+      context_questions: [...topic.context_questions, ''],
+    });
+  };
+
   return (
     <>
-      <h1>Delivery Topic</h1>
-
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h2>Context Questions</h2>
 
@@ -29,36 +43,16 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
                 value={question}
                 placeholder={question}
                 labelId={`Question ${index + 1}`}
-                onChange={e => handleQuestionsChange(e, index)}
+                onChange={e => handleContextQuestionsChange(e, index)}
               />
-              <Button
-                onClick={() =>
-                  setTopic({
-                    ...topic,
-                    context_questions: topic.context_questions.filter(
-                      (q, i) => {
-                        return i !== index ? q : null;
-                      }
-                    ),
-                  })
-                }
-              >
+              <Button onClick={() => deleteContextQuestion(index)}>
                 Delete
               </Button>
             </>
           );
         })}
       </div>
-      <Button
-        onClick={() =>
-          setTopic({
-            ...topic,
-            context_questions: [...topic.context_questions, ''],
-          })
-        }
-      >
-        Add New Question
-      </Button>
+      <Button onClick={addContextQuestion}>Add New Question</Button>
     </>
   );
 };
