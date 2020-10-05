@@ -84,7 +84,6 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
 
   const [count, setCount] = useState('String');
 
-  console.log(topic);
   return (
     <>
       <h1>Delivery Topic</h1>

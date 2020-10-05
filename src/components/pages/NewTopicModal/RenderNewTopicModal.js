@@ -6,6 +6,7 @@ import RenderGroupQuestions from './ContextPages/RenderGroupQuestions';
 import { Button, Modal, Steps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import * as axios from 'axios';
+import { useOktaAuth } from '@okta/okta-react';
 
 import {
   toggleDisplayModal,
@@ -13,16 +14,17 @@ import {
   captureJoinCode,
   setTopicsList,
 } from '../../../state/actions/displayModalAction';
+import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 function RenderNewTopicModal() {
   const displayModal = useSelector(state => state.displayModal);
-  const topicsList = useSelector(state => state.topicsList);
+  // const currentUser = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
+  const { authState } = useOktaAuth();
 
   const [page, setPage] = useState(0);
 
   const [topic, setTopic] = useState({
-    created_by: '00ulthapbErVUwVJy4x6',
     title: 'Development Team',
     frequency: 'Daily',
     context_questions: [
@@ -63,10 +65,9 @@ function RenderNewTopicModal() {
     },
   ];
 
-  const newTopicPostUrl = `${process.env.REACT_APP_API_URI}/topics`;
-  const getTopicsListByOwnerURL = `${
-    process.env.REACT_APP_API_URI
-  }/profile/${'00ulthapbErVUwVJy4x6'}/my-created-topics`;
+  const newTopicPostUrl = `topics`;
+  // const getTopicsListByOwnerURL = `profile/${
+  // }/my-created-topics`;
 
   const closeModal = e => {
     e.preventDefault();
@@ -85,15 +86,15 @@ function RenderNewTopicModal() {
 
   const submit = e => {
     e.preventDefault();
-    axios
+    axiosWithAuth(authState)
       .post(newTopicPostUrl, topic)
       .then(res => {
         console.log(res);
         dispatch(captureJoinCode(res.data.id));
         dispatch(toggleDisplayModal());
         dispatch(toggleJoinCodeModal());
-        axios
-          .get(getTopicsListByOwnerURL)
+        axiosWithAuth(authState)
+          .get(`profile/${res.data.created_by}/my-created-topics`)
           .then(res => {
             dispatch(setTopicsList(res.data.topics));
           })

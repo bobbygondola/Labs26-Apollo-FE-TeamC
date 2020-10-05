@@ -13,7 +13,7 @@ import {
   getCurrentUser,
 } from '../../state/actions/displayModalAction';
 
-const id = '00ulthapbErVUwVJy4x6';
+// const id = '00ulthapbErVUwVJy4x6';
 
 const RenderTopicsList = props => {
   const topicsList = useSelector(state => state.topicsList);
@@ -44,6 +44,9 @@ const RenderTopicsList = props => {
   // ]);
 
   const oktaAuth = useOktaAuth();
+
+  const { authState } = oktaAuth;
+
   const getUser = async () => {
     const user = await oktaAuth.authService.getUser();
     return user;
@@ -63,7 +66,9 @@ const RenderTopicsList = props => {
 
   const getTopics = () => {
     axios
-      .get(myCreatedTopicsURL)
+      .get(myCreatedTopicsURL, {
+        headers: { Authorization: `Bearer ${authState.idToken}` },
+      })
       .then(res => {
         console.log(res);
         dispatch(setTopicsList(res.data.topics));

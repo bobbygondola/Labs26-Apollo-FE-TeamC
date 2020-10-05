@@ -1,22 +1,23 @@
 //packages
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Dropdown, Menu, Button } from 'antd';
+import { useOktaAuth } from '@okta/okta-react';
 
 //files
 import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicDetails.css';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 function RenderTopicDetails(props) {
   const { currentTopicId } = props;
-  //
-  const url = `https://apollo-c-api.herokuapp.com/topics/${currentTopicId}`;
+  const { authState } = useOktaAuth();
+  // const url = `https://apollo-c-api.herokuapp.com/topics/${currentTopicId}`;
 
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(url)
+    axiosWithAuth(authState)
+      .get(`topics/${currentTopicId}`)
       .then(res => {
         console.log(res);
         setTopicDetailsInfo(res.data);
