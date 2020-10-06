@@ -15,7 +15,7 @@ function RenderHomePage(props) {
   return (
     <Layout className="layout">
       <TopicsListContainer />
-      <TopicContextSlideoutContainer />
+      {/* <TopicContextSlideoutContainer /> */}
       <Button type="primary" onClick={() => authService.logout()}>
         Logout
       </Button>
