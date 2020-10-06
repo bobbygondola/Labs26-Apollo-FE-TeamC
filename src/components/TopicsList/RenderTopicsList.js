@@ -53,9 +53,10 @@ const RenderTopicsList = props => {
   return (
     <>
       <div className="topics-list">
-        <Button onClick={displayTopicsICreated}>Topics I Created</Button>
-        <Button onClick={displayTopicsIJoined}>Topics I Joined</Button>
-        <h2>Topics</h2>
+        <div className="topic-buttons">
+          <Button onClick={displayTopicsICreated}>Topics I've Created</Button>
+          <Button onClick={displayTopicsIJoined}>Topics I've Joined</Button>
+        </div>
         {topicsList
           ? displayedTopicsList.map(topic => (
               <Card
@@ -67,14 +68,6 @@ const RenderTopicsList = props => {
                 className="topic-card"
               >
                 <h2>{topic.title}</h2>
-                <Avatars />
-                <h3>
-                  <CalendarTwoTone />
-                  {topic.frequency}
-                </h3>
-                <h3>
-                  <BellOutlined />
-                </h3>
               </Card>
             ))
           : null}
