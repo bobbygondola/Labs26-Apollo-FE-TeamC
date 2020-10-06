@@ -14,7 +14,10 @@ const initialState = {
   displayJoinSurveyModal: false,
   joinCode: null,
   currentTopicId: null,
-  topicsList: [],
+  topicsList: {
+    created: [],
+    joined: [],
+  },
   currentUser: null,
 };
 
