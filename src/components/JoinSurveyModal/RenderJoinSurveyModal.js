@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
+import { useOktaAuth } from '@okta/okta-react';
 
 //from files
 import { toggleJoinSurveyModal } from '../../state/actions/displayModalAction';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 function RenderJoinSurveyModal() {
   const displayJoinSurveyModal = useSelector(
@@ -17,7 +18,8 @@ function RenderJoinSurveyModal() {
   const [joinCode, setJoinCode] = useState('');
   const [successMessage, setSuccessMessage] = useState(null);
   const [failureMessage, setFailureMessage] = useState(null);
-  const joinTopicUrl = `${process.env.REACT_APP_API_URI}/topics/${joinCode}/join`;
+  const joinTopicUrl = `topics/${joinCode}/join`;
+  const { authState } = useOktaAuth();
 
   const closeModal = e => {
     e.preventDefault();
@@ -32,7 +34,7 @@ function RenderJoinSurveyModal() {
   const join = e => {
     e.preventDefault();
     console.log(currentUser.sub);
-    axios
+    axiosWithAuth(authState)
       .post(joinTopicUrl, { profile_id: currentUser.sub })
       .then(res => {
         setSuccessMessage('Successfully joined topic');

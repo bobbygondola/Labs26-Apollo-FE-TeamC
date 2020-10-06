@@ -16,7 +16,7 @@ const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
 
   return (
     <>
-      <h1>Delivery Topic</h1>
+      <h2>Frequency</h2>
       <FormInput
         labelId="Name"
         name="Name"

@@ -1,76 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import FormInput from '../../../common/FormInput';
 import { Button, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-export const questions = [
-  [
-    {
-      content: 'What did you accomplish yesterday?',
-      response_type: 'String',
-    },
-    { content: 'What are you working on today?', response_type: 'String' },
-    {
-      content: 'Are there any blockers in your path?',
-      response_type: 'String',
-    },
-  ],
-  [
-    {
-      content: 'Which features are ready to submit for review?',
-      response_type: 'String',
-    },
-    {
-      content: 'Which features are your top priority this week?',
-      response_type: 'String',
-    },
-    {
-      content: 'Are there any issues with the current projected timeline?',
-      response_type: 'String',
-    },
-  ],
-  [
-    {
-      content: 'Do you have any concerns with the current design?',
-      response_type: 'String',
-    },
-    {
-      content:
-        'Do you have any edits for the design team to make to the wire frames?',
-      response_type: 'String',
-    },
-  ],
-  [
-    {
-      content: 'Have any tickets given you specific issues today?',
-      response_type: 'String',
-    },
-    {
-      content: 'Are there any issues with the current projected timeline?',
-      response_type: 'String',
-    },
-    {
-      content: 'Do you have any requests for the project leadership?',
-      response_type: 'String',
-    },
-  ],
-  [
-    {
-      content: 'Have any tickets given you specific issues today?',
-      response_type: 'String',
-    },
-    {
-      content: 'Are there any issues with the current projected timeline?',
-      response_type: 'String',
-    },
-    {
-      content: 'Do you have any requests for the project leadership?',
-      response_type: 'String',
-    },
-  ],
-];
-
-const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
+const RenderGroupQuestions = ({ topic, setTopic }) => {
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
@@ -82,23 +15,47 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
     });
   };
 
-  const [count, setCount] = useState('String');
+  const deleteDefaultQuestion = index => {
+    setTopic({
+      ...topic,
+      default_questions: topic.default_questions.filter((q, i) => {
+        return i !== index ? q : null;
+      }),
+    });
+  };
 
-  console.log(topic);
+  const addDefaultQuestion = () => {
+    setTopic({
+      ...topic,
+      default_questions: [
+        ...topic.default_questions,
+        { content: '', response_type: 'String' },
+      ],
+    });
+  };
+
+  const changeQuestionResponseType = (question, key) => {
+    setTopic({
+      ...topic,
+      default_questions: topic.default_questions.map(q => {
+        if (q.content === question.content) {
+          return { content: q.content, response_type: key };
+        }
+        return q;
+      }),
+    });
+  };
+
   return (
     <>
-      <h1>Delivery Topic</h1>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <h2>Context Questions</h2>
+        <h2>Default Questions</h2>
 
         {topic.default_questions.map((question, index) => {
-          const onClick = ({ key }) => {
-            question.response_type = key;
-            setCount(key);
-          };
-
           const menu = (
-            <Menu onClick={onClick}>
+            <Menu
+              onClick={({ key }) => changeQuestionResponseType(question, key)}
+            >
               <Menu.Item key="String">String</Menu.Item>
               <Menu.Item key="Rating">Rating 1-5</Menu.Item>
               <Menu.Item key="Boolean">True or False</Menu.Item>
@@ -115,47 +72,21 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
               />
               <p>Current response type: {question.response_type}</p>
               <Dropdown overlay={menu}>
-                <a
-                  className="ant-dropdown-link"
-                  onClick={e => e.preventDefault()}
-                >
+                <Button className="ant-dropdown-link">
                   Hover me <DownOutlined />
-                </a>
+                </Button>
               </Dropdown>
 
-              <Button
-                onClick={() =>
-                  setTopic({
-                    ...topic,
-                    default_questions: topic.default_questions.filter(
-                      (q, i) => {
-                        return i !== index ? q : null;
-                      }
-                    ),
-                  })
-                }
-              >
+              <Button onClick={() => deleteDefaultQuestion(index)}>
                 Delete
               </Button>
             </>
           );
         })}
       </div>
-      <Button
-        onClick={() =>
-          setTopic({
-            ...topic,
-            default_questions: [
-              ...topic.default_questions,
-              { content: '', response_type: 'String' },
-            ],
-          })
-        }
-      >
-        Add New Question
-      </Button>
+      <Button onClick={addDefaultQuestion}>Add New Question</Button>
     </>
   );
 };
 
-export default RenderDeliveryTopicSetup;
+export default RenderGroupQuestions;

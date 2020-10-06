@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Layout, Menu } from 'antd';
+import { Button, Layout } from 'antd';
 
 import '../../../styles/Home.css';
 import TopicContextSlideoutContainer from '../../TopicContextSlideout/TopicContextSlideoutContainer';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
