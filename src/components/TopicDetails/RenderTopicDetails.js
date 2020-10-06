@@ -41,20 +41,23 @@ function RenderTopicDetails(props) {
   return (
     <div className="topicDetails__container">
       {topicDetailsInfo ? (
-        <div>
+        <div className="innerTopicDetails">
           <h2>{topicDetailsInfo.title}</h2>
+          <Dropdown overlay={menu}>
+            <Button onClick={e => e.preventDefault()}>Select</Button>
+          </Dropdown>
           <h2>Members: </h2>
-          {topicDetailsInfo.members.map(member => (
-            <span>{`${member.name}, `}</span>
-          ))}
+          {topicDetailsInfo.members.map(member => {
+            console.log(member);
+            return <img src={member.avatarUrl} />;
+          })}
+
           <div>
+            <h1>Context</h1>
             {topicDetailsInfo.context_questions.map(contextQuestion => {
               return <p key={contextQuestion.id}>{contextQuestion.content}</p>;
             })}
           </div>
-          <Dropdown overlay={menu}>
-            <Button onClick={e => e.preventDefault()}>Topic Iterations</Button>
-          </Dropdown>
         </div>
       ) : (
         <LoadingComponent message="Loading..." />

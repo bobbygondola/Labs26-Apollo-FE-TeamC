@@ -5,6 +5,7 @@ import {
   toggleDisplayModal,
   toggleJoinSurveyModal,
 } from '../../state/actions/displayModalAction';
+import { useOktaAuth } from '@okta/okta-react';
 import 'antd/dist/antd.css';
 
 import { Layout, Menu } from 'antd';
@@ -12,6 +13,7 @@ import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 const Navigation = props => {
+  const { authState, authService } = useOktaAuth();
   const dispatch = useDispatch();
   const toggle = e => {
     e.preventDefault();
@@ -39,6 +41,9 @@ const Navigation = props => {
             {' '}
             {/* <Link to="/new-topic"> */}
             <div onClick={toggle}>Add New Topic</div>
+          </Menu.Item>
+          <Menu.Item type="primary" onClick={() => authService.logout()}>
+            Logout
           </Menu.Item>
         </Menu>
       </Header>

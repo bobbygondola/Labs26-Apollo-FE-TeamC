@@ -7,12 +7,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3%;
+  padding-top: 7%;
+  background-image: linear-gradient(#29429b,#8099b1);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 .topic-card {
-  border: 1px solid #00617e !important;
   border-radius: 5px !important;
-  width: 80%;
+  width: 65%;
+  height: fit-content;
   margin: 3px 0 !important;
+}
+
+.topic-card:hover{
+  background-color: rgb(190, 203, 223);
+  transition: 800ms;
+  color: white;
+}
+
+.topic-buttons{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+  border: none;
+}
+
+.topic-buttons button{
+  margin-top: 5%;
+  background-color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-shadow: 1px 1px 20px black;
+  border: none;
+  border-radius: 7px;
+}
+
+.topic-buttons button:hover{
+  background-color: rgb(62, 62, 202);
+  box-shadow: 1px 1px 5px black;
+  transition: 500ms;
+  color: aliceblue;
 }
