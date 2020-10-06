@@ -62,30 +62,32 @@ const RenderTopicsList = props => {
   }, [currentUser]);
 
   return (
-    <Space align="start" direction="vertical" size="small">
-      {topicsList.map(topic => (
-        <Card
-          onClick={() => showDetails(topic.id)}
-          key={topic.id}
-          bordered={true}
-          hoverable={true}
-          style={{ border: '1px solid #00617e', borderRadius: '5px' }}
-        >
-          <h2>{topic.title}</h2>
-          <h3>
-            Owner: {`${currentUser.given_name} ${currentUser.family_name}`}
-          </h3>
-          <Avatars />
-          <h3>
-            <CalendarTwoTone />
-            {topic.frequency}
-          </h3>
-          <h3>
-            <BellOutlined />
-          </h3>
-        </Card>
-      ))}
-    </Space>
+    <>
+      <div className="topics-list">
+        <h2>Topics I Lead</h2>
+        {topicsList.map(topic => (
+          <Card
+            onClick={() => showDetails(topic.id)}
+            key={topic.id}
+            hoverable={true}
+            className="topic-card"
+          >
+            <h2>{topic.title}</h2>
+            <h3>
+              Owner: {`${currentUser.given_name} ${currentUser.family_name}`}
+            </h3>
+            <Avatars />
+            <h3>
+              <CalendarTwoTone />
+              {topic.frequency}
+            </h3>
+            <h3>
+              <BellOutlined />
+            </h3>
+          </Card>
+        ))}
+      </div>
+    </>
   );
 };
 

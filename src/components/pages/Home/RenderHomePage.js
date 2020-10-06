@@ -1,9 +1,12 @@
+// packages
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Layout } from 'antd';
 
+// files
 import '../../../styles/Home.css';
 import TopicContextSlideoutContainer from '../../TopicContextSlideout/TopicContextSlideoutContainer';
+import TopicsListContainer from '../../TopicsList/TopicsListContainer';
 
 const { Content } = Layout;
 
@@ -12,28 +15,7 @@ function RenderHomePage(props) {
   return (
     <Layout className="layout">
       <TopicContextSlideoutContainer />
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <Content>
-        <p>
-          This is an example of a common example of how we'd like for you to
-          approach components.
-        </p>
-
-        <p>
-          <Link to="/profile-list">Profiles Example</Link>
-        </p>
-        <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
-        <p>
-          <Link to="/topics-list">Topics List</Link>
-        </p>
-        <p>
-          <Button type="primary" onClick={() => authService.logout()}>
-            Logout
-          </Button>
-        </p>
-      </Content>
+      <TopicsListContainer />
     </Layout>
   );
 }
