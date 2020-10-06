@@ -1,50 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Avatars from '../common/Avatars';
 import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
-import { Space, Card } from 'antd';
-import axios from 'axios';
+import { Card, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 
 import {
   toggleDisplayOwnedTopic,
   setTopicsList,
-  getCurrentUser,
 } from '../../state/actions/displayModalAction';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const RenderTopicsList = props => {
   const topicsList = useSelector(state => state.topicsList);
-  const currentUser = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
   const oktaAuth = useOktaAuth();
   const { authState } = oktaAuth;
-
-  const getUser = async () => {
-    const user = await oktaAuth.authService.getUser();
-    return user;
-  };
-
-  if (!currentUser) {
-    getUser()
-      .then(res => {
-        dispatch(getCurrentUser(res));
-      })
-      .catch(err => console.log(err));
-  }
-
-  const myCreatedTopicsURL = currentUser
-    ? `${process.env.REACT_APP_API_URI}/profile/${currentUser.sub}/my-created-topics`
-    : null;
+  const [displayedTopicsList, setDisplayedTopicsList] = useState([]);
 
   const getTopics = () => {
-    axios
-      .get(myCreatedTopicsURL, {
-        headers: { Authorization: `Bearer ${authState.idToken}` },
-      })
+    axiosWithAuth(authState)
+      .get('/topics')
       .then(res => {
         console.log(res);
-        dispatch(setTopicsList(res.data.topics));
+        dispatch(setTopicsList(res.data.myTopics));
+        setDisplayedTopicsList(res.data.myTopics.joined);
       })
       .catch(err => {
         console.log(err);
@@ -56,36 +37,49 @@ const RenderTopicsList = props => {
   };
 
   useEffect(() => {
-    if (currentUser) {
-      getTopics();
-    }
-  }, [currentUser]);
+    getTopics();
+  }, []);
+
+  const displayTopicsICreated = e => {
+    e.preventDefault();
+    setDisplayedTopicsList(topicsList.created);
+  };
+
+  const displayTopicsIJoined = e => {
+    e.preventDefault();
+    setDisplayedTopicsList(topicsList.joined);
+  };
 
   return (
-    <Space align="start" direction="vertical" size="small">
-      {topicsList.map(topic => (
-        <Card
-          onClick={() => showDetails(topic.id)}
-          key={topic.id}
-          bordered={true}
-          hoverable={true}
-          style={{ border: '1px solid #00617e', borderRadius: '5px' }}
-        >
-          <h2>{topic.title}</h2>
-          <h3>
-            Owner: {`${currentUser.given_name} ${currentUser.family_name}`}
-          </h3>
-          <Avatars />
-          <h3>
-            <CalendarTwoTone />
-            {topic.frequency}
-          </h3>
-          <h3>
-            <BellOutlined />
-          </h3>
-        </Card>
-      ))}
-    </Space>
+    <>
+      <div className="topics-list">
+        <Button onClick={displayTopicsICreated}>Topics I Created</Button>
+        <Button onClick={displayTopicsIJoined}>Topics I Joined</Button>
+        <h2>Topics</h2>
+        {topicsList
+          ? displayedTopicsList.map(topic => (
+              <Card
+                onClick={() =>
+                  showDetails(topic.id ? topic.id : topic.topic_id)
+                }
+                key={topic.id}
+                hoverable={true}
+                className="topic-card"
+              >
+                <h2>{topic.title}</h2>
+                <Avatars />
+                <h3>
+                  <CalendarTwoTone />
+                  {topic.frequency}
+                </h3>
+                <h3>
+                  <BellOutlined />
+                </h3>
+              </Card>
+            ))
+          : null}
+      </div>
+    </>
   );
 };
 

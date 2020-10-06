@@ -2,3 +2,17 @@
   display: flex;
   flex-direction: row;
 }
+
+.topics-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3%;
+}
+
+.topic-card {
+  border: 1px solid #00617e !important;
+  border-radius: 5px !important;
+  width: 80%;
+  margin: 3px 0 !important;
+}
