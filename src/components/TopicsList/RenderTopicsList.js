@@ -72,11 +72,13 @@ const RenderTopicsList = props => {
       <div className="topics-list">
         <Button onClick={displayTopicsICreated}>Topics I Created</Button>
         <Button onClick={displayTopicsIJoined}>Topics I Joined</Button>
-        <h2>Topics I Lead</h2>
+        <h2>Topics</h2>
         {topicsList
           ? displayedTopicsList.map(topic => (
               <Card
-                onClick={() => showDetails(topic.id)}
+                onClick={() =>
+                  showDetails(topic.id ? topic.id : topic.topic_id)
+                }
                 key={topic.id}
                 hoverable={true}
                 className="topic-card"
