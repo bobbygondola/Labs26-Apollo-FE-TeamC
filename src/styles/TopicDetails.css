@@ -4,7 +4,15 @@
   border-radius: 5px;
   box-shadow: 1px 0px 20px;
   height: fit-content;
+  transition: .5s;
 }
+
+.topicDetails__container:hover{
+  cursor: pointer;
+  box-shadow: 1px 0px 10px;
+  transition: 500ms;
+}
+
 .topicDetails__container h2{
   text-decoration: underline;
   margin-top: 3%;

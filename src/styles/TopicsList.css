@@ -21,15 +21,15 @@
 }
 
 .topic-card:hover{
-  background-color: rgb(190, 203, 223);
+  box-shadow: 1px 1px 120px;
+  background-color: rgb(195, 217, 255);
   transition: 800ms;
-  color: white;
 }
 
 .topic-buttons{
   display: flex;
   flex-direction: column;
-  margin-bottom: 5%;
+  margin-bottom: 50px;
   border: none;
 }
 

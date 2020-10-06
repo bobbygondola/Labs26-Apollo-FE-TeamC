@@ -1,5 +1,14 @@
 .topicIterationReplies__container {
-  border: 1px solid #00617e;
+  padding: 20px;
+  margin: 10px;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px 2px #88888856;
+  box-shadow: 1px 0px 20px;
+  height: fit-content;
+  transition: .5s;
+}
+
+.topicIterationReplies__container:hover {
+  cursor: pointer;
+  box-shadow: 1px 0px 10px;
+  transition: 500ms;
 }
