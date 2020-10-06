@@ -14,8 +14,11 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <Layout className="layout">
-      <TopicContextSlideoutContainer />
       <TopicsListContainer />
+      <TopicContextSlideoutContainer />
+      <Button type="primary" onClick={() => authService.logout()}>
+        Logout
+      </Button>
     </Layout>
   );
 }
