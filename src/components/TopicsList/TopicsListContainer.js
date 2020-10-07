@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { List } from '../common';
 import { getExampleData } from '../../api';
 import { useSelector } from 'react-redux';
@@ -8,9 +8,15 @@ import RenderTopicsList from './RenderTopicsList';
 import RenderTopicDetails from '../TopicDetails/RenderTopicDetails';
 import RenderTopicIterationReplies from '../TopicIterationReplies/RenderTopicIterationReplies';
 import '../../styles/TopicsList.css';
+import RenderNewRequestModal from '../TopicDetails/RenderNewRequestModal';
 
 const TopicsListContainer = () => {
   const currentTopicId = useSelector(state => state.currentTopicId);
+  const [requestedData, setRequestedData] = useState({
+    context_responses: [],
+    topic_questions: [],
+  });
+
   return (
     <div className="topicsList__container">
       <List
@@ -19,8 +25,14 @@ const TopicsListContainer = () => {
         LoadingComponent={() => <div>Loading Topics...</div>}
         RenderItems={RenderTopicsList}
       />
-      {currentTopicId && <RenderTopicDetails currentTopicId={currentTopicId} />}
+      {currentTopicId && (
+        <RenderTopicDetails
+          currentTopicId={currentTopicId}
+          setRequestedData={setRequestedData}
+        />
+      )}
       <RenderTopicIterationReplies currentTopicId={currentTopicId} />
+      <RenderNewRequestModal requestedData={requestedData} />
     </div>
   );
 };

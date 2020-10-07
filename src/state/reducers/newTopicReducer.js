@@ -6,12 +6,14 @@ import {
   SET_TOPICS_LIST,
   CAPTURE_CURRENT_USER,
   TOGGLE_JOIN_SURVEY_MODAL,
+  TOGGLE_NEW_REQUEST_MODAL,
 } from '../actions/displayModalAction';
 
 const initialState = {
   displayModal: false,
   displayJoinCodeModal: false,
   displayJoinSurveyModal: false,
+  displayNewRequestModal: false,
   joinCode: null,
   currentTopicId: null,
   topicsList: {
@@ -57,6 +59,11 @@ const newTopicReducer = (state = initialState, action) => {
       return {
         ...state,
         displayJoinSurveyModal: !state.displayJoinSurveyModal,
+      };
+    case TOGGLE_NEW_REQUEST_MODAL:
+      return {
+        ...state,
+        displayNewRequestModal: !state.displayNewRequestModal,
       };
     default:
       return state;
