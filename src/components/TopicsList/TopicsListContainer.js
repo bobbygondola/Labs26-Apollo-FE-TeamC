@@ -32,7 +32,10 @@ const TopicsListContainer = () => {
         />
       )}
       <RenderTopicIterationReplies currentTopicId={currentTopicId} />
-      <RenderNewRequestModal requestedData={requestedData} />
+      <RenderNewRequestModal
+        requestedData={requestedData}
+        setRequestedData={setRequestedData}
+      />
     </div>
   );
 };

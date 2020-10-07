@@ -22,7 +22,13 @@ function RenderTopicDetails(props) {
         console.log(res);
         setTopicDetailsInfo(res.data);
         setRequestedData({
-          context_responses: res.data.context_questions,
+          context_responses: res.data.context_questions.map(question => {
+            return {
+              id: question.id,
+              question: question.content,
+              content: '',
+            };
+          }),
           topic_questions: res.data.default_questions,
         });
       })
@@ -62,7 +68,6 @@ function RenderTopicDetails(props) {
           </Dropdown>
           <h2>Members: </h2>
           {topicDetailsInfo.members.map(member => {
-            console.log(member);
             return <img src={member.avatarUrl} alt="Member Avatar" />;
           })}
 

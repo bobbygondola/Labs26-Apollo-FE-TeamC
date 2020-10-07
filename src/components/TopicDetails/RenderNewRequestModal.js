@@ -1,5 +1,5 @@
 // packages
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from 'antd';
@@ -8,14 +8,35 @@ import { Modal } from 'antd';
 import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
 
 export const RenderNewRequestModal = props => {
-  const { requestedData } = props;
+  const { requestedData, setRequestedData } = props;
   const displayNewRequestModal = useSelector(
     state => state.displayNewRequestModal
   );
+
   const dispatch = useDispatch();
 
   const closeModal = () => {
     dispatch(toggleNewRequestModal());
+  };
+
+  const changeHandler = e => {
+    setRequestedData({
+      ...requestedData,
+      context_responses: requestedData.context_responses.map(response => {
+        if (response.id == e.target.name) {
+          return {
+            ...response,
+            content: e.target.value,
+          };
+        } else {
+          return response;
+        }
+      }),
+    });
+  };
+
+  const submitResponses = e => {
+    e.preventDefault();
   };
 
   return (
@@ -24,9 +45,16 @@ export const RenderNewRequestModal = props => {
         {requestedData.context_responses.map(response => {
           return (
             <div key={response.id}>
-              <p>{response.content}</p>
               <form>
-                <input type="text" />
+                <p>{response.question}</p>
+                <textarea
+                  name={response.id}
+                  rows={4}
+                  cols={40}
+                  placeholder="Enter Response..."
+                  onChange={changeHandler}
+                  value={response.content}
+                />
               </form>
             </div>
           );
