@@ -2,15 +2,20 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown, Menu, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
+import { useDispatch, useSelector } from 'react-redux';
 
 //files
 import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicDetails.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
+//state
+import { getCurrentRequestId } from '../../state/actions/displayModalAction';
+
 function RenderTopicDetails(props) {
   const { currentTopicId } = props;
   const { authState } = useOktaAuth();
+  const dispatch = useDispatch();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
 
   useEffect(() => {
@@ -25,12 +30,16 @@ function RenderTopicDetails(props) {
       });
   }, [currentTopicId]);
 
+  const handleRequestSelection = requestId => {
+    dispatch(getCurrentRequestId(requestId));
+  };
+
   const menu = (
     <Menu>
       {topicDetailsInfo &&
         topicDetailsInfo.topic_iteration_requests.map(request => {
           return (
-            <Menu.Item>
+            <Menu.Item onClick={() => handleRequestSelection(request.id)}>
               <a>{request.posted_at}</a>
             </Menu.Item>
           );

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Avatars from '../common/Avatars';
-import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
 import { Card, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
