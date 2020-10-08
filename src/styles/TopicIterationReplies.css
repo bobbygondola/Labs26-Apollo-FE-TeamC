@@ -8,6 +8,10 @@
   min-width: 350px;
 }
 
+.topicIterationReplies__container h2{
+  text-decoration: underline;
+}
+
 .topicIterationReplies__container:hover {
   cursor: pointer;
   box-shadow: 1px 0px 10px;
@@ -32,5 +36,20 @@
 
 .userDetails p{
   margin-left: 1rem;
-  background-color: red;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.questionAnswer {
+  background-color: rgb(231, 231, 231);
+  padding-top: 3%;
+  padding-left: 3%;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+}
+
+#repliesId{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 5%;
+  font-weight: bolder;
 }

@@ -41,8 +41,13 @@ function RenderTopicIterationReplies(props) {
                   <div className="answers">
                     {request.replies.map(replies => {
                       return (
-                        <div>
-                          <p>{replies.content}</p>
+                        <div className="answerContent">
+                          <p id="repliesId">
+                            {replies.question_id}. Question Title
+                          </p>
+                          <div className="questionAnswer">
+                            <p>{replies.content}</p>
+                          </div>
                         </div>
                       );
                     })}
