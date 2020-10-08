@@ -24,8 +24,6 @@ function RenderTopicIterationReplies(props) {
       });
   }, [props.currentRequestId]);
 
-  console.log(requestReplies);
-
   return (
     <div className="topicIterationReplies__container">
       {props.currentRequestId ? (
@@ -33,7 +31,24 @@ function RenderTopicIterationReplies(props) {
           <h2>Replies</h2>
           {requestReplies &&
             requestReplies.request_replies.map(request => {
-              return <p>{request.name}</p>;
+              console.log(request);
+              return (
+                <div className="innerRequestDetails">
+                  <div className="userDetails">
+                    <img alt="avatar" src={request.avatarUrl} />
+                    <p>{request.name}</p>
+                  </div>
+                  <div className="answers">
+                    {request.replies.map(replies => {
+                      return (
+                        <div>
+                          <p>{replies.content}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
             })}
         </>
       ) : (

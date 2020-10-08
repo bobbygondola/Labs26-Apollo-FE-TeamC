@@ -59,8 +59,7 @@ function RenderTopicDetails(props) {
           </Dropdown>
           <h2>Members: </h2>
           {topicDetailsInfo.members.map(member => {
-            console.log(member);
-            return <img src={member.avatarUrl} />;
+            return <img alt="avatar" src={member.avatarUrl} />;
           })}
 
           <div>

@@ -5,10 +5,32 @@
   box-shadow: 1px 0px 20px;
   height: fit-content;
   transition: .5s;
+  min-width: 350px;
 }
 
 .topicIterationReplies__container:hover {
   cursor: pointer;
   box-shadow: 1px 0px 10px;
   transition: 500ms;
+}
+
+.innerRequestDetails img {
+  width: 40px;
+  border-radius: 100px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+}
+
+.userDetails {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+.userDetails p{
+  margin-left: 1rem;
+  background-color: red;
 }
