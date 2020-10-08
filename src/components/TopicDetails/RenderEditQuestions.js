@@ -1,4 +1,8 @@
+// packages
 import React from 'react';
+import { Button } from 'antd';
+
+// files
 
 function RenderEditQuestions(props) {
   const { requestedData, setRequestedData } = props;
@@ -6,11 +10,11 @@ function RenderEditQuestions(props) {
   const changeHandler = e => {
     setRequestedData({
       ...requestedData,
-      topic_questions: requestedData.topic_questions.map(question => {
-        if (question.id - 1 == e.target.id) {
+      topic_questions: requestedData.topic_questions.map((question, idx) => {
+        if (idx === Number(e.target.id)) {
           return {
             ...question,
-            response: e.target.value,
+            content: e.target.value,
           };
         } else {
           return question;
@@ -18,13 +22,36 @@ function RenderEditQuestions(props) {
       }),
     });
   };
+
+  const addQuestion = () => {
+    setRequestedData({
+      ...requestedData,
+      topic_questions: [
+        ...requestedData.topic_questions,
+        {
+          content: '',
+          response_type: 'String',
+        },
+      ],
+    });
+  };
+
+  const deleteQuestion = questionId => {
+    setRequestedData({
+      ...requestedData,
+      topic_questions: requestedData.topic_questions.filter((question, idx) => {
+        return idx !== questionId ? question : null;
+      }),
+    });
+  };
+
   return (
     <div>
-      {requestedData.topic_questions.map((idx, question) => {
+      {requestedData.topic_questions.map((question, idx) => {
         console.log(idx, question);
         console.log(question.content);
         return (
-          <div key={question.content}>
+          <div key={idx}>
             <form>
               <textarea
                 id={idx}
@@ -35,9 +62,12 @@ function RenderEditQuestions(props) {
                 value={question.content}
               />
             </form>
+
+            <Button onClick={() => deleteQuestion(idx)}>Delete Question</Button>
           </div>
         );
       })}
+      <Button onClick={addQuestion}>Add New Question</Button>
     </div>
   );
 }
