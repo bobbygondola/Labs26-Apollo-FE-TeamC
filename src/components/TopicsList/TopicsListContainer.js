@@ -8,9 +8,11 @@ import RenderTopicsList from './RenderTopicsList';
 import RenderTopicDetails from '../TopicDetails/RenderTopicDetails';
 import RenderTopicIterationReplies from '../TopicIterationReplies/RenderTopicIterationReplies';
 import '../../styles/TopicsList.css';
+import { getCurrentRequestId } from '../../state/actions/displayModalAction';
 
 const TopicsListContainer = () => {
   const currentTopicId = useSelector(state => state.currentTopicId);
+  const currentRequestId = useSelector(state => state.currentRequestId);
   return (
     <div className="topicsList__container">
       <List
@@ -20,7 +22,9 @@ const TopicsListContainer = () => {
         RenderItems={RenderTopicsList}
       />
       {currentTopicId && <RenderTopicDetails currentTopicId={currentTopicId} />}
-      <RenderTopicIterationReplies currentTopicId={currentTopicId} />
+      {currentRequestId && (
+        <RenderTopicIterationReplies currentRequestId={currentRequestId} />
+      )}
     </div>
   );
 };

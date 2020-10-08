@@ -34,13 +34,15 @@ function RenderTopicDetails(props) {
     dispatch(getCurrentRequestId(requestId));
   };
 
+  console.log('TOPICDETAILSINFO', topicDetailsInfo);
+
   const menu = (
     <Menu>
       {topicDetailsInfo &&
         topicDetailsInfo.topic_iteration_requests.map(request => {
           return (
             <Menu.Item onClick={() => handleRequestSelection(request.id)}>
-              <a>{request.posted_at}</a>
+              <span>Date: {request.posted_at}</span>
             </Menu.Item>
           );
         })}
