@@ -33,6 +33,7 @@ const TopicsListContainer = () => {
       )}
       <RenderTopicIterationReplies currentTopicId={currentTopicId} />
       <RenderNewRequestModal
+        currentTopicId={currentTopicId}
         requestedData={requestedData}
         setRequestedData={setRequestedData}
       />
