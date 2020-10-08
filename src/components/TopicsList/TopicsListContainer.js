@@ -9,6 +9,7 @@ import RenderTopicDetails from '../TopicDetails/RenderTopicDetails';
 import RenderTopicIterationReplies from '../TopicIterationReplies/RenderTopicIterationReplies';
 import '../../styles/TopicsList.css';
 import RenderNewRequestModal from '../TopicDetails/RenderNewRequestModal';
+import RenderNewRequestSuccessModal from '../TopicDetails/RenderRequestSuccessModal';
 
 const TopicsListContainer = () => {
   const currentTopicId = useSelector(state => state.currentTopicId);
@@ -37,6 +38,7 @@ const TopicsListContainer = () => {
         requestedData={requestedData}
         setRequestedData={setRequestedData}
       />
+      <RenderNewRequestSuccessModal />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
 import RenderContextResponseQuestions from './RenderContextResponseQuestions';
 import RenderEditQuestions from './RenderEditQuestions';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { toggleNewRequestSuccessModal } from '../../state/actions/displayModalAction';
 
 export const RenderNewRequestModal = props => {
   const { requestedData, setRequestedData, currentTopicId } = props;
@@ -45,6 +46,8 @@ export const RenderNewRequestModal = props => {
         .post(`topics/${currentTopicId}/request`, processedData)
         .then(res => {
           console.log(res);
+          dispatch(toggleNewRequestModal());
+          dispatch(toggleNewRequestSuccessModal());
         })
         .catch(err => {
           console.log(err);
