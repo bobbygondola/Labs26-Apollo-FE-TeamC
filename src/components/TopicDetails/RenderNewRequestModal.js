@@ -41,16 +41,14 @@ export const RenderNewRequestModal = props => {
           };
         }),
       };
-      console.log(processedData);
       axiosWithAuth(authState)
         .post(`topics/${currentTopicId}/request`, processedData)
         .then(res => {
-          console.log(res);
           dispatch(toggleNewRequestModal());
           dispatch(toggleNewRequestSuccessModal());
         })
         .catch(err => {
-          console.log(err);
+          alert(err);
         });
     }
   };

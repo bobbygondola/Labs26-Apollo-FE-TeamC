@@ -22,8 +22,6 @@ function RenderContextResponseQuestions(props) {
   return (
     <div>
       {requestedData.context_responses.map(response => {
-        console.log(response);
-        console.log(response.question);
         return (
           <div key={response.id}>
             <form>

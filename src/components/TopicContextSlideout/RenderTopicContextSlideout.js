@@ -15,17 +15,11 @@ const RenderTopicContextSlideout = props => {
     setCurrentIteration(tempInstance);
   }
 
-  function onBlur() {
-    console.log('blur');
-  }
+  function onBlur() {}
 
-  function onFocus() {
-    console.log('focus');
-  }
+  function onFocus() {}
 
-  function onSearch(val) {
-    console.log('search:', val);
-  }
+  function onSearch(val) {}
 
   return (
     <div

@@ -33,16 +33,13 @@ function RenderJoinSurveyModal() {
 
   const join = e => {
     e.preventDefault();
-    console.log(currentUser.sub);
     axiosWithAuth(authState)
       .post(joinTopicUrl, { profile_id: currentUser.sub })
       .then(res => {
         setSuccessMessage('Successfully joined topic');
         setFailureMessage(null);
-        console.log(res);
       })
       .catch(err => {
-        console.log(err);
         setFailureMessage(err.message);
       });
   };

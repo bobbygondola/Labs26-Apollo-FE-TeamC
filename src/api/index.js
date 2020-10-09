@@ -30,7 +30,7 @@ const getProfileData = authState => {
     return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
   } catch (error) {
     return new Promise(() => {
-      console.log(error);
+      alert(error);
       return [];
     });
   }

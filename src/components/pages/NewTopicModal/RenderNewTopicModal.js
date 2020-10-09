@@ -47,7 +47,6 @@ function RenderNewTopicModal() {
       axiosWithAuth(authState)
         .post(newTopicPostUrl, topic)
         .then(res => {
-          console.log(res);
           dispatch(captureJoinCode(res.data.id));
           dispatch(toggleDisplayModal());
           dispatch(toggleJoinCodeModal());

@@ -48,8 +48,6 @@ function RenderEditQuestions(props) {
   return (
     <div>
       {requestedData.topic_questions.map((question, idx) => {
-        console.log(idx, question);
-        console.log(question.content);
         return (
           <div key={idx}>
             <form>

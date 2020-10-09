@@ -19,7 +19,6 @@ function RenderTopicDetails(props) {
     axiosWithAuth(authState)
       .get(`topics/${currentTopicId}`)
       .then(res => {
-        console.log(res);
         setTopicDetailsInfo(res.data);
         setRequestedData({
           context_responses: res.data.context_questions.map(question => {
@@ -33,7 +32,7 @@ function RenderTopicDetails(props) {
         });
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   }, [currentTopicId]);
 

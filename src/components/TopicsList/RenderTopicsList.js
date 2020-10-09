@@ -23,12 +23,11 @@ const RenderTopicsList = props => {
     axiosWithAuth(authState)
       .get('/topics')
       .then(res => {
-        console.log(res);
         dispatch(setTopicsList(res.data.myTopics));
         setDisplayedTopicsList(res.data.myTopics.joined);
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   };
 
