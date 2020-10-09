@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleNewRequestSuccessModal } from '../../state/actions/displayModalAction';
 
-const RenderRequestSuccessModal = () => {
+const RequestSuccessModal = () => {
   const displayNewRequestSuccessModal = useSelector(
     state => state.displayNewRequestSuccessModal
   );
@@ -28,4 +28,4 @@ const RenderRequestSuccessModal = () => {
   );
 };
 
-export default RenderRequestSuccessModal;
+export default RequestSuccessModal;

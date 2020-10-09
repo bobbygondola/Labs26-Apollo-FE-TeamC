@@ -4,12 +4,12 @@ import { Dropdown, Menu, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch } from 'react-redux';
 //files
-import LoadingComponent from '../../components/common/LoadingComponent';
+import LoadingComponent from '../common/LoadingComponent';
 import '../../styles/TopicDetails.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
 
-function RenderTopicDetails(props) {
+function TopicDetails(props) {
   const { currentTopicId, setRequestedData } = props;
   const { authState } = useOktaAuth();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
@@ -84,4 +84,4 @@ function RenderTopicDetails(props) {
   );
 }
 
-export default RenderTopicDetails;
+export default TopicDetails;

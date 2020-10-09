@@ -16,7 +16,6 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { HomePage } from './components/pages/Home';
@@ -27,7 +26,6 @@ import MemberPage from './components/pages/Member/MemberPage';
 import OwnerPage from './components/pages/Owner/OwnerPage';
 import Navigation from './components/Navigation/Navigation';
 import { TopicsListContainer } from './components/TopicsList';
-import { TopicContextSlideoutContainer } from './components/TopicContextSlideout';
 import { JoinCodeModalContainer } from './components/JoinCodeModal';
 import { JoinSurveyModalContainer } from './components/JoinSurveyModal/JoinSurveyModalContainer';
 
@@ -67,15 +65,10 @@ function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/member" component={MemberPage} />
         <SecureRoute path="/owner" component={OwnerPage} />
         <SecureRoute path="/topics-list" component={TopicsListContainer} />
-        <SecureRoute
-          path="/topic-context"
-          component={TopicContextSlideoutContainer}
-        />
 
         <Route component={NotFoundPage} />
       </Switch>

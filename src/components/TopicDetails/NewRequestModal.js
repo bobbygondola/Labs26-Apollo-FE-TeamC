@@ -6,12 +6,12 @@ import { useOktaAuth } from '@okta/okta-react';
 
 // files
 import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
-import RenderContextResponseQuestions from './RenderContextResponseQuestions';
-import RenderEditQuestions from './RenderEditQuestions';
+import ContextResponseQuestions from './ContextResponseQuestions';
+import EditQuestions from './EditQuestions';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { toggleNewRequestSuccessModal } from '../../state/actions/displayModalAction';
 
-export const RenderNewRequestModal = props => {
+export const NewRequestModal = props => {
   const { requestedData, setRequestedData, currentTopicId } = props;
   const displayNewRequestModal = useSelector(
     state => state.displayNewRequestModal
@@ -71,13 +71,13 @@ export const RenderNewRequestModal = props => {
         visible={displayNewRequestModal}
       >
         {page === 0 && (
-          <RenderContextResponseQuestions
+          <ContextResponseQuestions
             requestedData={requestedData}
             setRequestedData={setRequestedData}
           />
         )}
         {page === 1 && (
-          <RenderEditQuestions
+          <EditQuestions
             requestedData={requestedData}
             setRequestedData={setRequestedData}
           />
@@ -89,4 +89,4 @@ export const RenderNewRequestModal = props => {
   );
 };
 
-export default RenderNewRequestModal;
+export default NewRequestModal;

@@ -1,8 +1,8 @@
 import React from 'react';
-import RenderJoinCodeModal from './RenderJoinCodeModal';
+import JoinCodeModal from './JoinCodeModal';
 
 const JoinCodeModalContainer = () => {
-  return <RenderJoinCodeModal />;
+  return <JoinCodeModal />;
 };
 
 export default JoinCodeModalContainer;

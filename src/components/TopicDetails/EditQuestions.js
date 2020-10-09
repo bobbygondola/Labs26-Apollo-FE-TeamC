@@ -4,7 +4,7 @@ import { Button } from 'antd';
 
 // files
 
-function RenderEditQuestions(props) {
+function EditQuestions(props) {
   const { requestedData, setRequestedData } = props;
 
   const changeHandler = e => {
@@ -70,4 +70,4 @@ function RenderEditQuestions(props) {
   );
 }
 
-export default RenderEditQuestions;
+export default EditQuestions;

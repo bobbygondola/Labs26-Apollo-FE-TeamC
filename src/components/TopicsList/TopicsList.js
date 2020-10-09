@@ -12,7 +12,7 @@ import {
 } from '../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-const RenderTopicsList = props => {
+const TopicsList = props => {
   const topicsList = useSelector(state => state.topicsList);
   const dispatch = useDispatch();
   const oktaAuth = useOktaAuth();
@@ -75,9 +75,9 @@ const RenderTopicsList = props => {
   );
 };
 
-export default RenderTopicsList;
+export default TopicsList;
 
-RenderTopicsList.propTypes = {
+TopicsList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,

@@ -2,7 +2,7 @@ import React from 'react';
 import FormInput from '../../../common/FormInput';
 import { Radio } from 'antd';
 
-const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
+const DeliveryTopicSettings = ({ topic, setTopic }) => {
   const radioCheck = e => {
     setTopic({ ...topic, frequency: e.target.value });
   };
@@ -47,4 +47,4 @@ const RenderDeliveryTopicSettings = ({ topic, setTopic }) => {
   );
 };
 
-export default RenderDeliveryTopicSettings;
+export default DeliveryTopicSettings;

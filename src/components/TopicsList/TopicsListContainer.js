@@ -4,12 +4,12 @@ import { getExampleData } from '../../api';
 import { useSelector } from 'react-redux';
 
 //files
-import RenderTopicsList from './RenderTopicsList';
-import RenderTopicDetails from '../TopicDetails/RenderTopicDetails';
-import RenderTopicIterationReplies from '../TopicIterationReplies/RenderTopicIterationReplies';
+import TopicsList from './TopicsList';
+import TopicDetails from '../TopicDetails/TopicDetails';
+import TopicIterationReplies from '../TopicIterationReplies/TopicIterationReplies';
 import '../../styles/TopicsList.css';
-import RenderNewRequestModal from '../TopicDetails/RenderNewRequestModal';
-import RenderNewRequestSuccessModal from '../TopicDetails/RenderRequestSuccessModal';
+import NewRequestModal from '../TopicDetails/NewRequestModal';
+import NewRequestSuccessModal from '../TopicDetails/RequestSuccessModal';
 
 const TopicsListContainer = () => {
   const currentTopicId = useSelector(state => state.currentTopicId);
@@ -24,21 +24,21 @@ const TopicsListContainer = () => {
         //axios request goes here
         getItemsData={getExampleData}
         LoadingComponent={() => <div>Loading Topics...</div>}
-        RenderItems={RenderTopicsList}
+        RenderItems={TopicsList}
       />
       {currentTopicId && (
-        <RenderTopicDetails
+        <TopicDetails
           currentTopicId={currentTopicId}
           setRequestedData={setRequestedData}
         />
       )}
-      <RenderTopicIterationReplies currentTopicId={currentTopicId} />
-      <RenderNewRequestModal
+      <TopicIterationReplies currentTopicId={currentTopicId} />
+      <NewRequestModal
         currentTopicId={currentTopicId}
         requestedData={requestedData}
         setRequestedData={setRequestedData}
       />
-      <RenderNewRequestSuccessModal />
+      <NewRequestSuccessModal />
     </div>
   );
 };

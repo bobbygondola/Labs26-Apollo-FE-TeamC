@@ -8,7 +8,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import { toggleJoinSurveyModal } from '../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-function RenderJoinSurveyModal() {
+function JoinSurveyModal() {
   const displayJoinSurveyModal = useSelector(
     state => state.displayJoinSurveyModal
   );
@@ -79,4 +79,4 @@ function RenderJoinSurveyModal() {
   );
 }
 
-export default RenderJoinSurveyModal;
+export default JoinSurveyModal;

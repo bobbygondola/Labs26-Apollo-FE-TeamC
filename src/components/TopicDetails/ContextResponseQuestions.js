@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RenderContextResponseQuestions(props) {
+function ContextResponseQuestions(props) {
   const { requestedData, setRequestedData } = props;
 
   const changeHandler = e => {
@@ -42,4 +42,4 @@ function RenderContextResponseQuestions(props) {
   );
 }
 
-export default RenderContextResponseQuestions;
+export default ContextResponseQuestions;

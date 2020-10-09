@@ -1,8 +1,8 @@
 import React from 'react';
-import RenderNewTopicModal from './RenderNewTopicModal';
+import NewTopicModal from './NewTopicModal';
 
 const NewTopicModalContainer = props => {
-  return <RenderNewTopicModal />;
+  return <NewTopicModal />;
 };
 
 export default NewTopicModalContainer;
