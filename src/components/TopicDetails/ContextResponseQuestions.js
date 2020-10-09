@@ -7,7 +7,7 @@ function ContextResponseQuestions(props) {
     setRequestedData({
       ...requestedData,
       context_responses: requestedData.context_responses.map(response => {
-        if (response.id == e.target.name) {
+        if (response.id === Number(e.target.name)) {
           return {
             ...response,
             content: e.target.value,

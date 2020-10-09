@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Avatars from '../common/Avatars';
-import { BellOutlined, CalendarTwoTone } from '@ant-design/icons';
 import { Card, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
@@ -57,12 +55,12 @@ const TopicsList = props => {
           <Button onClick={displayTopicsIJoined}>Topics I've Joined</Button>
         </div>
         {topicsList
-          ? displayedTopicsList.map(topic => (
+          ? displayedTopicsList.map((topic, idx) => (
               <Card
+                key={idx}
                 onClick={() =>
                   showDetails(topic.id ? topic.id : topic.topic_id)
                 }
-                key={topic.id}
                 hoverable={true}
                 className="topic-card"
               >

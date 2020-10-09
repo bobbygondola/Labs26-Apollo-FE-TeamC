@@ -13,7 +13,7 @@ import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 const Navigation = props => {
-  const { authState, authService } = useOktaAuth();
+  const { authService } = useOktaAuth();
   const dispatch = useDispatch();
   const toggle = e => {
     e.preventDefault();
