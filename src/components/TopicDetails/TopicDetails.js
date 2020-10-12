@@ -43,8 +43,6 @@ function TopicDetails(props) {
     dispatch(getCurrentRequestId(requestId));
   };
 
-  console.log('TOPICDETAILSINFO', topicDetailsInfo);
-
   const menu = (
     <Menu>
       {topicDetailsInfo &&

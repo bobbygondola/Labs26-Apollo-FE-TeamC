@@ -1,10 +1,7 @@
-// packages
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
-
-// files
 import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
 import ContextResponseQuestions from './ContextResponseQuestions';
 import EditQuestions from './EditQuestions';

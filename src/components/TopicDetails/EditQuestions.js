@@ -1,8 +1,5 @@
-// packages
 import React from 'react';
 import { Button } from 'antd';
-
-// files
 
 function EditQuestions(props) {
   const { requestedData, setRequestedData } = props;

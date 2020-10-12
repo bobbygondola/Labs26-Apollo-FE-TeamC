@@ -1,10 +1,7 @@
-//from packages
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-
-//from files
 import { toggleJoinSurveyModal } from '../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
