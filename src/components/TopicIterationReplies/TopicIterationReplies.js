@@ -4,8 +4,8 @@ import React from 'react';
 // files
 import '../../styles/TopicIterationReplies.css';
 
-function RenderTopicIterationReplies(props) {
+function TopicIterationReplies(props) {
   return <div className="topicIterationReplies__container">REPLIES</div>;
 }
 
-export default RenderTopicIterationReplies;
+export default TopicIterationReplies;

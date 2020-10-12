@@ -1,10 +1,10 @@
 import React from 'react';
 
 //files
-import RenderJoinSurveyModal from './RenderJoinSurveyModal';
+import JoinSurveyModal from './JoinSurveyModal';
 
 export const JoinSurveyModalContainer = () => {
-  return <RenderJoinSurveyModal />;
+  return <JoinSurveyModal />;
 };
 
 export default JoinSurveyModalContainer;

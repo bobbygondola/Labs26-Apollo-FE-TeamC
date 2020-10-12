@@ -3,7 +3,7 @@ import FormInput from '../../../common/FormInput';
 import { Button, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const RenderGroupQuestions = ({ topic, setTopic }) => {
+const GroupQuestions = ({ topic, setTopic }) => {
   const handleQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
@@ -89,4 +89,4 @@ const RenderGroupQuestions = ({ topic, setTopic }) => {
   );
 };
 
-export default RenderGroupQuestions;
+export default GroupQuestions;

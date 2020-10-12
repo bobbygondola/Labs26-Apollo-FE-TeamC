@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleJoinCodeModal } from '../../state/actions/displayModalAction';
 
-const RenderJoinCodeModal = () => {
+const JoinCodeModal = () => {
   const displayJoinCodeModal = useSelector(state => state.displayJoinCodeModal);
   const joinCode = useSelector(state => state.joinCode);
   const dispatch = useDispatch();
@@ -28,4 +28,4 @@ const RenderJoinCodeModal = () => {
   );
 };
 
-export default RenderJoinCodeModal;
+export default JoinCodeModal;

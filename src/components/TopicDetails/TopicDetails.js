@@ -2,26 +2,37 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown, Menu, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
-
+import { useDispatch } from 'react-redux';
 //files
-import LoadingComponent from '../../components/common/LoadingComponent';
+import LoadingComponent from '../common/LoadingComponent';
 import '../../styles/TopicDetails.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
 
-function RenderTopicDetails(props) {
-  const { currentTopicId } = props;
+function TopicDetails(props) {
+  const { currentTopicId, setRequestedData } = props;
   const { authState } = useOktaAuth();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axiosWithAuth(authState)
       .get(`topics/${currentTopicId}`)
       .then(res => {
-        console.log(res);
         setTopicDetailsInfo(res.data);
+        setRequestedData({
+          context_responses: res.data.context_questions.map(question => {
+            return {
+              id: question.id,
+              question: question.content,
+              content: '',
+            };
+          }),
+          topic_questions: res.data.default_questions,
+        });
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   }, [currentTopicId]);
 
@@ -42,14 +53,21 @@ function RenderTopicDetails(props) {
     <div className="topicDetails__container">
       {topicDetailsInfo ? (
         <div className="innerTopicDetails">
-          <h2>{topicDetailsInfo.title}</h2>
+          <div>
+            <h2>{topicDetailsInfo.title}</h2>
+            <Button
+              type="primary"
+              onClick={() => dispatch(toggleNewRequestModal())}
+            >
+              New Request
+            </Button>
+          </div>
           <Dropdown overlay={menu}>
             <Button onClick={e => e.preventDefault()}>Select</Button>
           </Dropdown>
           <h2>Members: </h2>
           {topicDetailsInfo.members.map(member => {
-            console.log(member);
-            return <img src={member.avatarUrl} />;
+            return <img src={member.avatarUrl} alt="Member Avatar" />;
           })}
 
           <div>
@@ -66,4 +84,4 @@ function RenderTopicDetails(props) {
   );
 }
 
-export default RenderTopicDetails;
+export default TopicDetails;

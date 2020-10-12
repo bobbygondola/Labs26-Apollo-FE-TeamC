@@ -1,8 +1,12 @@
 import React from 'react';
-import RenderMemberPage from './RenderMemberPage';
+import { Button } from 'antd';
 
-const MemberPage = () => {
-  return <RenderMemberPage />;
-};
+function MemberPage(props) {
+  return (
+    <>
+      <Button type="primary">Test</Button>
+    </>
+  );
+}
 
 export default MemberPage;

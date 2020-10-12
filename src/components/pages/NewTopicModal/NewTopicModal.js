@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import RenderContextRadio from './ContextPages/RenderContextRadio';
-import RenderDeliveryTopicSettings from './ContextPages/RenderDeliveryTopicSettings';
-import RenderDeliveryTopicSetup from './ContextPages/RenderDeliveryTopicSetup';
-import RenderGroupQuestions from './ContextPages/RenderGroupQuestions';
+import ContextRadio from './ContextPages/ContextRadio';
+import DeliveryTopicSettings from './ContextPages/DeliveryTopicSettings';
+import DeliveryTopicSetup from './ContextPages/DeliveryTopicSetup';
+import GroupQuestions from './ContextPages/GroupQuestions';
 import { Button, Modal, Steps } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
@@ -16,7 +16,7 @@ import {
 import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 import { topicInitialState, topicModalSteps } from './data';
 
-function RenderNewTopicModal() {
+function NewTopicModal() {
   const displayModal = useSelector(state => state.displayModal);
   const dispatch = useDispatch();
   const { authState } = useOktaAuth();
@@ -47,7 +47,6 @@ function RenderNewTopicModal() {
       axiosWithAuth(authState)
         .post(newTopicPostUrl, topic)
         .then(res => {
-          console.log(res);
           dispatch(captureJoinCode(res.data.id));
           dispatch(toggleDisplayModal());
           dispatch(toggleJoinCodeModal());
@@ -82,17 +81,15 @@ function RenderNewTopicModal() {
           ))}
         </Steps>
         <div>{topicModalSteps[page].content}</div>
-        {page === 0 ? (
-          <RenderContextRadio topic={topic} setTopic={setTopic} />
-        ) : null}
+        {page === 0 ? <ContextRadio topic={topic} setTopic={setTopic} /> : null}
         {page === 1 ? (
-          <RenderDeliveryTopicSettings topic={topic} setTopic={setTopic} />
+          <DeliveryTopicSettings topic={topic} setTopic={setTopic} />
         ) : null}
         {page === 2 ? (
-          <RenderDeliveryTopicSetup topic={topic} setTopic={setTopic} />
+          <DeliveryTopicSetup topic={topic} setTopic={setTopic} />
         ) : null}
         {page === 3 ? (
-          <RenderGroupQuestions topic={topic} setTopic={setTopic} />
+          <GroupQuestions topic={topic} setTopic={setTopic} />
         ) : null}
 
         <div>
@@ -106,4 +103,4 @@ function RenderNewTopicModal() {
   );
 }
 
-export default RenderNewTopicModal;
+export default NewTopicModal;
