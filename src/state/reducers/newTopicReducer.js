@@ -6,6 +6,7 @@ import {
   SET_TOPICS_LIST,
   CAPTURE_CURRENT_USER,
   TOGGLE_JOIN_SURVEY_MODAL,
+  CAPTURE_SELECTED_REQUEST_ID,
   TOGGLE_NEW_REQUEST_MODAL,
   TOGGLE_NEW_REQUEST_SUCCESS_MODAL,
 } from '../actions/displayModalAction';
@@ -23,6 +24,7 @@ const initialState = {
     joined: [],
   },
   currentUser: null,
+  currentRequestId: null,
 };
 
 const newTopicReducer = (state = initialState, action) => {
@@ -74,6 +76,11 @@ const newTopicReducer = (state = initialState, action) => {
       };
     default:
       return state;
+    case CAPTURE_SELECTED_REQUEST_ID:
+      return {
+        ...state,
+        currentRequestId: action.payload,
+      };
   }
 };
 

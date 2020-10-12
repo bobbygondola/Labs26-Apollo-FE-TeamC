@@ -5,10 +5,51 @@
   box-shadow: 1px 0px 20px;
   height: fit-content;
   transition: .5s;
+  min-width: 350px;
+}
+
+.topicIterationReplies__container h2{
+  text-decoration: underline;
 }
 
 .topicIterationReplies__container:hover {
   cursor: pointer;
   box-shadow: 1px 0px 10px;
   transition: 500ms;
+}
+
+.innerRequestDetails img {
+  width: 40px;
+  border-radius: 100px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+}
+
+.userDetails {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+.userDetails p{
+  margin-left: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.questionAnswer {
+  background-color: rgb(231, 231, 231);
+  padding-top: 3%;
+  padding-left: 3%;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+}
+
+#repliesId{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 5%;
+  font-weight: bolder;
 }

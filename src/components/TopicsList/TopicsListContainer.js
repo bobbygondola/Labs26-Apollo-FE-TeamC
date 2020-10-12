@@ -8,11 +8,13 @@ import TopicsList from './TopicsList';
 import TopicDetails from '../TopicDetails/TopicDetails';
 import TopicIterationReplies from '../TopicIterationReplies/TopicIterationReplies';
 import '../../styles/TopicsList.css';
+// import { getCurrentRequestId } from '../../state/actions/displayModalAction';
 import NewRequestModal from '../TopicDetails/NewRequestModal';
 import NewRequestSuccessModal from '../TopicDetails/RequestSuccessModal';
 
 const TopicsListContainer = () => {
   const currentTopicId = useSelector(state => state.currentTopicId);
+  const currentRequestId = useSelector(state => state.currentRequestId);
   const [requestedData, setRequestedData] = useState({
     context_responses: [],
     topic_questions: [],
@@ -32,12 +34,14 @@ const TopicsListContainer = () => {
           setRequestedData={setRequestedData}
         />
       )}
-      <TopicIterationReplies currentTopicId={currentTopicId} />
       <NewRequestModal
         currentTopicId={currentTopicId}
         requestedData={requestedData}
         setRequestedData={setRequestedData}
       />
+      {currentRequestId && (
+        <TopicIterationReplies currentRequestId={currentRequestId} />
+      )}
       <NewRequestSuccessModal />
     </div>
   );
