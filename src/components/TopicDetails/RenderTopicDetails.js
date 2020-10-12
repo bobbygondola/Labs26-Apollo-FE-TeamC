@@ -57,7 +57,7 @@ function RenderTopicDetails(props) {
           <Dropdown overlay={menu}>
             <Button onClick={e => e.preventDefault()}>Select</Button>
           </Dropdown>
-          <h2>Members: </h2>
+          <h3>Members: </h3>
           {topicDetailsInfo.members.map(member => {
             return <img alt="avatar" src={member.avatarUrl} />;
           })}
