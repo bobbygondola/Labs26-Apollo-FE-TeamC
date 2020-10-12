@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Radio } from 'antd';
 import { defaultQuestions, radioButtons } from '../data';
 
-function RenderContextRadio({ topic, setTopic }) {
+function ContextRadio({ topic, setTopic }) {
   const [radioVal, setRadioVal] = useState(0);
   const radioCheck = e => {
     setRadioVal(e.target.value);
@@ -36,4 +36,4 @@ function RenderContextRadio({ topic, setTopic }) {
   );
 }
 
-export default RenderContextRadio;
+export default ContextRadio;

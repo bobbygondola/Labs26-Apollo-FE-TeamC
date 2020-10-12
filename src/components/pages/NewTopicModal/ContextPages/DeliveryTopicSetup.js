@@ -2,7 +2,7 @@ import React from 'react';
 import FormInput from '../../../common/FormInput';
 import { Button } from 'antd';
 
-const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
+const DeliveryTopicSetup = ({ topic, setTopic }) => {
   const handleContextQuestionsChange = (e, index) => {
     setTopic({
       ...topic,
@@ -57,4 +57,4 @@ const RenderDeliveryTopicSetup = ({ topic, setTopic }) => {
   );
 };
 
-export default RenderDeliveryTopicSetup;
+export default DeliveryTopicSetup;

@@ -1,13 +1,13 @@
 import React from 'react';
-import RenderProfileListPage from '../components/pages/ProfileList/RenderProfileListPage';
+import ProfileListPage from '../components/pages/ProfileList/ProfileListPage';
 import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 test('loads a profile list', () => {
   const data = [{ id: '1234', name: 'item' }];
-  const { getByText, debug } = render(
+  const { getByText } = render(
     <Router>
-      <RenderProfileListPage data={data} />
+      <ProfileListPage data={data} />
     </Router>
   );
   const element = getByText(/item/i);

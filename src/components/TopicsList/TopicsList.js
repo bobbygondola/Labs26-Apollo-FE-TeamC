@@ -10,7 +10,7 @@ import {
 } from '../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-const RenderTopicsList = props => {
+const TopicsList = props => {
   const topicsList = useSelector(state => state.topicsList);
   const dispatch = useDispatch();
   const oktaAuth = useOktaAuth();
@@ -21,12 +21,11 @@ const RenderTopicsList = props => {
     axiosWithAuth(authState)
       .get('/topics')
       .then(res => {
-        console.log(res);
         dispatch(setTopicsList(res.data.myTopics));
         setDisplayedTopicsList(res.data.myTopics.joined);
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -56,12 +55,12 @@ const RenderTopicsList = props => {
           <Button onClick={displayTopicsIJoined}>Topics I've Joined</Button>
         </div>
         {topicsList
-          ? displayedTopicsList.map(topic => (
+          ? displayedTopicsList.map((topic, idx) => (
               <Card
+                key={idx}
                 onClick={() =>
                   showDetails(topic.id ? topic.id : topic.topic_id)
                 }
-                key={topic.id}
                 hoverable={true}
                 className="topic-card"
               >
@@ -74,9 +73,9 @@ const RenderTopicsList = props => {
   );
 };
 
-export default RenderTopicsList;
+export default TopicsList;
 
-RenderTopicsList.propTypes = {
+TopicsList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,

@@ -1,14 +1,13 @@
 // packages
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { useSelector } from 'react-redux';
 
 // files
 import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicIterationReplies.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-function RenderTopicIterationReplies(props) {
+function TopicIterationReplies(props) {
   const { authState } = useOktaAuth();
   const [requestReplies, setRequestReplies] = useState(null);
 
@@ -63,4 +62,4 @@ function RenderTopicIterationReplies(props) {
   );
 }
 
-export default RenderTopicIterationReplies;
+export default TopicIterationReplies;

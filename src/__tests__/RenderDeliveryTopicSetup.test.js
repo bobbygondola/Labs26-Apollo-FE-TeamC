@@ -1,4 +1,4 @@
-import RenderDeliveryTopicSetup from '../components/pages/NewTopicModal/ContextPages/RenderDeliveryTopicSetup';
+import DeliveryTopicSetup from '../components/pages/NewTopicModal/ContextPages/DeliveryTopicSetup';
 
 import React from 'react';
 import { render } from '@testing-library/react';
@@ -25,13 +25,11 @@ const topic = {
   ],
 };
 
-describe('<RenderDeliveryTopicSetup /> test suite', () => {
+describe('<DeliveryTopicSetup /> test suite', () => {
   test('button text is determined by props', () => {
     // for this first assertion, we'll simply ensure that the button's text is determined by the props passed to it
     // we'll also ensure that the className defaults to primary where none is passed as props
-    const { getByDisplayValue, rerender } = render(
-      <RenderDeliveryTopicSetup topic={topic} />
-    );
+    const { getByDisplayValue } = render(<DeliveryTopicSetup topic={topic} />);
     const form = getByDisplayValue(/What is the current priority/i);
     expect(form.value).toBe('What is the current priority?');
     // expect(form.labelId).toBe('Question 1');

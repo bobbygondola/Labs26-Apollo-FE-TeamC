@@ -1,8 +1,12 @@
 import React from 'react';
-import RenderOwnerPage from './RenderOwnerPage';
+import { Button } from 'antd';
 
-const OwnerPage = () => {
-  return <RenderOwnerPage />;
-};
+function OwnerPage() {
+  return (
+    <>
+      <Button type="primary">Test</Button>
+    </>
+  );
+}
 
 export default OwnerPage;
