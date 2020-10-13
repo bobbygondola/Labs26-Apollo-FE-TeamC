@@ -1,37 +1,36 @@
 .topicsList__container {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .topics-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  padding: 20px 15px;
   background-image: linear-gradient(#29429b,#8099b1);
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  padding-bottom: 20px;
 }
 
 .topic-card {
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 15px rgb(87, 87, 87);
   border: 1px solid grey;
-  margin-top: 7%;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 100px !important;
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   transition: 800ms;
 }
 
 .topic-card h2{
-  text-align: center;
-  vertical-align: initial;
   text-transform: uppercase;
+  margin-top: 5px;
 }
 
 .topic-card:hover{
