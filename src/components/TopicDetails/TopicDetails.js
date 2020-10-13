@@ -13,11 +13,12 @@ import {
 } from '../../state/actions/displayModalAction';
 
 function TopicDetails(props) {
-  const { currentTopicId, setRequestedData } = props;
+  const { currentTopicId, setRequestedData, isTopicOwner } = props;
   const { authState } = useOktaAuth();
   const dispatch = useDispatch();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
   const [requestDetails, setRequestDetails] = useState({});
+  console.log(isTopicOwner);
 
   useEffect(() => {
     axiosWithAuth(authState)
@@ -70,12 +71,14 @@ function TopicDetails(props) {
         <div className="innerTopicDetails">
           <div>
             <h2>{topicDetailsInfo.title}</h2>
-            <Button
-              type="primary"
-              onClick={() => dispatch(toggleNewRequestModal())}
-            >
-              New Request
-            </Button>
+            {isTopicOwner && (
+              <Button
+                type="primary"
+                onClick={() => dispatch(toggleNewRequestModal())}
+              >
+                New Request
+              </Button>
+            )}
           </div>
           <Dropdown overlay={menu}>
             <Button onClick={e => e.preventDefault()}>Select</Button>

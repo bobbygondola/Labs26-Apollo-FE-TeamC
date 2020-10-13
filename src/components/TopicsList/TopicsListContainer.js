@@ -19,6 +19,7 @@ const TopicsListContainer = () => {
     context_responses: [],
     topic_questions: [],
   });
+  const [isTopicOwner, setIsTopicOwner] = useState(false);
 
   return (
     <div className="topicsList__container">
@@ -26,12 +27,18 @@ const TopicsListContainer = () => {
         //axios request goes here
         getItemsData={getExampleData}
         LoadingComponent={() => <div>Loading Topics...</div>}
-        RenderItems={TopicsList}
+        RenderItems={() => (
+          <TopicsList
+            isTopicOwner={isTopicOwner}
+            setIsTopicOwner={setIsTopicOwner}
+          />
+        )}
       />
       {currentTopicId && (
         <TopicDetails
           currentTopicId={currentTopicId}
           setRequestedData={setRequestedData}
+          isTopicOwner={isTopicOwner}
         />
       )}
       <NewRequestModal
