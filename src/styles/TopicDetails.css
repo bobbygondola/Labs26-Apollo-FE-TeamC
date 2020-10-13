@@ -1,9 +1,11 @@
 .topicDetails__container {
   padding: 20px;
-  margin: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 0px 20px;
-  height: fit-content;
+  margin: 10px 30px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 15px grey;
+  min-height: 85vh;
+  min-width: fit-content;
+  width: 40%;
   transition: .5s;
 }
 
@@ -14,6 +16,7 @@
 }
 
 .topicDetails__container h2{
+  font-size: 30px;
   text-decoration: underline;
   margin-top: 3%;
 }
@@ -23,12 +26,36 @@
 }
 
 .topicDetails__container h1{
-  font-size: xx-large;
+  font-size: 30px;
   margin-top: 5%;
 }
 
+.titleAndRequest{
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropDown{
+  width: 90%;
+  border: 1px solid black!important;
+  border-radius: 10px!important;
+}
+
+.requestButton{
+  background-color: rgb(145, 145, 255)!important;
+  margin-top: 20px;
+}
+
+.avatars{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
 .innerTopicDetails img{
-  width: 50px;
+  display: flex;
+  flex-direction: row;
+  width: 60px;
   border-radius: 100px;
 }
 .innerTopicDetails p{

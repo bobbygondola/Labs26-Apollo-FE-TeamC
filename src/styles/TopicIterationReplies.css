@@ -1,11 +1,9 @@
 .topicIterationReplies__container {
   padding: 20px;
   margin: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 0px 20px;
-  height: fit-content;
+  margin-left: 310px;
   transition: .5s;
-  min-width: 350px;
+  min-width: 430px;
 }
 
 .topicIterationReplies__container h2{
@@ -14,8 +12,6 @@
 
 .topicIterationReplies__container:hover {
   cursor: pointer;
-  box-shadow: 1px 0px 10px;
-  transition: 500ms;
 }
 
 .innerRequestDetails img {

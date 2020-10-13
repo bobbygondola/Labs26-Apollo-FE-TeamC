@@ -68,32 +68,31 @@ function TopicDetails(props) {
     <div className="topicDetails__container">
       {topicDetailsInfo ? (
         <div className="innerTopicDetails">
-          <div>
+          <div className="titleAndRequest">
             <h2>{topicDetailsInfo.title}</h2>
             <Button
+              className="requestButton"
               type="primary"
               onClick={() => dispatch(toggleNewRequestModal())}
             >
               New Request
             </Button>
           </div>
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={menu} className="dropDown">
             <Button onClick={e => e.preventDefault()}>Select</Button>
           </Dropdown>
-          <h3>Members: </h3>
-          {requestDetails.reply_statuses &&
-            requestDetails.reply_statuses.map(member => {
-              return (
-                <img
-                  style={
-                    !member.has_replied ? { border: '2px solid red' } : null
-                  }
-                  src={member.avatarUrl}
-                  alt="Member Avatar"
-                />
-              );
-            })}
-
+          <div className="avatars">
+            {requestDetails.reply_statuses &&
+              requestDetails.reply_statuses.map(member => {
+                return (
+                  <img
+                    style={!member.has_replied ? { opacity: '0.3' } : null}
+                    src={member.avatarUrl}
+                    alt="Member Avatar"
+                  />
+                );
+              })}
+          </div>
           <div>
             <h1>Context</h1>
             {requestDetails.context_responses &&
@@ -102,7 +101,7 @@ function TopicDetails(props) {
                   return (
                     <div>
                       <p>
-                        <strong>{context_question}</strong>
+                        <strong> - {context_question}</strong>
                       </p>
                       <p>{context_response}</p>
                     </div>

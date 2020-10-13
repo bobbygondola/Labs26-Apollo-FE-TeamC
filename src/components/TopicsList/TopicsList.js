@@ -58,16 +58,15 @@ const TopicsList = props => {
         </div>
         {topicsList
           ? displayedTopicsList.map((topic, idx) => (
-              <Card
+              <div
                 key={idx}
                 onClick={() =>
                   showDetails(topic.id ? topic.id : topic.topic_id)
                 }
-                hoverable={true}
                 className="topic-card"
               >
-                <h2>{topic.title}</h2>
-              </Card>
+                <h2>{topic.title.match(/\b(\w)/g).join('')}</h2>
+              </div>
             ))
           : null}
       </div>
