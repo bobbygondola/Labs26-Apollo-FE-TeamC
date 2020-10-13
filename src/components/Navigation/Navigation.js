@@ -28,8 +28,6 @@ const Navigation = props => {
   return (
     <Layout>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-        <div className="logo" />
-
         <Menu
           style={{ display: 'flex', justifyContent: 'flex-end' }}
           theme="dark"
@@ -45,7 +43,9 @@ const Navigation = props => {
             }}
             key="1"
           >
-            <Link to="/">Apollo</Link>
+            <Link style={{ color: '#fff' }} to="/">
+              Apollo
+            </Link>
           </Menu.Item>
           <Menu.Item key="2">
             <div onClick={openJoinSurveyModal}>Join Survey</div>

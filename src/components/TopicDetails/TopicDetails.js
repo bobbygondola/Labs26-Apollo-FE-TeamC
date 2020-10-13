@@ -87,7 +87,7 @@ function TopicDetails(props) {
           </Dropdown>
           <div className="avatars">
             {requestDetails.reply_statuses && (
-              <>
+              <div className="memberCount">
                 {requestDetails.reply_statuses.map(member => {
                   return (
                     <img
@@ -97,13 +97,13 @@ function TopicDetails(props) {
                     />
                   );
                 })}
-                <p>
+                <p id="count">
                   {requestDetails.reply_statuses.reduce((a, c) =>
                     a + c.has_replied ? 1 : 0
                   )}
                   /{requestDetails.reply_statuses.length}
                 </p>
-              </>
+              </div>
             )}
           </div>
           <div>

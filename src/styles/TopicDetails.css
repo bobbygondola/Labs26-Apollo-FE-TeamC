@@ -55,14 +55,25 @@
   margin-top: 10px;
 }
 
+.memberCount{
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+#count {
+  margin-top: 13px;
+}
+
 .innerTopicDetails img{
   display: flex;
   flex-direction: row;
+  height: 60px;
   width: 60px;
   border-radius: 100px;
 }
 .innerTopicDetails p{
   font-weight: 500;
-  font-size: large;
+  font-size: medium;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
