@@ -17,6 +17,7 @@ function TopicDetails(props) {
   const { authState } = useOktaAuth();
   const dispatch = useDispatch();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
+  const [requestDetails, setRequestDetails] = useState({});
 
   useEffect(() => {
     axiosWithAuth(authState)
@@ -33,6 +34,7 @@ function TopicDetails(props) {
           }),
           topic_questions: res.data.default_questions,
         });
+        setRequestDetails({});
       })
       .catch(err => {
         alert(err);
@@ -41,9 +43,13 @@ function TopicDetails(props) {
 
   const handleRequestSelection = requestId => {
     dispatch(getCurrentRequestId(requestId));
+    axiosWithAuth(authState)
+      .get(`requests/${requestId}`)
+      .then(res => {
+        console.log('RES.DATA', res.data);
+        setRequestDetails(res.data);
+      });
   };
-
-  console.log('TOPICDETAILSINFO', topicDetailsInfo);
 
   const menu = (
     <Menu>
@@ -75,15 +81,34 @@ function TopicDetails(props) {
             <Button onClick={e => e.preventDefault()}>Select</Button>
           </Dropdown>
           <h3>Members: </h3>
-          {topicDetailsInfo.members.map(member => {
-            return <img src={member.avatarUrl} alt="Member Avatar" />;
-          })}
+          {requestDetails.reply_statuses &&
+            requestDetails.reply_statuses.map(member => {
+              return (
+                <img
+                  style={
+                    !member.has_replied ? { border: '2px solid red' } : null
+                  }
+                  src={member.avatarUrl}
+                  alt="Member Avatar"
+                />
+              );
+            })}
 
           <div>
             <h1>Context</h1>
-            {topicDetailsInfo.context_questions.map(contextQuestion => {
-              return <p key={contextQuestion.id}>{contextQuestion.content}</p>;
-            })}
+            {requestDetails.context_responses &&
+              requestDetails.context_responses.map(
+                ({ context_question, context_response }) => {
+                  return (
+                    <div>
+                      <p>
+                        <strong>{context_question}</strong>
+                      </p>
+                      <p>{context_response}</p>
+                    </div>
+                  );
+                }
+              )}
           </div>
         </div>
       ) : (

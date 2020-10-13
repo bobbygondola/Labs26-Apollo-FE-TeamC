@@ -1,8 +1,5 @@
-// packages
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-
-// files
 import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicIterationReplies.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
@@ -16,7 +13,6 @@ function TopicIterationReplies(props) {
       .get(`requests/${props.currentRequestId}/replies`)
       .then(res => {
         setRequestReplies(res.data);
-        console.log(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -30,7 +26,6 @@ function TopicIterationReplies(props) {
           <h2>Replies</h2>
           {requestReplies &&
             requestReplies.request_replies.map(request => {
-              console.log(request);
               return (
                 <div className="innerRequestDetails">
                   <div className="userDetails">
@@ -42,7 +37,7 @@ function TopicIterationReplies(props) {
                       return (
                         <div className="answerContent">
                           <p id="repliesId">
-                            {replies.question_id}. Question Title
+                            {replies.question_id}. {replies.question}
                           </p>
                           <div className="questionAnswer">
                             <p>{replies.content}</p>

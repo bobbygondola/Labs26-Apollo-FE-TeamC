@@ -15,7 +15,9 @@ const TopicsList = props => {
   const dispatch = useDispatch();
   const oktaAuth = useOktaAuth();
   const { authState } = oktaAuth;
-  const [displayedTopicsList, setDisplayedTopicsList] = useState([]);
+  const [displayedTopicsList, setDisplayedTopicsList] = useState(
+    topicsList.created
+  );
 
   const getTopics = () => {
     axiosWithAuth(authState)

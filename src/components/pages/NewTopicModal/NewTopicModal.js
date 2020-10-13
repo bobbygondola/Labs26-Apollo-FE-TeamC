@@ -51,9 +51,9 @@ function NewTopicModal() {
           dispatch(toggleDisplayModal());
           dispatch(toggleJoinCodeModal());
           axiosWithAuth(authState)
-            .get(`profile/${res.data.created_by}/my-created-topics`)
+            .get(`/topics`)
             .then(res => {
-              dispatch(setTopicsList(res.data.topics));
+              dispatch(setTopicsList(res.data.myTopics));
             })
             .catch(err => {
               alert('nah');
