@@ -11,6 +11,7 @@ import {
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const TopicsList = props => {
+  const { isTopicOwner, setIsTopicOwner } = props;
   const topicsList = useSelector(state => state.topicsList);
   const dispatch = useDispatch();
   const oktaAuth = useOktaAuth();
@@ -42,11 +43,13 @@ const TopicsList = props => {
   const displayTopicsICreated = e => {
     e.preventDefault();
     setDisplayedTopicsList(topicsList.created);
+    setIsTopicOwner(true);
   };
 
   const displayTopicsIJoined = e => {
     e.preventDefault();
     setDisplayedTopicsList(topicsList.joined);
+    setIsTopicOwner(false);
   };
 
   return (
