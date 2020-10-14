@@ -2,12 +2,12 @@ import React from 'react';
 import { Button } from 'antd';
 
 function EditQuestions(props) {
-  const { requestedData, setRequestedData } = props;
+  const { requestData, setRequestData } = props;
 
   const changeHandler = e => {
-    setRequestedData({
-      ...requestedData,
-      topic_questions: requestedData.topic_questions.map((question, idx) => {
+    setRequestData({
+      ...requestData,
+      topic_questions: requestData.topic_questions.map((question, idx) => {
         if (idx === Number(e.target.id)) {
           return {
             ...question,
@@ -21,10 +21,10 @@ function EditQuestions(props) {
   };
 
   const addQuestion = () => {
-    setRequestedData({
-      ...requestedData,
+    setRequestData({
+      ...requestData,
       topic_questions: [
-        ...requestedData.topic_questions,
+        ...requestData.topic_questions,
         {
           content: '',
           response_type: 'String',
@@ -34,9 +34,9 @@ function EditQuestions(props) {
   };
 
   const deleteQuestion = questionId => {
-    setRequestedData({
-      ...requestedData,
-      topic_questions: requestedData.topic_questions.filter((question, idx) => {
+    setRequestData({
+      ...requestData,
+      topic_questions: requestData.topic_questions.filter((question, idx) => {
         return idx !== questionId ? question : null;
       }),
     });
@@ -44,7 +44,7 @@ function EditQuestions(props) {
 
   return (
     <div>
-      {requestedData.topic_questions.map((question, idx) => {
+      {requestData.topic_questions.map((question, idx) => {
         return (
           <div key={idx}>
             <form>

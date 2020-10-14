@@ -1,12 +1,12 @@
 import React from 'react';
 
 function ContextResponseQuestions(props) {
-  const { requestedData, setRequestedData } = props;
+  const { requestData, setRequestData } = props;
 
   const changeHandler = e => {
-    setRequestedData({
-      ...requestedData,
-      context_responses: requestedData.context_responses.map(response => {
+    setRequestData({
+      ...requestData,
+      context_responses: requestData.context_responses.map(response => {
         if (response.id === Number(e.target.name)) {
           return {
             ...response,
@@ -21,7 +21,7 @@ function ContextResponseQuestions(props) {
 
   return (
     <div>
-      {requestedData.context_responses.map(response => {
+      {requestData.context_responses.map(response => {
         return (
           <div key={response.id}>
             <form>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'antd';
+import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 
 import {
   toggleDisplayOwnedTopic,
   setTopicsList,
+  getCurrentRequestId,
 } from '../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
@@ -16,9 +17,7 @@ const TopicsList = props => {
   const dispatch = useDispatch();
   const oktaAuth = useOktaAuth();
   const { authState } = oktaAuth;
-  const [displayedTopicsList, setDisplayedTopicsList] = useState(
-    topicsList.created
-  );
+  const [displayedTopicsList, setDisplayedTopicsList] = useState([]);
 
   const getTopics = () => {
     axiosWithAuth(authState)
@@ -34,30 +33,43 @@ const TopicsList = props => {
 
   const showDetails = id => {
     dispatch(toggleDisplayOwnedTopic(id));
+    dispatch(getCurrentRequestId(null));
   };
 
   useEffect(() => {
-    getTopics();
-  }, []);
+    if (isTopicOwner) {
+      setDisplayedTopicsList(topicsList.created);
+    } else {
+      setDisplayedTopicsList(topicsList.joined);
+    }
+  }, [isTopicOwner, topicsList]);
 
-  const displayTopicsICreated = e => {
-    e.preventDefault();
-    setDisplayedTopicsList(topicsList.created);
-    setIsTopicOwner(true);
-  };
+  useEffect(() => {
+    if (!topicsList.created.length && !topicsList.joined.length) {
+      getTopics();
+    }
+  }, [topicsList]);
 
-  const displayTopicsIJoined = e => {
-    e.preventDefault();
-    setDisplayedTopicsList(topicsList.joined);
-    setIsTopicOwner(false);
+  const toggleDisplayTopics = type => {
+    if (isTopicOwner && type === 'joined') {
+      setIsTopicOwner(false);
+      dispatch(getCurrentRequestId(null));
+      dispatch(toggleDisplayOwnedTopic(null));
+    } else if (!isTopicOwner && type === 'created') {
+      setIsTopicOwner(true);
+      dispatch(getCurrentRequestId(null));
+      dispatch(toggleDisplayOwnedTopic(null));
+    }
   };
 
   return (
     <>
       <div className="topics-list">
         <div className="topic-buttons">
-          <Button onClick={displayTopicsICreated}>Created</Button>
-          <Button onClick={displayTopicsIJoined}>Joined</Button>
+          <Button onClick={() => toggleDisplayTopics('created')}>
+            Created
+          </Button>
+          <Button onClick={() => toggleDisplayTopics('joined')}>Joined</Button>
         </div>
         {topicsList
           ? displayedTopicsList.map((topic, idx) => (
@@ -78,14 +90,3 @@ const TopicsList = props => {
 };
 
 export default TopicsList;
-
-TopicsList.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-      title: PropTypes.string,
-      frequency: PropTypes.string, //should be daily, weekly, monthly, etc
-      notifications: PropTypes.number,
-    })
-  ).isRequired,
-};

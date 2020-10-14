@@ -9,7 +9,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { toggleNewRequestSuccessModal } from '../../state/actions/displayModalAction';
 
 export const NewRequestModal = props => {
-  const { requestedData, setRequestedData, currentTopicId } = props;
+  const { requestData, setRequestData, currentTopicId } = props;
   const displayNewRequestModal = useSelector(
     state => state.displayNewRequestModal
   );
@@ -25,13 +25,13 @@ export const NewRequestModal = props => {
     e.preventDefault();
     if (page === 1) {
       const processedData = {
-        topic_questions: requestedData.topic_questions.map(question => {
+        topic_questions: requestData.topic_questions.map(question => {
           return {
             content: question.content,
             response_type: question.response_type,
           };
         }),
-        context_responses: requestedData.context_responses.map(response => {
+        context_responses: requestData.context_responses.map(response => {
           return {
             content: response.content,
             id: response.id,
@@ -69,14 +69,14 @@ export const NewRequestModal = props => {
       >
         {page === 0 && (
           <ContextResponseQuestions
-            requestedData={requestedData}
-            setRequestedData={setRequestedData}
+            requestData={requestData}
+            setRequestData={setRequestData}
           />
         )}
         {page === 1 && (
           <EditQuestions
-            requestedData={requestedData}
-            setRequestedData={setRequestedData}
+            requestData={requestData}
+            setRequestData={setRequestData}
           />
         )}
         {page !== 0 && <Button onClick={prevPage}>Prev</Button>}
