@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 
 import { Layout, Menu } from 'antd';
 
-const { Header, Content, Footer } = Layout;
+const { Header } = Layout;
 
 const Navigation = props => {
   const { authService } = useOktaAuth();
