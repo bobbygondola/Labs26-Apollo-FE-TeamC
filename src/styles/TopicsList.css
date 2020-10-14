@@ -8,8 +8,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 15px;
-  background-image: linear-gradient(#29429b,#8099b1);
+  padding: 20px 10px;
+  background-color: #4f29e9;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
 }
@@ -18,7 +18,7 @@
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 15px rgb(87, 87, 87);
   border: 1px solid grey;
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,35 +28,36 @@
   transition: 800ms;
 }
 
-.topic-card h2{
+.topic-card h2 {
   text-transform: uppercase;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
-.topic-card:hover{
+.topic-card:hover {
   box-shadow: 1px 1px 40px;
   background-color: rgb(158, 217, 235);
   transition: 800ms;
   cursor: pointer;
 }
 
-.topic-buttons{
+.topic-buttons {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  border: none;
 }
 
-.topic-buttons button{
-  margin-top: 5%;
-  background-color: white;
+.topic-buttons button {
+  margin-top: 1.5rem;
+  background-color: #4f29e9;
+  color: white;
+  font-size: 1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  box-shadow: 1px 1px 20px black;
-  border: none;
+  border: 2px solid white;
   border-radius: 7px;
+  padding-bottom: 30px;
 }
 
-.topic-buttons button:hover{
+.topic-buttons button:hover {
   background-color: rgb(62, 62, 202);
   box-shadow: 1px 1px 5px black;
   transition: 500ms;

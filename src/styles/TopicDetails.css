@@ -2,78 +2,81 @@
   padding: 20px;
   margin: 10px 30px;
   border-radius: 15px;
-  box-shadow: 2px 2px 15px grey;
+  background-color: white;
   min-height: 85vh;
+  min-width: 500px;
   width: 40%;
-  transition: .5s;
+  transition: 0.5s;
 }
 
-.topicDetails__container:hover{
+.topicDetails__container:hover {
   cursor: pointer;
-  box-shadow: 1px 0px 10px;
-  transition: 500ms;
 }
 
-.topicDetails__container h2{
+.topicDetails__container h2 {
   font-size: 30px;
-  text-decoration: underline;
   margin-top: 3%;
 }
 
-.topicDetails__container h3{
+.topicDetails__container h3 {
   margin-top: 5%;
 }
 
-.topicDetails__container h1{
+.topicDetails__container h1 {
   font-size: 30px;
   margin-top: 5%;
 }
 
-.titleAndRequest{
+.titleAndRequest {
   display: flex;
   justify-content: space-between;
 }
 
-.dropDown{
+.dropDown {
   width: 90%;
-  border: 1px solid black!important;
-  border-radius: 8px!important;
+  border: 1px solid black !important;
+  border-radius: 8px !important;
 }
 
-.dropDown Button{
-  margin: 0 auto!important;
+.dropDown button {
+  margin: 0 auto !important;
 }
 
-.requestButton{
-  background-color: rgb(145, 145, 255)!important;
+.requestButton {
+  background-color: rgb(145, 145, 255) !important;
   margin-top: 20px;
 }
 
-.avatars{
+.avatars {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
 }
 
-.memberCount{
+.memberCount {
   display: flex;
   align-items: center;
   height: 70px;
+}
+
+.joinCode {
+  margin-top: 20px;
 }
 
 #count {
   margin-top: 13px;
 }
 
-.innerTopicDetails img{
+.innerTopicDetails img {
   display: flex;
   flex-direction: row;
   height: 60px;
   width: 60px;
   border-radius: 100px;
 }
-.innerTopicDetails p{
+.innerTopicDetails p {
   font-weight: 500;
   font-size: medium;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

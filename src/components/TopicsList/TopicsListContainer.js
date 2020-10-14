@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { List } from '../common';
-import { getExampleData } from '../../api';
 import { useSelector } from 'react-redux';
 
 //files
@@ -8,14 +6,13 @@ import TopicsList from './TopicsList';
 import TopicDetails from '../TopicDetails/TopicDetails';
 import TopicIterationReplies from '../TopicIterationReplies/TopicIterationReplies';
 import '../../styles/TopicsList.css';
-// import { getCurrentRequestId } from '../../state/actions/displayModalAction';
 import NewRequestModal from '../TopicDetails/NewRequestModal';
 import NewRequestSuccessModal from '../TopicDetails/RequestSuccessModal';
 
 const TopicsListContainer = () => {
   const currentTopicId = useSelector(state => state.currentTopicId);
   const currentRequestId = useSelector(state => state.currentRequestId);
-  const [requestedData, setRequestedData] = useState({
+  const [requestData, setRequestData] = useState({
     context_responses: [],
     topic_questions: [],
   });
@@ -23,28 +20,21 @@ const TopicsListContainer = () => {
 
   return (
     <div className="topicsList__container">
-      <List
-        //axios request goes here
-        getItemsData={getExampleData}
-        LoadingComponent={() => <div>Loading Topics...</div>}
-        RenderItems={() => (
-          <TopicsList
-            isTopicOwner={isTopicOwner}
-            setIsTopicOwner={setIsTopicOwner}
-          />
-        )}
+      <TopicsList
+        setIsTopicOwner={setIsTopicOwner}
+        isTopicOwner={isTopicOwner}
       />
       {currentTopicId && (
         <TopicDetails
           currentTopicId={currentTopicId}
-          setRequestedData={setRequestedData}
+          setRequestData={setRequestData}
           isTopicOwner={isTopicOwner}
         />
       )}
       <NewRequestModal
         currentTopicId={currentTopicId}
-        requestedData={requestedData}
-        setRequestedData={setRequestedData}
+        requestData={requestData}
+        setRequestData={setRequestData}
       />
       {currentRequestId && (
         <TopicIterationReplies currentRequestId={currentRequestId} />
