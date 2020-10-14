@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-import { toggleJoinSurveyModal } from '../../state/actions/displayModalAction';
+import {
+  setTopicsList,
+  toggleJoinSurveyModal,
+} from '../../state/actions/displayModalAction';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 function JoinSurveyModal() {
@@ -35,6 +38,11 @@ function JoinSurveyModal() {
       .then(res => {
         setSuccessMessage('Successfully joined topic');
         setFailureMessage(null);
+        axiosWithAuth(authState)
+          .get('topics')
+          .then(res => {
+            dispatch(setTopicsList(res.data.myTopics));
+          });
       })
       .catch(err => {
         setFailureMessage(err.message);
