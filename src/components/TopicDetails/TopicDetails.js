@@ -47,7 +47,6 @@ function TopicDetails(props) {
     axiosWithAuth(authState)
       .get(`requests/${requestId}`)
       .then(res => {
-        console.log('RES.DATA', res.data);
         setRequestDetails(res.data);
       });
   };
@@ -56,9 +55,14 @@ function TopicDetails(props) {
     <Menu>
       {topicDetailsInfo &&
         topicDetailsInfo.topic_iteration_requests.map(request => {
+          const date = request.posted_at.split('T');
+          const [year, month, day] = date[0].split('-');
           return (
-            <Menu.Item onClick={() => handleRequestSelection(request.id)}>
-              <span>Date: {request.posted_at}</span>
+            <Menu.Item
+              style={{ textAlign: 'center', fontSize: '15px' }}
+              onClick={() => handleRequestSelection(request.id)}
+            >
+              {`${month}/${day}/${year}`}
             </Menu.Item>
           );
         })}
@@ -69,7 +73,7 @@ function TopicDetails(props) {
     <div className="topicDetails__container">
       {topicDetailsInfo ? (
         <div className="innerTopicDetails">
-          <div>
+          <div className="titleAndRequest">
             <h2>{topicDetailsInfo.title}</h2>
             {isTopicOwner && (
               <Button
@@ -80,23 +84,30 @@ function TopicDetails(props) {
               </Button>
             )}
           </div>
-          <Dropdown overlay={menu}>
+          <Dropdown overlay={menu} className="dropDown">
             <Button onClick={e => e.preventDefault()}>Select</Button>
           </Dropdown>
-          <h3>Members: </h3>
-          {requestDetails.reply_statuses &&
-            requestDetails.reply_statuses.map(member => {
-              return (
-                <img
-                  style={
-                    !member.has_replied ? { border: '2px solid red' } : null
-                  }
-                  src={member.avatarUrl}
-                  alt="Member Avatar"
-                />
-              );
-            })}
-
+          <div className="avatars">
+            {requestDetails.reply_statuses && (
+              <div className="memberCount">
+                {requestDetails.reply_statuses.map(member => {
+                  return (
+                    <img
+                      style={!member.has_replied ? { opacity: '0.2' } : null}
+                      src={member.avatarUrl}
+                      alt="Member Avatar"
+                    />
+                  );
+                })}
+                <p id="count">
+                  {requestDetails.reply_statuses.reduce((a, c) =>
+                    a + c.has_replied ? 1 : 0
+                  )}
+                  /{requestDetails.reply_statuses.length}
+                </p>
+              </div>
+            )}
+          </div>
           <div>
             <h1>Context</h1>
             {requestDetails.context_responses &&
@@ -105,7 +116,7 @@ function TopicDetails(props) {
                   return (
                     <div>
                       <p>
-                        <strong>{context_question}</strong>
+                        <strong> - {context_question}</strong>
                       </p>
                       <p>{context_response}</p>
                     </div>

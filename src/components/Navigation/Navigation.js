@@ -28,18 +28,29 @@ const Navigation = props => {
   return (
     <Layout>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-        <div className="logo" />
-
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">
-            <Link to="/">Apollo</Link>
+        <Menu
+          style={{ display: 'flex', justifyContent: 'flex-end' }}
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={['2']}
+        >
+          <Menu.Item
+            style={{
+              position: 'absolute',
+              left: '0',
+              fontSize: '1.6rem',
+              fontFamily: 'poppins',
+            }}
+            key="1"
+          >
+            <Link style={{ color: '#fff' }} to="/">
+              Apollo
+            </Link>
           </Menu.Item>
           <Menu.Item key="2">
             <div onClick={openJoinSurveyModal}>Join Survey</div>
           </Menu.Item>
           <Menu.Item key="3">
-            {' '}
-            {/* <Link to="/new-topic"> */}
             <div onClick={toggle}>Add New Topic</div>
           </Menu.Item>
           <Menu.Item type="primary" onClick={() => authService.logout()}>
