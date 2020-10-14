@@ -25,22 +25,22 @@ function TopicIterationReplies(props) {
         <>
           <h2>Replies</h2>
           {requestReplies &&
-            requestReplies.request_replies.map(request => {
+            requestReplies.request_replies.map((request, i) => {
               return (
-                <div className="innerRequestDetails">
+                <div key={request.name + i} className="innerRequestDetails">
                   <div className="userDetails">
                     <img alt="avatar" src={request.avatarUrl} />
                     <p>{request.name}</p>
                   </div>
                   <div className="answers">
-                    {request.replies.map(replies => {
+                    {request.replies.map((reply, i) => {
                       return (
-                        <div className="answerContent">
+                        <div key={reply.content + 1} className="answerContent">
                           <p id="repliesId">
-                            {replies.question_id}. {replies.question}
+                            {reply.question_id}. {reply.question}
                           </p>
                           <div className="questionAnswer">
-                            <p>{replies.content}</p>
+                            <p>{reply.content}</p>
                           </div>
                         </div>
                       );

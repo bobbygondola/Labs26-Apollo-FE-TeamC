@@ -25,6 +25,12 @@ const Navigation = props => {
     dispatch(toggleJoinSurveyModal());
   };
 
+  const toggleLoginLogout = () => {
+    if (authService.getAuthState().isAuthenticated) {
+      authService.logout();
+    }
+  };
+
   return (
     <Layout>
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
@@ -32,7 +38,7 @@ const Navigation = props => {
           style={{ display: 'flex', justifyContent: 'flex-end' }}
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['2']}
+          selectable={false}
         >
           <Menu.Item
             style={{
@@ -53,16 +59,11 @@ const Navigation = props => {
           <Menu.Item key="3">
             <div onClick={toggle}>Add New Topic</div>
           </Menu.Item>
-          <Menu.Item type="primary" onClick={() => authService.logout()}>
-            Logout
+          <Menu.Item type="primary" onClick={toggleLoginLogout}>
+            {authService.getAuthState().isAuthenticated ? 'Logout' : 'Login'}
           </Menu.Item>
         </Menu>
       </Header>
-      <Content
-        className="site-layout"
-        style={{ padding: '0 50px', marginTop: 64 }}
-      ></Content>
-      <Footer style={{ textAlign: 'center' }}></Footer>
     </Layout>
   );
 };
