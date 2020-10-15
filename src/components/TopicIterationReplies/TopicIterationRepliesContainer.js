@@ -5,17 +5,24 @@ import TopicIterationRepliesQuestionForms from './TopicIterationRepliesQuestionF
 
 function TopicIterationRepliesContainer(props) {
   const [requestReplies, setRequestReplies] = useState(null);
+  const [userHasReplied, setUserHasReplied] = useState(false);
 
   const { currentRequestId, requestDetails } = props;
   return (
     <div>
-      <TopicIterationReplies
-        currentRequestId={currentRequestId}
-        requestDetails={requestDetails}
-        requestReplies={requestReplies}
-        setRequestReplies={setRequestReplies}
-      />
-      <TopicIterationRepliesQuestionForms requestDetails={requestDetails} />
+      {userHasReplied ? (
+        <TopicIterationReplies
+          currentRequestId={currentRequestId}
+          requestDetails={requestDetails}
+          requestReplies={requestReplies}
+          setRequestReplies={setRequestReplies}
+        />
+      ) : (
+        <TopicIterationRepliesQuestionForms
+          setUserHasReplied={setUserHasReplied}
+          requestDetails={requestDetails}
+        />
+      )}
     </div>
   );
 }
