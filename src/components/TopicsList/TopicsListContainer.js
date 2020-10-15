@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 //files
 import TopicsList from './TopicsList';
 import TopicDetails from '../TopicDetails/TopicDetails';
-import TopicIterationReplies from '../TopicIterationReplies/TopicIterationReplies';
+import TopicIterationRepliesContainer from '../TopicIterationReplies/TopicIterationRepliesContainer';
 import '../../styles/TopicsList.css';
 import NewRequestModal from '../TopicDetails/NewRequestModal';
 import NewRequestSuccessModal from '../TopicDetails/RequestSuccessModal';
@@ -37,7 +37,7 @@ const TopicsListContainer = () => {
         setRequestData={setRequestData}
       />
       {currentRequestId && (
-        <TopicIterationReplies currentRequestId={currentRequestId} />
+        <TopicIterationRepliesContainer currentRequestId={currentRequestId} />
       )}
       <NewRequestSuccessModal />
     </div>
