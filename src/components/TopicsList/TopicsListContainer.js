@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 //files
 import TopicsList from './TopicsList';
 import TopicDetails from '../TopicDetails/TopicDetails';
-import TopicIterationReplies from '../TopicIterationReplies/TopicIterationReplies';
+import TopicIterationRepliesContainer from '../TopicIterationReplies/TopicIterationRepliesContainer';
 import '../../styles/TopicsList.css';
 import NewRequestModal from '../TopicDetails/NewRequestModal';
 import NewRequestSuccessModal from '../TopicDetails/RequestSuccessModal';
@@ -17,6 +17,7 @@ const TopicsListContainer = () => {
     topic_questions: [],
   });
   const [isTopicOwner, setIsTopicOwner] = useState(false);
+  const [requestDetails, setRequestDetails] = useState({});
 
   return (
     <div className="topicsList__container">
@@ -26,6 +27,8 @@ const TopicsListContainer = () => {
       />
       {currentTopicId && (
         <TopicDetails
+          requestDetails={requestDetails}
+          setRequestDetails={setRequestDetails}
           currentTopicId={currentTopicId}
           setRequestData={setRequestData}
           isTopicOwner={isTopicOwner}
@@ -37,7 +40,10 @@ const TopicsListContainer = () => {
         setRequestData={setRequestData}
       />
       {currentRequestId && (
-        <TopicIterationReplies currentRequestId={currentRequestId} />
+        <TopicIterationRepliesContainer
+          currentRequestId={currentRequestId}
+          requestDetails={requestDetails}
+        />
       )}
       <NewRequestSuccessModal />
     </div>

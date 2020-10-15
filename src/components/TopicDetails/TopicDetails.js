@@ -13,17 +13,21 @@ import {
 } from '../../state/actions/displayModalAction';
 
 function TopicDetails(props) {
-  const { currentTopicId, setRequestData, isTopicOwner } = props;
+  const {
+    currentTopicId,
+    setRequestData,
+    isTopicOwner,
+    requestDetails,
+    setRequestDetails,
+  } = props;
   const { authState } = useOktaAuth();
   const dispatch = useDispatch();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
-  const [requestDetails, setRequestDetails] = useState({});
 
   useEffect(() => {
     axiosWithAuth(authState)
       .get(`topics/${currentTopicId}`)
       .then(res => {
-        console.log(res.data);
         setTopicDetailsInfo({
           ...res.data,
           topic_iteration_requests: res.data.topic_iteration_requests.reverse(),
