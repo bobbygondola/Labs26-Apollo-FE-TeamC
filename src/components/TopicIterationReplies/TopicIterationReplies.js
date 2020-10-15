@@ -6,13 +6,12 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 function TopicIterationReplies(props) {
   const { authState } = useOktaAuth();
-  const [requestReplies, setRequestReplies] = useState(null);
 
   useEffect(() => {
     axiosWithAuth(authState)
       .get(`requests/${props.currentRequestId}/replies`)
       .then(res => {
-        setRequestReplies(res.data);
+        props.setRequestReplies(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -24,8 +23,8 @@ function TopicIterationReplies(props) {
       {props.currentRequestId ? (
         <>
           <h2>Replies</h2>
-          {requestReplies &&
-            requestReplies.request_replies.map((request, i) => {
+          {props.requestReplies &&
+            props.requestReplies.request_replies.map((request, i) => {
               return (
                 <div key={request.name + i} className="innerRequestDetails">
                   <div className="userDetails">
