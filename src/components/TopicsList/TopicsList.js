@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
@@ -19,23 +18,6 @@ const TopicsList = props => {
   const { authState } = oktaAuth;
   const [displayedTopicsList, setDisplayedTopicsList] = useState([]);
 
-  const getTopics = () => {
-    axiosWithAuth(authState)
-      .get('/topics')
-      .then(res => {
-        dispatch(setTopicsList(res.data.myTopics));
-        setDisplayedTopicsList(res.data.myTopics.joined);
-      })
-      .catch(err => {
-        alert(err);
-      });
-  };
-
-  const showDetails = id => {
-    dispatch(toggleDisplayOwnedTopic(id));
-    dispatch(getCurrentRequestId(null));
-  };
-
   useEffect(() => {
     if (isTopicOwner) {
       setDisplayedTopicsList(topicsList.created);
@@ -45,10 +27,27 @@ const TopicsList = props => {
   }, [isTopicOwner, topicsList]);
 
   useEffect(() => {
-    if (!topicsList.created.length && !topicsList.joined.length) {
-      getTopics();
-    }
-  }, [topicsList]);
+    const getTopics = () => {
+      axiosWithAuth(authState)
+        .get('/topics')
+        .then(res => {
+          dispatch(setTopicsList(res.data.myTopics));
+          setDisplayedTopicsList(res.data.myTopics.joined);
+        })
+        .catch(err => {
+          alert(err);
+        });
+    };
+
+    getTopics();
+
+    // eslint-disable-next-line
+  }, []);
+
+  const showDetails = id => {
+    dispatch(toggleDisplayOwnedTopic(id));
+    dispatch(getCurrentRequestId(null));
+  };
 
   const toggleDisplayTopics = type => {
     if (isTopicOwner && type === 'joined') {

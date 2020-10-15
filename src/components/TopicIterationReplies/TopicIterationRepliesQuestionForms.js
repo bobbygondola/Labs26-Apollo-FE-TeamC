@@ -58,9 +58,9 @@ function TopicIterationRepliesQuestionForms(props) {
 
   return (
     <div>
-      {replies.map(question => {
+      {replies.map((question, i) => {
         return (
-          <div>
+          <div key={question + i}>
             <h3>{question.question}</h3>
             <textarea
               onChange={e => handleFormChange(e, question.question_id)}

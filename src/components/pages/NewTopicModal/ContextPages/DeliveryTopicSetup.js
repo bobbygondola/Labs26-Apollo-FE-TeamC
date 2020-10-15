@@ -36,9 +36,8 @@ const DeliveryTopicSetup = ({ topic, setTopic }) => {
 
         {topic.context_questions.map((question, index) => {
           return (
-            <>
+            <React.Fragment key={question + index}>
               <FormInput
-                key={index}
                 name={question}
                 value={question}
                 placeholder={question}
@@ -48,7 +47,7 @@ const DeliveryTopicSetup = ({ topic, setTopic }) => {
               <Button onClick={() => deleteContextQuestion(index)}>
                 Delete
               </Button>
-            </>
+            </React.Fragment>
           );
         })}
       </div>

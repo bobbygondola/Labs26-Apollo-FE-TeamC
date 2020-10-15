@@ -30,6 +30,7 @@ function HomeContainer({ LoadingComponent }) {
       });
 
     return () => (isSubscribed = false);
+    // eslint-disable-next-line
   }, [memoAuthService]);
 
   return (

@@ -63,10 +63,11 @@ const GroupQuestions = ({ topic, setTopic }) => {
             </Menu>
           );
           return (
-            <>
+            <React.Fragment key={question.content + index}>
               <FormInput
                 name="content"
                 value={question.content}
+                placeholder="Type question here"
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
@@ -80,7 +81,7 @@ const GroupQuestions = ({ topic, setTopic }) => {
               <Button onClick={() => deleteDefaultQuestion(index)}>
                 Delete
               </Button>
-            </>
+            </React.Fragment>
           );
         })}
       </div>
