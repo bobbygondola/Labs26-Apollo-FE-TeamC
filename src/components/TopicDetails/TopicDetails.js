@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown, Menu, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
 import { useDispatch } from 'react-redux';
+
 //files
 import LoadingComponent from '../common/LoadingComponent';
 import '../../styles/TopicDetails.css';
@@ -39,6 +40,7 @@ function TopicDetails(props) {
             .get(`requests/${res.data.topic_iteration_requests[0].id}`)
             .then(res => {
               setRequestDetails(res.data);
+              dispatch(getCurrentRequestId(res.data.id));
             });
         } else {
           setRequestDetails({});
@@ -47,6 +49,7 @@ function TopicDetails(props) {
       .catch(err => {
         alert(err);
       });
+    // eslint-disable-next-line
   }, [currentTopicId]);
 
   const processRequestData = data => {

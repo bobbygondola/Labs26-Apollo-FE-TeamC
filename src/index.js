@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import newTopicReducer from './state/reducers/newTopicReducer';
 import {
@@ -29,7 +28,7 @@ import { TopicsListContainer } from './components/TopicsList';
 import { JoinCodeModalContainer } from './components/JoinCodeModal';
 import { JoinSurveyModalContainer } from './components/JoinSurveyModal/JoinSurveyModalContainer';
 
-const store = createStore(newTopicReducer, applyMiddleware(thunk, logger));
+const store = createStore(newTopicReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Router>

@@ -24,6 +24,7 @@ function ContextRadio({ topic, setTopic }) {
       <Radio.Group onChange={radioCheck} value={radioVal}>
         {radioButtons.map(button => (
           <Radio
+            key={button.value}
             style={radioStyle}
             value={button.value}
             description={button.description}

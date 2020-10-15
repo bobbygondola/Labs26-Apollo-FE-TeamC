@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicIterationReplies.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 function TopicIterationReplies(props) {
+  const { currentRequestId, requestReplies, setRequestReplies } = props;
   const { authState } = useOktaAuth();
 
   useEffect(() => {
     axiosWithAuth(authState)
-      .get(`requests/${props.currentRequestId}/replies`)
+      .get(`requests/${currentRequestId}/replies`)
       .then(res => {
-        props.setRequestReplies(res.data);
+        setRequestReplies(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [props.currentRequestId]);
+    // eslint-disable-next-line
+  }, [currentRequestId]);
 
   return (
     <div className="topicIterationReplies__container">
-      {props.currentRequestId ? (
+      {currentRequestId ? (
         <>
           <h2>Replies</h2>
-          {props.requestReplies &&
-            props.requestReplies.request_replies.map((request, i) => {
+          {requestReplies &&
+            requestReplies.request_replies.map((request, i) => {
               return (
                 <div key={request.name + i} className="innerRequestDetails">
                   <div className="userDetails">
@@ -36,7 +38,7 @@ function TopicIterationReplies(props) {
                       return (
                         <div key={reply.content + 1} className="answerContent">
                           <p id="repliesId">
-                            {reply.question_id}. {reply.question}
+                            {i + 1}. {reply.question}
                           </p>
                           <div className="questionAnswer">
                             <p>{reply.content}</p>
