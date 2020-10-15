@@ -66,11 +66,13 @@ function TopicDetails(props) {
   };
 
   const handleRequestSelection = requestId => {
-    dispatch(getCurrentRequestId(requestId));
+    dispatch(getCurrentRequestId(null));
+
     axiosWithAuth(authState)
       .get(`requests/${requestId}`)
       .then(res => {
         setRequestDetails(res.data);
+        dispatch(getCurrentRequestId(requestId));
       });
   };
 
@@ -108,16 +110,18 @@ function TopicDetails(props) {
   const renderMemberDetails = () => {
     return requestDetails.reply_statuses ? (
       <div className="memberCount">
-        {requestDetails.reply_statuses.map(member => {
-          return (
-            <img
-              key={member.id}
-              style={!member.has_replied ? { opacity: '0.2' } : null}
-              src={member.avatarUrl}
-              alt="Member Avatar"
-            />
-          );
-        })}
+        {requestDetails.reply_statuses
+          .sort((a, b) => Number(b.has_replied) - Number(a.has_replied))
+          .map(member => {
+            return (
+              <img
+                key={member.id}
+                style={!member.has_replied ? { opacity: '0.2' } : null}
+                src={member.avatarUrl}
+                alt="Member Avatar"
+              />
+            );
+          })}
         <p id="count">
           {requestDetails.reply_statuses.reduce(
             (a, c) => (a += c.has_replied ? 1 : 0),
