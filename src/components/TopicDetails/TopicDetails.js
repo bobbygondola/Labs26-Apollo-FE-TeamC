@@ -24,6 +24,7 @@ function TopicDetails(props) {
   const { authState } = useOktaAuth();
   const dispatch = useDispatch();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
+  const [hasSentRequest, setHasSentRequest] = useState(false);
 
   useEffect(() => {
     axiosWithAuth(authState)
@@ -51,6 +52,45 @@ function TopicDetails(props) {
       });
     // eslint-disable-next-line
   }, [currentTopicId]);
+
+  useEffect(() => {
+    const checkIfRequestMade = () => {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1;
+      const year = today.getFullYear();
+
+      const [
+        lastRequestDate,
+      ] = topicDetailsInfo.topic_iteration_requests[0].posted_at.split('T');
+
+      let [
+        lastRequestYear,
+        lastRequestMonth,
+        lastRequestDay,
+      ] = lastRequestDate.split('-');
+
+      lastRequestYear = Number(lastRequestYear);
+      lastRequestMonth = Number(lastRequestMonth);
+      lastRequestDay = Number(lastRequestDay);
+
+      if (
+        lastRequestDay === day &&
+        lastRequestMonth === month &&
+        lastRequestYear === year
+      ) {
+        setHasSentRequest(true);
+      } else {
+        setHasSentRequest(false);
+      }
+    };
+
+    if (topicDetailsInfo && topicDetailsInfo.topic_iteration_requests.length) {
+      checkIfRequestMade();
+    } else {
+      setHasSentRequest(false);
+    }
+  }, [topicDetailsInfo]);
 
   const processRequestData = data => {
     return {
@@ -173,10 +213,12 @@ function TopicDetails(props) {
             <h2>{topicDetailsInfo.title}</h2>
             {isTopicOwner && (
               <Button
+                disabled={hasSentRequest}
+                style={{ width: '120px' }}
                 type="primary"
                 onClick={() => dispatch(toggleNewRequestModal())}
               >
-                New Request
+                {!hasSentRequest ? 'New Request' : 'Sent'}
               </Button>
             )}
           </div>
@@ -188,6 +230,9 @@ function TopicDetails(props) {
           <div className="avatars">{renderMemberDetails()}</div>
           <div className="joinCode">
             <h4>Join Code: {topicDetailsInfo.id}</h4>
+          </div>
+          <div>
+            <h4>Frequency: {topicDetailsInfo.frequency}</h4>
           </div>
           <div>
             <h1>Context</h1>

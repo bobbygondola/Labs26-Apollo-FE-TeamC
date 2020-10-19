@@ -5,14 +5,24 @@ import TopicIterationReplies from './TopicIterationReplies';
 import TopicIterationRepliesQuestionForms from './TopicIterationRepliesQuestionForms';
 
 function TopicIterationRepliesContainer(props) {
-  const { currentRequestId, requestDetails } = props;
+  const {
+    currentRequestId,
+    requestDetails,
+    setRequestDetails,
+    isTopicOwner,
+  } = props;
   const [requestReplies, setRequestReplies] = useState(null);
   const [userHasReplied, setUserHasReplied] = useState(false);
   const [loading, setLoading] = useState(true);
   const { authService } = useOktaAuth();
 
   useEffect(() => {
-    if (!requestDetails.reply_statuses.length) {
+    if (!requestDetails && !requestDetails.reply_statuses.length) {
+      return;
+    }
+
+    if (isTopicOwner) {
+      setLoading(false);
       return;
     }
 
@@ -24,13 +34,13 @@ function TopicIterationRepliesContainer(props) {
       setUserHasReplied(has_replied);
       setLoading(false);
     });
-  }, [authService, requestDetails]);
+  }, [authService, requestDetails, isTopicOwner]);
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <div>
-      {userHasReplied ? (
+      {userHasReplied || isTopicOwner ? (
         <TopicIterationReplies
           currentRequestId={currentRequestId}
           requestDetails={requestDetails}
@@ -41,6 +51,7 @@ function TopicIterationRepliesContainer(props) {
         <TopicIterationRepliesQuestionForms
           setUserHasReplied={setUserHasReplied}
           requestDetails={requestDetails}
+          setRequestDetails={setRequestDetails}
         />
       )}
     </div>
