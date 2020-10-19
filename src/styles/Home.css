@@ -9,5 +9,10 @@ body {
   flex-direction: row !important;
   min-height: 100vh !important;
   width: 100%;
-  padding-top: 100px;
+  padding: 10px 0;
+}
+
+.topicInfo {
+  padding-top: 60px;
+  display: flex;
 }

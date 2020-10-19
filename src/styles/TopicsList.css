@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 10px;
+  padding: 20px 8px;
   background-color: #4f29e9;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -47,7 +47,7 @@
 }
 
 .topic-buttons button {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
   background-color: #4f29e9;
   color: white;
   font-size: 1rem;

@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 function TopicIterationRepliesQuestionForms(props) {
   const { authState } = useOktaAuth();
-  const { requestDetails, setUserHasReplied } = props;
+  const { requestDetails, setRequestDetails, setUserHasReplied } = props;
   const [replies, setReplies] = useState([]);
 
   useEffect(() => {
@@ -48,7 +48,15 @@ function TopicIterationRepliesQuestionForms(props) {
     axiosWithAuth(authState)
       .post(`/requests/${requestDetails.id}`, processedReplies)
       .then(res => {
-        console.log(res);
+        setRequestDetails({
+          ...requestDetails,
+          reply_statuses: requestDetails.reply_statuses.map(user => {
+            if (user.id === res.data[0].profile_id) {
+              return { ...user, has_replied: true };
+            }
+            return user;
+          }),
+        });
         setUserHasReplied(true);
       })
       .catch(err => {
@@ -58,6 +66,7 @@ function TopicIterationRepliesQuestionForms(props) {
 
   return (
     <div>
+      <h3>Questions</h3>
       {replies.map((question, i) => {
         return (
           <div key={question + i}>

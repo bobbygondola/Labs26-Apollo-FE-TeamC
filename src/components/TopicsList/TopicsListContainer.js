@@ -25,26 +25,30 @@ const TopicsListContainer = () => {
         setIsTopicOwner={setIsTopicOwner}
         isTopicOwner={isTopicOwner}
       />
-      {currentTopicId && (
-        <TopicDetails
-          requestDetails={requestDetails}
-          setRequestDetails={setRequestDetails}
+      <div className="topicInfo">
+        {currentTopicId && (
+          <TopicDetails
+            requestDetails={requestDetails}
+            setRequestDetails={setRequestDetails}
+            currentTopicId={currentTopicId}
+            setRequestData={setRequestData}
+            isTopicOwner={isTopicOwner}
+          />
+        )}
+        <NewRequestModal
           currentTopicId={currentTopicId}
+          requestData={requestData}
           setRequestData={setRequestData}
-          isTopicOwner={isTopicOwner}
         />
-      )}
-      <NewRequestModal
-        currentTopicId={currentTopicId}
-        requestData={requestData}
-        setRequestData={setRequestData}
-      />
-      {currentRequestId && (
-        <TopicIterationRepliesContainer
-          currentRequestId={currentRequestId}
-          requestDetails={requestDetails}
-        />
-      )}
+        {currentRequestId && (
+          <TopicIterationRepliesContainer
+            currentRequestId={currentRequestId}
+            requestDetails={requestDetails}
+            setRequestDetails={setRequestDetails}
+            isTopicOwner={isTopicOwner}
+          />
+        )}
+      </div>
       <NewRequestSuccessModal />
     </div>
   );

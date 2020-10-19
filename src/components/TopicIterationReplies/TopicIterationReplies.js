@@ -36,7 +36,10 @@ function TopicIterationReplies(props) {
                   <div className="answers">
                     {request.replies.map((reply, i) => {
                       return (
-                        <div key={reply.content + 1} className="answerContent">
+                        <div
+                          key={reply.content + reply.question}
+                          className="answerContent"
+                        >
                           <p id="repliesId">
                             {i + 1}. {reply.question}
                           </p>

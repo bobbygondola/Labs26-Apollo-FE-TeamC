@@ -24,6 +24,7 @@ function TopicDetails(props) {
   const { authState } = useOktaAuth();
   const dispatch = useDispatch();
   const [topicDetailsInfo, setTopicDetailsInfo] = useState(null);
+  const [hasSentRequest, setHasSentRequest] = useState(false);
 
   useEffect(() => {
     axiosWithAuth(authState)
@@ -52,6 +53,45 @@ function TopicDetails(props) {
     // eslint-disable-next-line
   }, [currentTopicId]);
 
+  useEffect(() => {
+    const checkIfRequestMade = () => {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1;
+      const year = today.getFullYear();
+
+      const [
+        lastRequestDate,
+      ] = topicDetailsInfo.topic_iteration_requests[0].posted_at.split('T');
+
+      let [
+        lastRequestYear,
+        lastRequestMonth,
+        lastRequestDay,
+      ] = lastRequestDate.split('-');
+
+      lastRequestYear = Number(lastRequestYear);
+      lastRequestMonth = Number(lastRequestMonth);
+      lastRequestDay = Number(lastRequestDay);
+
+      if (
+        lastRequestDay === day &&
+        lastRequestMonth === month &&
+        lastRequestYear === year
+      ) {
+        setHasSentRequest(true);
+      } else {
+        setHasSentRequest(false);
+      }
+    };
+
+    if (topicDetailsInfo && topicDetailsInfo.topic_iteration_requests.length) {
+      checkIfRequestMade();
+    } else {
+      setHasSentRequest(false);
+    }
+  }, [topicDetailsInfo]);
+
   const processRequestData = data => {
     return {
       context_responses: data.context_questions.map(question => {
@@ -66,11 +106,13 @@ function TopicDetails(props) {
   };
 
   const handleRequestSelection = requestId => {
-    dispatch(getCurrentRequestId(requestId));
+    dispatch(getCurrentRequestId(null));
+
     axiosWithAuth(authState)
       .get(`requests/${requestId}`)
       .then(res => {
         setRequestDetails(res.data);
+        dispatch(getCurrentRequestId(requestId));
       });
   };
 
@@ -108,16 +150,18 @@ function TopicDetails(props) {
   const renderMemberDetails = () => {
     return requestDetails.reply_statuses ? (
       <div className="memberCount">
-        {requestDetails.reply_statuses.map(member => {
-          return (
-            <img
-              key={member.id}
-              style={!member.has_replied ? { opacity: '0.2' } : null}
-              src={member.avatarUrl}
-              alt="Member Avatar"
-            />
-          );
-        })}
+        {requestDetails.reply_statuses
+          .sort((a, b) => Number(b.has_replied) - Number(a.has_replied))
+          .map(member => {
+            return (
+              <img
+                key={member.id}
+                style={!member.has_replied ? { opacity: '0.2' } : null}
+                src={member.avatarUrl}
+                alt="Member Avatar"
+              />
+            );
+          })}
         <p id="count">
           {requestDetails.reply_statuses.reduce(
             (a, c) => (a += c.has_replied ? 1 : 0),
@@ -169,10 +213,12 @@ function TopicDetails(props) {
             <h2>{topicDetailsInfo.title}</h2>
             {isTopicOwner && (
               <Button
+                disabled={hasSentRequest}
+                style={{ width: '120px' }}
                 type="primary"
                 onClick={() => dispatch(toggleNewRequestModal())}
               >
-                New Request
+                {!hasSentRequest ? 'New Request' : 'Sent'}
               </Button>
             )}
           </div>
@@ -184,6 +230,9 @@ function TopicDetails(props) {
           <div className="avatars">{renderMemberDetails()}</div>
           <div className="joinCode">
             <h4>Join Code: {topicDetailsInfo.id}</h4>
+          </div>
+          <div>
+            <h4>Frequency: {topicDetailsInfo.frequency}</h4>
           </div>
           <div>
             <h1>Context</h1>

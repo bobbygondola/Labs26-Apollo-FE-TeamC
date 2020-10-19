@@ -33,10 +33,22 @@ const Navigation = props => {
 
   return (
     <Layout>
-      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <Header
+        style={{
+          position: 'absolute',
+          right: '0',
+          zIndex: 2,
+          width: '90%',
+          background: '#f0f2f5',
+        }}
+      >
         <Menu
-          style={{ display: 'flex', justifyContent: 'flex-end' }}
-          theme="dark"
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            background: '#f0f2f5',
+            color: '#4f29e9',
+          }}
           mode="horizontal"
           selectable={false}
         >
@@ -49,7 +61,7 @@ const Navigation = props => {
             }}
             key="1"
           >
-            <Link style={{ color: '#fff' }} to="/">
+            <Link style={{ color: '#4f29e9' }} to="/">
               Apollo
             </Link>
           </Menu.Item>
