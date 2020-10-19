@@ -1,14 +1,9 @@
 # Lambda Labs 26
-
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your first Pull-Request is merged. This is intended to be a guideline. Feel free to add your own flare to it.
-
 # Apollo
 
 You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.dev/).
 
 ## Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
 |                                                      [Corbin Robb](https://github.com/corbinrobb)                                                       |                                                       [Bobby Gondola](https://github.com/bobbygondola)                                                        |                                                      [Erik Sandvik](https://github.com/ErikSandvikSEA)                                                       |                                                       [Alan Parker](https://github.com/alan5123)                                                        |                                                      [Kevin Afable](https://github.com/KAfable)                                                       |
 | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
@@ -19,12 +14,15 @@ You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.
 <br>
 <br>
 
+## To Spin Up the Project
+
 - Fork and clone the repo to install it as your own remote.
 - run: `npm install` to download all dependencies.
 - run: `npm start` to start your local development server.
 
 > When using Okta for authentication, the app will need to run locally on port 3000.
 
+# About
 ### Key Features
 
 - Topics List (Joined/Created)
@@ -37,9 +35,6 @@ You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.
 
 #### NodeJS | Express | PostgreSQL
 See [Backend Documentation](https://apollo-c-api.herokuapp.com/api-docs/#/) for details on the backend of our project.
-
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
 # Contributing
 
