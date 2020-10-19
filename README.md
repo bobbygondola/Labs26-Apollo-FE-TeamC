@@ -19,16 +19,7 @@ You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.
 <br>
 <br>
 
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
-
 - Fork and clone the repo to install it as your own remote.
-  - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
 - run: `npm install` to download all dependencies.
 - run: `npm start` to start your local development server.
 
@@ -36,13 +27,11 @@ You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.
 
 ### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Topics List (Joined/Created)
+- New Topic Modal
+- Join Topic Modal
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to [AWS Amplify](https://aws.amazon.com/amplify/)
 
 #### [Back end](🚫link to back end repo here) built using:
 
