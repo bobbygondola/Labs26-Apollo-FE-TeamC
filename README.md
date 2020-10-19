@@ -33,47 +33,13 @@ You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.
 
 #### Front end deployed to [AWS Amplify](https://aws.amazon.com/amplify/)
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Back end](https://github.com/Lambda-School-Labs/Labs26-Apollo-bE-TeamC) built using:
 
-#### 🚫 back end framework goes here
+#### NodeJS | Express | PostgreSQL
+See [Backend Documentation](https://apollo-c-api.herokuapp.com/api-docs/#/) for details on the backend of our project.
 
-- point one
-- point two
-- point three
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
-
-# APIs
-
-## Authentication API here
-
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-# Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
@@ -106,7 +72,3 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Ensure that your code conforms to our existing code conventions and test coverage.
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
-
-## Documentation
-
-See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
