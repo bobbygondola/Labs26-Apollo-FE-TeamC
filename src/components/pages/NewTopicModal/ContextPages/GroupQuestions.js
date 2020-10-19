@@ -63,7 +63,7 @@ const GroupQuestions = ({ topic, setTopic }) => {
             </Menu>
           );
           return (
-            <React.Fragment key={question.content + index}>
+            <React.Fragment key={'defaultQuestion' + index}>
               <FormInput
                 name="content"
                 value={question.content}
