@@ -38,7 +38,7 @@ const DeliveryTopicSetup = ({ topic, setTopic }) => {
 
         {topic.context_questions.map((question, index) => {
           return (
-            <React.Fragment key={question + index}>
+            <React.Fragment key={'contextQuestion' + index}>
               <FormInput
                 name={question}
                 value={question}

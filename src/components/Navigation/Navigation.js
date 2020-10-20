@@ -39,15 +39,16 @@ const Navigation = props => {
           right: '0',
           zIndex: 2,
           width: '90%',
-          background: '#f0f2f5',
+          background: 'rgba(0,0,0,0)',
         }}
       >
         <Menu
           style={{
             display: 'flex',
             justifyContent: 'flex-end',
-            background: '#f0f2f5',
+            background: 'rgba(0,0,0,0)',
             color: '#4f29e9',
+            border: 'none',
           }}
           mode="horizontal"
           selectable={false}
