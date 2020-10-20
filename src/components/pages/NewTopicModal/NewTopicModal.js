@@ -80,7 +80,9 @@ function NewTopicModal() {
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div>{topicModalSteps[page].content}</div>
+        <div style={{ marginTop: '25px', fontSize: '18px', fontWeight: '500' }}>
+          {topicModalSteps[page].content}
+        </div>
         {page === 0 ? <ContextRadio topic={topic} setTopic={setTopic} /> : null}
         {page === 1 ? (
           <DeliveryTopicSettings topic={topic} setTopic={setTopic} />
@@ -92,7 +94,7 @@ function NewTopicModal() {
           <GroupQuestions topic={topic} setTopic={setTopic} />
         ) : null}
 
-        <div>
+        <div style={{ marginTop: '15px' }}>
           {page !== 0 ? <Button onClick={prevPage}>Prev</Button> : null}
           {page < topicModalSteps.length - 1 ? (
             <Button onClick={nextPage}>Next</Button>

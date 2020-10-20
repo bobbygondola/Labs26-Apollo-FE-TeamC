@@ -26,7 +26,6 @@ export const topicModalSteps = [
   },
   {
     title: 'Frequency',
-    content: 'How frequently do you want to be notified?',
   },
   {
     title: 'Context Questions',

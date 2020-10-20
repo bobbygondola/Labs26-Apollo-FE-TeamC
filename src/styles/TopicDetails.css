@@ -63,8 +63,26 @@
   margin-top: 20px;
 }
 
+.joinCode h4 {
+  color: #0062ec;
+}
+
+.joinCode span {
+  color: #0062ec;
+  border: 1px dashed black;
+  background-color: lightgray;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.frequency h4{
+  color: #0062ec;
+}
+
 #count {
   margin-top: 13px;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
 .innerTopicDetails img {

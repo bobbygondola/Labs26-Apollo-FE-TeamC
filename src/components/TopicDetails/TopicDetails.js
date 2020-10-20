@@ -229,9 +229,11 @@ function TopicDetails(props) {
           </Dropdown>
           <div className="avatars">{renderMemberDetails()}</div>
           <div className="joinCode">
-            <h4>Join Code: {topicDetailsInfo.id}</h4>
+            <h4>
+              Join Code: <span>{topicDetailsInfo.id}</span>
+            </h4>
           </div>
-          <div>
+          <div className="frequency">
             <h4>Frequency: {topicDetailsInfo.frequency}</h4>
           </div>
           <div>

@@ -21,14 +21,22 @@ function ContextResponseQuestions(props) {
 
   return (
     <div>
+      <h2 style={{ marginBottom: '25px' }}>
+        Add <strong style={{ color: '#3389FF' }}>Context</strong> for your team
+      </h2>
       {requestData.context_responses.map(response => {
         return (
           <div key={response.id}>
             <form>
-              <p>{response.question}</p>
+              <p>
+                <strong style={{ fontSize: '18px' }}>
+                  {response.question}
+                </strong>
+              </p>
               <textarea
+                style={{ marginBottom: '25px' }}
                 name={response.id}
-                rows={4}
+                rows={3.5}
                 cols={40}
                 placeholder="Enter Response..."
                 onChange={changeHandler}

@@ -32,7 +32,9 @@ const DeliveryTopicSetup = ({ topic, setTopic }) => {
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <h2>Context Questions</h2>
+        <h2 style={{ color: '#3389FF', marginTop: '20px' }}>
+          Context Questions
+        </h2>
 
         {topic.context_questions.map((question, index) => {
           return (
@@ -44,14 +46,32 @@ const DeliveryTopicSetup = ({ topic, setTopic }) => {
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleContextQuestionsChange(e, index)}
               />
-              <Button onClick={() => deleteContextQuestion(index)}>
+              <Button
+                style={{
+                  color: '#FF4C4C',
+                  width: '10%',
+                  marginTop: '5px',
+                  marginBottom: '10px',
+                }}
+                onClick={() => deleteContextQuestion(index)}
+              >
                 Delete
               </Button>
             </React.Fragment>
           );
         })}
       </div>
-      <Button onClick={addContextQuestion}>Add New Question</Button>
+      <Button
+        style={{
+          backgroundColor: '#5D5DFF',
+          color: 'white',
+          marginTop: '15px',
+          marginBottom: '15px',
+        }}
+        onClick={addContextQuestion}
+      >
+        Add New Question
+      </Button>
     </>
   );
 };

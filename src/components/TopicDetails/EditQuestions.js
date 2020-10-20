@@ -44,13 +44,17 @@ function EditQuestions(props) {
 
   return (
     <div>
+      <h2 style={{ marginBottom: '25px' }}>
+        <strong style={{ color: '#3389FF' }}>Add</strong> or{' '}
+        <strong style={{ color: '#3389FF' }}>Edit</strong> questions
+      </h2>
       {requestData.topic_questions.map((question, idx) => {
         return (
           <div key={idx}>
             <form>
               <textarea
                 id={idx}
-                rows={4}
+                rows={3}
                 cols={40}
                 placeholder={question.content}
                 onChange={changeHandler}
@@ -58,11 +62,25 @@ function EditQuestions(props) {
               />
             </form>
 
-            <Button onClick={() => deleteQuestion(idx)}>Delete Question</Button>
+            <Button
+              style={{ marginBottom: '35px', color: 'red' }}
+              onClick={() => deleteQuestion(idx)}
+            >
+              Remove
+            </Button>
           </div>
         );
       })}
-      <Button onClick={addQuestion}>Add New Question</Button>
+      <Button
+        style={{
+          marginBottom: '30px',
+          backgroundColor: '#4C4CFF',
+          color: 'white',
+        }}
+        onClick={addQuestion}
+      >
+        Add New Question
+      </Button>
     </div>
   );
 }

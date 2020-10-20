@@ -20,7 +20,7 @@ function ContextRadio({ topic, setTopic }) {
 
   return (
     <>
-      <h2>Context</h2>
+      <h2 style={{ color: '#3389FF', marginTop: '20px' }}>Context</h2>
       <Radio.Group onChange={radioCheck} value={radioVal}>
         {radioButtons.map(button => (
           <Radio
