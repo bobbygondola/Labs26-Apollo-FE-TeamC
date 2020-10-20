@@ -16,19 +16,21 @@ const DeliveryTopicSettings = ({ topic, setTopic }) => {
 
   return (
     <>
-      <h2>Frequency</h2>
+      <h2 style={{ color: '#3389FF', marginTop: '10px' }}>Frequency</h2>
       <FormInput
-        labelId="Name"
+        labelId="Name: "
         name="Name"
         placeholder="Delivery Topic"
         value={topic.title}
         onChange={handleNameChange}
       />
-      <h3>How Frequently do you want to be notified?</h3>
+      <h3 style={{ marginTop: '10px' }}>
+        How Frequently do you want your team to be notified?
+      </h3>
       <Radio.Group
         value={topic.frequencyRadioVal}
         size="large"
-        style={{ display: 'flex', flexDirection: 'column' }}
+        style={{ display: 'flex', flexDirection: 'column', width: '20%' }}
       >
         <Radio.Button value={'Daily'} onChange={radioCheck}>
           Daily
@@ -38,9 +40,6 @@ const DeliveryTopicSettings = ({ topic, setTopic }) => {
         </Radio.Button>
         <Radio.Button value={'Monthly'} onChange={radioCheck}>
           Monthly
-        </Radio.Button>
-        <Radio.Button value={'Quarterly'} onChange={radioCheck}>
-          Quarterly
         </Radio.Button>
       </Radio.Group>
     </>

@@ -49,7 +49,9 @@ const GroupQuestions = ({ topic, setTopic }) => {
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <h2>Default Questions</h2>
+        <h2 style={{ color: '#3389FF', marginTop: '20px' }}>
+          Default Questions
+        </h2>
 
         {topic.default_questions.map((question, index) => {
           const menu = (
@@ -71,21 +73,48 @@ const GroupQuestions = ({ topic, setTopic }) => {
                 labelId={`Question ${index + 1}`}
                 onChange={e => handleQuestionsChange(e, index)}
               />
-              <p>Current response type: {question.response_type}</p>
-              <Dropdown overlay={menu}>
-                <Button className="ant-dropdown-link">
-                  Hover me <DownOutlined />
-                </Button>
-              </Dropdown>
+              <p>
+                Current response type:{' '}
+                <span style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
+                  {question.response_type}
+                </span>
+              </p>
+              <div style={{ display: 'flex' }}>
+                <Dropdown overlay={menu}>
+                  <Button
+                    style={{
+                      width: '18%',
+                      marginBottom: '35px',
+                      marginTop: '-5px',
+                    }}
+                    className="ant-dropdown-link"
+                  >
+                    Response Type <DownOutlined />
+                  </Button>
+                </Dropdown>
 
-              <Button onClick={() => deleteDefaultQuestion(index)}>
-                Delete
-              </Button>
+                <Button
+                  style={{
+                    width: '18%',
+                    marginBottom: '35px',
+                    marginTop: '-5px',
+                    color: '#FF4C4C',
+                  }}
+                  onClick={() => deleteDefaultQuestion(index)}
+                >
+                  Delete
+                </Button>
+              </div>
             </React.Fragment>
           );
         })}
       </div>
-      <Button onClick={addDefaultQuestion}>Add New Question</Button>
+      <Button
+        style={{ backgroundColor: '#5D5DFF', color: 'white' }}
+        onClick={addDefaultQuestion}
+      >
+        Add New Question
+      </Button>
     </>
   );
 };

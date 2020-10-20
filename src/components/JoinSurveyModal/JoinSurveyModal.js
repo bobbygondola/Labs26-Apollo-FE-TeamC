@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
+import '../../styles/TopicIterationReplies.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import {
@@ -69,6 +70,7 @@ function JoinSurveyModal() {
       >
         <form onSubmit={join}>
           <input
+            style={{ backgroundColor: 'lightgrey' }}
             placeholder="Enter Join Code"
             type="text"
             onChange={joinCodeChangeHandler}

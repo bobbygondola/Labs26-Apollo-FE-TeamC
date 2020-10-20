@@ -3,6 +3,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import LoadingComponent from '../../components/common/LoadingComponent';
 import '../../styles/TopicIterationReplies.css';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { FiCornerDownLeft } from 'react-icons/fi';
 
 function TopicIterationReplies(props) {
   const { currentRequestId, requestReplies, setRequestReplies } = props;
@@ -45,6 +46,9 @@ function TopicIterationReplies(props) {
                           </p>
                           <div className="questionAnswer">
                             <p>{reply.content}</p>
+                          </div>
+                          <div className="answerIcons">
+                            <FiCornerDownLeft />
                           </div>
                         </div>
                       );
