@@ -70,7 +70,7 @@ function JoinSurveyModal() {
       >
         <form onSubmit={join}>
           <input
-            style={{ backgroundColor: 'lightgrey' }}
+            style={{ backgroundColor: '#EEEAE9' }}
             placeholder="Enter Join Code"
             type="text"
             onChange={joinCodeChangeHandler}

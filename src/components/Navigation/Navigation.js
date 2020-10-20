@@ -62,7 +62,7 @@ const Navigation = props => {
             }}
             key="1"
           >
-            <Link style={{ color: '#4f29e9' }} to="/">
+            <Link style={{ color: '#4f29e9', fontSize: 'larger' }} to="/">
               Apollo
             </Link>
           </Menu.Item>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
+import '../../../styles/login.css';
 
 import { config } from '../../../utils/oktaConfig';
 
@@ -47,7 +48,40 @@ const LoginContainer = () => {
     );
   }, []);
 
-  return <div id="sign-in-widget" />;
+  return (
+    <div
+      className="loginComponent"
+      style={{ display: 'flex', justifyContent: 'center', marginTop: '100px' }}
+    >
+      <div style={{ width: '400px', marginTop: '100px' }}>
+        <h2 style={{ fontSize: '30px' }}>
+          <strong style={{ color: '#3389FF' }}>Apollo</strong> Reinvents
+          Communication
+        </h2>
+        <p style={{ fontWeight: '500', fontSize: '18px' }}>
+          <strong>
+            We handle the way your team communicates, so you can focus on other
+            things.
+          </strong>
+          <br />
+          <br /> Let us guide your vision so you can focus on creating{' '}
+          <strong style={{ color: '#3389FF' }}>Amazing</strong> products. <br />
+          <br /> 1. Create a Topic and add{' '}
+          <strong style={{ color: '#3389FF' }}>Context</strong> to align your
+          team as one. <br />
+          <br /> 2. Assign{' '}
+          <strong style={{ color: '#3389FF' }}>Questions</strong> and{' '}
+          <strong style={{ color: '#3389FF' }}>Frequency</strong> to automate
+          conversations. <br />
+          <br /> 3. Gain <strong style={{ color: '#3389FF' }}>
+            Real-Time
+          </strong>{' '}
+          progress reports and statuses from your team.
+        </p>
+      </div>
+      <div style={{ marginLeft: '100px' }} id="sign-in-widget" />
+    </div>
+  );
 };
 
 export default LoginContainer;

@@ -65,20 +65,37 @@ function TopicIterationRepliesQuestionForms(props) {
   };
 
   return (
-    <div>
-      <h3>Questions</h3>
+    <div style={{ marginLeft: '50px' }}>
+      <h3>
+        <strong style={{ color: '#3389FF', fontSize: '25px' }}>
+          Questions
+        </strong>
+      </h3>
       {replies.map((question, i) => {
         return (
           <div key={question + i}>
-            <h3>{question.question}</h3>
+            <h3 style={{ marginTop: '17px', fontWeight: 'bold' }}>
+              {question.question}
+            </h3>
             <textarea
+              rows={3.5}
+              cols={40}
               onChange={e => handleFormChange(e, question.question_id)}
               value={question.content}
             />
           </div>
         );
       })}
-      <Button onClick={submitReplies}>Submit</Button>
+      <Button
+        style={{
+          backgroundColor: '#3389FF',
+          color: 'white',
+          marginTop: '10px',
+        }}
+        onClick={submitReplies}
+      >
+        Submit
+      </Button>
     </div>
   );
 }
