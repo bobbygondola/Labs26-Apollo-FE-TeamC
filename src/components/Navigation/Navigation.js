@@ -62,14 +62,28 @@ const Navigation = props => {
             }}
             key="1"
           >
-            <Link style={{ color: '#4f29e9' }} to="/">
+            <Link style={{ color: '#4f29e9', fontSize: 'larger' }} to="/">
               Apollo
             </Link>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item
+            style={{
+              display: authService.getAuthState().isAuthenticated
+                ? 'block'
+                : 'none',
+            }}
+            key="2"
+          >
             <div onClick={openJoinSurveyModal}>Join Survey</div>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item
+            style={{
+              display: authService.getAuthState().isAuthenticated
+                ? 'block'
+                : 'none',
+            }}
+            key="3"
+          >
             <div onClick={toggle}>Add New Topic</div>
           </Menu.Item>
           <Menu.Item type="primary" onClick={toggleLoginLogout}>

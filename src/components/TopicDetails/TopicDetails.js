@@ -187,7 +187,9 @@ function TopicDetails(props) {
             return (
               <div key={context_question + i}>
                 <p>
-                  <strong> - {context_question}</strong>
+                  <strong style={{ color: '#1C1B1B', fontSize: '18px' }}>
+                    {context_question}
+                  </strong>
                 </p>
                 <p>{context_response}</p>
               </div>
@@ -237,7 +239,7 @@ function TopicDetails(props) {
             <h4>Frequency: {topicDetailsInfo.frequency}</h4>
           </div>
           <div>
-            <h1>Context</h1>
+            <h1 style={{ marginTop: '50px' }}>Context</h1>
             {renderContextDetails()}
           </div>
         </div>

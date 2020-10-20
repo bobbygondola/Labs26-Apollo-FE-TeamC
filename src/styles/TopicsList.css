@@ -16,7 +16,7 @@
 
 .topic-card {
   background-color: rgb(255, 255, 255);
-  box-shadow: 1px 1px 15px rgb(87, 87, 87);
+  box-shadow: 1px 1px 12px rgb(29, 29, 29);
   border: 1px solid grey;
   margin-top: 10px;
   display: flex;
