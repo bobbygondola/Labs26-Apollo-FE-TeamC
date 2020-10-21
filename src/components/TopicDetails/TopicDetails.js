@@ -188,7 +188,7 @@ function TopicDetails(props) {
               <div key={context_question + i}>
                 <p>
                   <strong style={{ color: '#1C1B1B', fontSize: '18px' }}>
-                    {context_question}
+                    {i + 1}. {context_question}
                   </strong>
                 </p>
                 <p>{context_response}</p>
@@ -200,7 +200,9 @@ function TopicDetails(props) {
           return (
             <div key={question.content + i}>
               <p>
-                <strong> - {question.content}</strong>
+                <strong>
+                  {i + 1}. {question.content}
+                </strong>
               </p>
             </div>
           );
