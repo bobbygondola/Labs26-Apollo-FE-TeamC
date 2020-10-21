@@ -74,9 +74,7 @@ const TopicsList = props => {
           ? displayedTopicsList.map((topic, idx) => (
               <div
                 key={idx}
-                onClick={() =>
-                  showDetails(topic.id ? topic.id : topic.topic_id)
-                }
+                onClick={() => showDetails(topic.id)}
                 className="topic-card"
               >
                 <h2>{topic.title.match(/\b(\w)/g).join('')}</h2>

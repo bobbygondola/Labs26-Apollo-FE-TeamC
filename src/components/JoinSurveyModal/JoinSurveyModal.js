@@ -13,7 +13,6 @@ function JoinSurveyModal() {
   const displayJoinSurveyModal = useSelector(
     state => state.displayJoinSurveyModal
   );
-  const currentUser = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
 
   const [joinCode, setJoinCode] = useState('');
@@ -35,7 +34,7 @@ function JoinSurveyModal() {
   const join = e => {
     e.preventDefault();
     axiosWithAuth(authState)
-      .post(joinTopicUrl, { profile_id: currentUser.sub })
+      .post(joinTopicUrl)
       .then(res => {
         setSuccessMessage('Successfully joined topic');
         setFailureMessage(null);
@@ -46,8 +45,10 @@ function JoinSurveyModal() {
           });
       })
       .catch(err => {
-        setFailureMessage(err.message);
+        setFailureMessage(err.response.data.message);
       });
+
+    setJoinCode('');
   };
 
   function checkOkCondition(e) {

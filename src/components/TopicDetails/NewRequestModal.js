@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
-import { toggleNewRequestModal } from '../../state/actions/displayModalAction';
+import {
+  getCurrentRequestId,
+  toggleDisplayOwnedTopic,
+  toggleNewRequestModal,
+} from '../../state/actions/displayModalAction';
 import ContextResponseQuestions from './ContextResponseQuestions';
 import EditQuestions from './EditQuestions';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
@@ -43,6 +47,9 @@ export const NewRequestModal = props => {
         .then(res => {
           dispatch(toggleNewRequestModal());
           dispatch(toggleNewRequestSuccessModal());
+          dispatch(getCurrentRequestId(res.data.id));
+          dispatch(toggleDisplayOwnedTopic(null));
+          dispatch(toggleDisplayOwnedTopic(res.data.topic_id));
         })
         .catch(err => {
           alert(err);
