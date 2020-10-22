@@ -2,6 +2,7 @@
 # Apollo
 
 [![Watch the video](https://img.youtube.com/vi/As7mZHJ8xcY/hqdefault.jpg)](https://youtu.be/As7mZHJ8xcY)
+[Watch our video walkthrough here ^](https://youtu.be/As7mZHJ8xcY)
 
 You can find the deployed project at [https://c.apollox.dev/](https://c.apollox.dev/).
 
